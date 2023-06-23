@@ -5,6 +5,7 @@ import InputText from '../../../components/uikit/InputText';
 import Button from '../../../components/button/Button';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationType } from '..';
+import TitleNavbar from '../../../components/uikit/TitleNavbar';
 
 const NewPaswordScreen = () => {
 
@@ -16,11 +17,8 @@ const NewPaswordScreen = () => {
             style={{ flex: 1 }}
         >
             <View style={styles.container}>
-                <View style={styles.navBar}>
-                    <TouchableOpacity style={styles.arrowBtn} onPress={() => navigation.navigate("SignUp")}>
-                        <AntDesign name="arrowleft" size={35} color="black" />
-                    </TouchableOpacity>
-                    <Text style={styles.title}>Изменить пароль</Text>
+                <View style={{ paddingHorizontal: 20 }}>
+                    <TitleNavbar title='Изменить пароль' showArrow onPress={() => navigation.navigate("SignUp")} />
                 </View>
                 <View style={styles.inputBox}>
                     <InputText title='Новый пароль' />
@@ -39,15 +37,6 @@ export default NewPaswordScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    navBar: {
-        flexDirection: "row",
-        alignItems: "center",
-        paddingHorizontal: 22,
-        gap: 24
-    },
-    arrowBtn: {
-
     },
     title: {
         fontWeight: "700",
