@@ -1,14 +1,30 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../../constants/Color'
+import SearchNavBar from '../../../components/uikit/SearchNavBar'
+import { useNavigation } from '@react-navigation/native'
+import CategoriesComponent from '../../../components/categories/CategoriesComponent'
+import NewProducts from '../../../components/newProdut/NewProducts'
+import FamouseProducts from '../../../components/femouseProduct/FamouseProducts'
+import NewsComponents from '../../../components/news/NewsComponents'
+import GapView from '../../../components/GapView/GapView'
 
 const HomeScreen = () => {
+
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
-            <ScrollView style={{
+            <ScrollView showsVerticalScrollIndicator={false} style={{
                 flex: 1,
+                paddingTop: 25,
             }}>
-                <Text>HomeScreen</Text>
+                <SearchNavBar onPress={() => navigation.navigate} />
+                <CategoriesComponent />
+                <NewProducts />
+                <FamouseProducts />
+                <NewsComponents />
+                <GapView height={60} />
             </ScrollView>
         </View>
     )

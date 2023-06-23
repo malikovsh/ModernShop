@@ -22,7 +22,7 @@ export default function Button(props: Props) {
 
 const styles = StyleSheet.create({
     btn: {
-        width: "90%",
+        width: '90%',
         height: 50,
         backgroundColor: COLORS.btnColor,
         borderRadius: 55,

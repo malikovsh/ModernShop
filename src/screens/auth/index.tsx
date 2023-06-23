@@ -9,8 +9,12 @@ import NewPaswordScreen from './newPassword/NewPaswordScreen';
 import { StackNavigationProp } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTabNavigation from '../tabNavigation/BottomTabNavigation';
+import NewProductsScreen from '../product/newProductScreen/NewProductsScreen';
+import CategoriesScreen from '../product/categoriesScreen/CategoriesScreen';
+import FamoseScreen from '../product/famouseScreen/FamoseScreen';
+import NewsScreen from '../product/newsScreen/NewsScreen';
 
-type ScreenNames = ['Lecince', 'SignUp', 'Restore', 'NewPassword', 'BottomTab'];
+type ScreenNames = ['Lecince', 'SignUp', 'Restore', 'NewPassword', 'BottomTab', 'Home', 'NewProducts', 'Categories', 'Famouse', 'News'];
 type RootStackParamList = Record<ScreenNames[number], undefined>
 export type StackNavigationType = StackNavigationProp<RootStackParamList>
 
@@ -28,6 +32,11 @@ export default function AuthStack() {
                 <Stack.Screen name="Restore" component={RestoreScreen} />
                 <Stack.Screen name="NewPassword" component={NewPaswordScreen} />
                 <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
+                <Stack.Screen name="NewProducts" component={NewProductsScreen} />
+                <Stack.Screen name="Categories" component={CategoriesScreen} />
+                <Stack.Screen name="Famouse" component={FamoseScreen} />
+                <Stack.Screen name="News" component={NewsScreen} />
+
             </Stack.Navigator>
         </NavigationContainer>
     )

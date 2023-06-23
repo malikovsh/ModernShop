@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Svg, { Path } from "react-native-svg"
+import Svg, { Circle, Path } from "react-native-svg"
 import { useIsFocused } from '@react-navigation/native';
 
 export const TelephoneIcon = () => {
@@ -152,6 +152,93 @@ export const ProfileIcon = () => {
                 strokeWidth={1.42857}
                 strokeLinecap="round"
                 strokeLinejoin="round"
+            />
+        </Svg>
+    );
+};
+
+export const SearchIcon = () => {
+    return (
+        <Svg
+            width={21}
+            height={21}
+            viewBox="0 0 21 21"
+            fill="none"
+        >
+            <Path
+                d="M16.572 15.11L21 19.538 19.537 21l-4.426-4.428a9.263 9.263 0 01-5.807 2.036C4.168 18.608 0 14.44 0 9.304S4.168 0 9.304 0s9.304 4.168 9.304 9.304a9.263 9.263 0 01-2.036 5.807zm-2.073-.766a7.213 7.213 0 002.041-5.04 7.235 7.235 0 00-7.236-7.236 7.235 7.235 0 00-7.236 7.236 7.235 7.235 0 007.236 7.236 7.213 7.213 0 005.04-2.041l.155-.155z"
+                fill="#363636"
+            />
+        </Svg>
+    );
+};
+
+export const FilterIcon = () => {
+    return (
+        <Svg
+            width={23}
+            height={21}
+            viewBox="0 0 23 21"
+            fill="none"
+        >
+            <Path
+                d="M9.089 16.452H1.038M12.68 4.067h8.05"
+                stroke="#E4B717"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <Path
+                clipRule="evenodd"
+                d="M7.04 3.998C7.04 2.342 5.686 1 4.02 1 2.352 1 1 2.342 1 3.998c0 1.656 1.352 2.998 3.02 2.998 1.667 0 3.02-1.342 3.02-2.998zM21.444 16.402a3.008 3.008 0 00-3.018-2.998c-1.669 0-3.02 1.342-3.02 2.998 0 1.656 1.351 2.998 3.02 2.998a3.008 3.008 0 003.018-2.998z"
+                stroke="#E4B717"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </Svg>
+    );
+};
+
+export const FavoriteIcon = () => {
+    return (
+        <Svg
+            width={34}
+            height={34}
+            viewBox="0 0 34 34"
+            fill="none"
+        >
+            <Circle cx={17} cy={17} r={16.5} stroke="#179AE4" />
+            <Path
+                clipRule="evenodd"
+                d="M9.782 17.078c-.848-2.65.143-5.677 2.924-6.573a4.75 4.75 0 014.294.722c1.15-.89 2.824-1.19 4.285-.722 2.781.896 3.78 3.924 2.931 6.573C22.896 21.276 17 24.51 17 24.51s-5.853-3.185-7.218-7.432z"
+                stroke="#179AE4"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <Path
+                d="M20.163 13.205a2.199 2.199 0 011.515 1.915"
+                stroke="#179AE4"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </Svg>
+    );
+};
+
+export const DeleteIcon = () => {
+    return (
+        <Svg
+            width={13}
+            height={16}
+            viewBox="0 0 13 16"
+            fill="none"
+        >
+            <Path
+                d="M2.438 16c-.447 0-.83-.174-1.149-.523a1.792 1.792 0 01-.476-1.255V2.667a.753.753 0 01-.58-.256A.9.9 0 010 1.778c0-.252.078-.463.234-.634A.75.75 0 01.813.889h3.25c0-.252.078-.463.234-.634A.75.75 0 014.875 0h3.25c.23 0 .423.085.58.256a.9.9 0 01.232.633h3.25c.23 0 .424.085.58.256a.9.9 0 01.233.633.904.904 0 01-.234.634.75.75 0 01-.579.255v11.555c0 .49-.159.908-.477 1.256-.319.349-.701.523-1.148.522H2.438zm0-13.333v11.555h8.124V2.667H2.438zm1.624 8.889c0 .251.079.463.234.633a.75.75 0 00.579.255c.23 0 .423-.085.58-.256a.9.9 0 00.232-.632V5.333a.904.904 0 00-.234-.633.75.75 0 00-.578-.256.753.753 0 00-.58.256.9.9 0 00-.232.633v6.223zm3.25 0c0 .251.079.463.234.633a.75.75 0 00.579.255c.23 0 .423-.085.58-.256a.9.9 0 00.232-.632V5.333a.904.904 0 00-.233-.633.75.75 0 00-.579-.256.753.753 0 00-.58.256.9.9 0 00-.232.633v6.223z"
+                fill="#8A8A8A"
             />
         </Svg>
     );

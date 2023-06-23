@@ -5,5 +5,8 @@ export const COLORS = {
   black: "black",
   modalBgColor: 'rgba(0, 0, 0, 0.5)',
   bgColor: '#FAF8F8',
-  tabBtnColor: "#E4E4E4"
+  tabBtnColor: "#E4E4E4",
+  famouseColor: '#1ED55C',
+  textColor: '#C2C2C2',
+  ellipseColor: '#179AE4'
 }

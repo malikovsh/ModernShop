@@ -1,14 +1,46 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import TitleNavbar from '../../../components/uikit/TitleNavbar'
+import { COLORS } from '../../../constants/Color'
+import BasketItem from '../../../components/basketItem/BasketItem'
+import Button from '../../../components/button/Button'
+import { useNavigation } from '@react-navigation/native'
 
 const BasketScreen = () => {
+
+    const navigation = useNavigation()
+
     return (
-        <View>
-            <Text>BasketScreen</Text>
+        <View style={styles.container}>
+            <TitleNavbar title='Корзина' />
+            <BasketItem productName='Iphone 14 PRO' description='Память: 128 гб' productPrice='13.000.000 сум' />
+            <View style={styles.allPrice}>
+                <Text style={{ fontWeight: '500', fontSize: 14, color: COLORS.titlecolor, padding: 5 }}>Итого</Text>
+                <Text style={{ fontSize: 24, fontWeight: '700', color: COLORS.black, padding: 5 }}>13.000.000 сум</Text>
+            </View>
+            <View style={{ position: 'absolute', bottom: 30, alignSelf: "center", width: '110%' }}>
+                <Button text='Заказать' onPress={() => navigation.navigate} />
+            </View>
         </View>
     )
 }
 
 export default BasketScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingHorizontal: 20,
+        backgroundColor: COLORS.bgColor,
+    },
+    allPrice: {
+        width: "100%",
+        backgroundColor: COLORS.white,
+        paddingHorizontal: 22,
+        paddingVertical: 12,
+        borderRadius: 20,
+        position: 'absolute',
+        bottom: 107,
+        alignSelf: "center"
+    }
+})
