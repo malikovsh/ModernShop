@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import LookingTemplate from '../../../components/template/LookingTemplate'
 import TopTabNavigation from '../../tabNavigation/TopTabNavigation'

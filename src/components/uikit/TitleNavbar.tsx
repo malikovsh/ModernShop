@@ -1,17 +1,18 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
-import { FilterIcon } from '../../assets/icons/icons';
+import { ExistIcon, FilterIcon } from '../../assets/icons/icons';
 import { COLORS } from '../../constants/Color';
 
 type TitleProps = {
     title: string;
     showArrow?: boolean;
     showFilter?: boolean;
+    showExist?: boolean;
     onPress?: () => void;
 }
 
-const TitleNavbar = ({ title, showArrow, showFilter, onPress }: TitleProps) => {
+const TitleNavbar = ({ title, showArrow, showFilter, showExist, onPress }: TitleProps) => {
     return (
         <View style={styles.container}>
             <View style={styles.title}>
@@ -29,6 +30,15 @@ const TitleNavbar = ({ title, showArrow, showFilter, onPress }: TitleProps) => {
                         <FilterIcon />
                     </TouchableOpacity> : null
             }
+            <View>
+                {
+                    showExist ?
+                        <TouchableOpacity style={styles.btnExist} onPress={onPress}>
+                            <ExistIcon />
+                            <Text style={styles.textExist}>Выйти</Text>
+                        </TouchableOpacity> : null
+                }
+            </View>
 
         </View>
     )
@@ -60,5 +70,16 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: COLORS.white,
         borderRadius: 20
+    },
+    btnExist: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 12,
+        padding: 5
+    },
+    textExist: {
+        fontWeight: "700",
+        fontSize: 16,
+        color: COLORS.titlecolor
     }
 })

@@ -6,6 +6,7 @@ import Button from '../../../components/button/Button';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationType } from '..';
 import TitleNavbar from '../../../components/uikit/TitleNavbar';
+import { COLORS } from '../../../constants/Color';
 
 const NewPaswordScreen = () => {
 
@@ -37,6 +38,7 @@ export default NewPaswordScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        colors: COLORS.bgColor
     },
     title: {
         fontWeight: "700",

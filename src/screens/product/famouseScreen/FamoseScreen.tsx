@@ -19,7 +19,7 @@ const FamoseScreen = () => {
                 productName='Iphone 14 PRO'
                 category='Iphone 14 PRO'
                 productPrice='13.000.000 сум'
-                showFamouse />
+                showFamouse onPress={() => navigation.navigate('ProductCard')} />
         </View>
     )
 }

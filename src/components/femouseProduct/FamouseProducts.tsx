@@ -12,7 +12,7 @@ const FamouseProducts = () => {
     return (
         <View style={styles.container}>
             <TitleComponent title="Популярные продукты" textBtn='Все продукты' onPress={() => navigation.navigate('Famouse')} />
-            <NewProductsItem productName='Iphone 14 PRO' category='Телефоны' productPrice='13.000.000 сум' showFamouse />
+            <NewProductsItem onPress={() => navigation.navigate('ProductCard')} productName='Iphone 14 PRO' category='Телефоны' productPrice='13.000.000 сум' showFamouse />
         </View>
     )
 }

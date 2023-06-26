@@ -18,7 +18,7 @@ const NewsScreen = () => {
             <NewsItem
                 title='Мы оказываем широкий спектр услуг.'
                 description='Квартирные, офисные и дачные переезды– это наша ежедневная ...'
-                onPress={() => navigation.navigate} />
+                onPress={() => navigation.navigate('NewsCard')} />
         </View>
     )
 }

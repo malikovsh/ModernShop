@@ -38,7 +38,7 @@ export default LicenceScreen
 
 const styles = StyleSheet.create({
     container: {
-
+        backgroundColor: COLORS.bgColor
     },
     inputBtn: {
         gap: 15

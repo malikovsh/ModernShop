@@ -8,13 +8,14 @@ type NewProductsProps = {
     category: string;
     productPrice: string,
     showFamouse?: boolean;
+    onPress?: () => void
 }
 
-const NewProductsItem = ({ productName, category, productPrice, showFamouse }: NewProductsProps) => {
+const NewProductsItem = ({ productName, category, productPrice, showFamouse, onPress }: NewProductsProps) => {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <TouchableOpacity style={styles.favriteBtn}>
-                <FavoriteIcon />
+                <FavoriteIcon isFocus={false} />
             </TouchableOpacity>
             <Image source={require('./../../assets/Images/phone2.png')} />
             <View>

@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Keyboard, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../../constants/Color'
 import SearchNavBar from '../../../components/uikit/SearchNavBar'
@@ -8,6 +8,7 @@ import NewProducts from '../../../components/newProdut/NewProducts'
 import FamouseProducts from '../../../components/femouseProduct/FamouseProducts'
 import NewsComponents from '../../../components/news/NewsComponents'
 import GapView from '../../../components/GapView/GapView'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
 const HomeScreen = () => {
 

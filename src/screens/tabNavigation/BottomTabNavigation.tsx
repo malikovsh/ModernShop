@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Platform, Dimensions, Keyboard } from 'react-native'
 import React from 'react'
 import BasketScreen from '../home/bascetScreen/BasketScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -42,7 +42,7 @@ const NavigationIcon = ({ label, isFocused }: { label: string, isFocused: boolea
     }
 
     return (
-        <Icon.icon />
+        <Icon.icon isFocused={isFocused} />
     )
 };
 
@@ -55,7 +55,7 @@ function MyTabBar({ state, descriptors, navigation }: any) {
             paddingHorizontal: 40,
             borderTopRightRadius: 30,
             borderTopLeftRadius: 30,
-            paddingBottom: 20,
+            paddingBottom: Platform.OS === 'ios' ? 20 : 10,
             paddingTop: 10
         }}>
             {state.routes.map((route: { key: string | number; name: any; }, index: any) => {
@@ -99,7 +99,7 @@ function MyTabBar({ state, descriptors, navigation }: any) {
                         onPress={onPress}
                         onLongPress={onLongPress}
                         style={{
-                            padding: 20
+                            padding: 15
                         }}
                     >
                         <NavigationIcon label={label} isFocused={isFocused} />
@@ -113,7 +113,10 @@ function MyTabBar({ state, descriptors, navigation }: any) {
 const BottomTabNavigation = () => {
     return (
         <Tab.Navigator sceneContainerStyle={{ backgroundColor: COLORS.bgColor }}
-            screenOptions={{ headerShown: false }}
+            screenOptions={{
+                headerShown: false,
+                tabBarHideOnKeyboard: true
+            }}
             tabBar={(props: any) => <MyTabBar {...props} />}>
             <Tab.Screen name={tabBarData[0].label} component={LookingScreen} />
             <Tab.Screen name={tabBarData[1].label} component={BasketScreen} />

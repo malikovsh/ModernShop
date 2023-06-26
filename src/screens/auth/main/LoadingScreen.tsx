@@ -1,5 +1,6 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { COLORS } from '../../../constants/Color'
 
 const image = require('./../../../assets/Images/logo.png')
 
@@ -18,6 +19,7 @@ export default LoadingScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: COLORS.bgColor
     },
     bgimg: {
         flex: 1,

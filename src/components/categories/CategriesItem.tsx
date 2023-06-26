@@ -5,9 +5,10 @@ import { COLORS } from '../../constants/Color'
 type Props = {
     onPress: () => void,
     title: string,
+    item?: any
 }
 
-const CategriesItem = ({ onPress, title }: Props) => {
+const CategriesItem = ({ onPress, title, item }: Props) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <Image source={require('./../../assets/Images/phone.png')} />

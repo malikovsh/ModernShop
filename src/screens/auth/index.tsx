@@ -13,8 +13,23 @@ import NewProductsScreen from '../product/newProductScreen/NewProductsScreen';
 import CategoriesScreen from '../product/categoriesScreen/CategoriesScreen';
 import FamoseScreen from '../product/famouseScreen/FamoseScreen';
 import NewsScreen from '../product/newsScreen/NewsScreen';
+import ProductCard from '../product/productCard/ProductCard';
+import NewsCard from '../product/newsCard/NewsCard';
 
-type ScreenNames = ['Lecince', 'SignUp', 'Restore', 'NewPassword', 'BottomTab', 'Home', 'NewProducts', 'Categories', 'Famouse', 'News'];
+type ScreenNames = [
+    'Lecince',
+    'SignUp',
+    'Restore',
+    'NewPassword',
+    'BottomTab',
+    'Home',
+    'NewProducts',
+    'Categories',
+    'Famouse',
+    'News',
+    'ProductCard',
+    'NewsCard'
+];
 type RootStackParamList = Record<ScreenNames[number], undefined>
 export type StackNavigationType = StackNavigationProp<RootStackParamList>
 
@@ -25,7 +40,7 @@ export default function AuthStack() {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
-                headerShown: false
+                headerShown: false,
             }}>
                 <Stack.Screen name="Lecince" component={LicenceScreen} />
                 <Stack.Screen name="SignUp" component={RegisterScreen} />
@@ -36,7 +51,8 @@ export default function AuthStack() {
                 <Stack.Screen name="Categories" component={CategoriesScreen} />
                 <Stack.Screen name="Famouse" component={FamoseScreen} />
                 <Stack.Screen name="News" component={NewsScreen} />
-
+                <Stack.Screen name="ProductCard" component={ProductCard} />
+                <Stack.Screen name="NewsCard" component={NewsCard} />
             </Stack.Navigator>
         </NavigationContainer>
     )

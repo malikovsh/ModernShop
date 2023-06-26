@@ -11,7 +11,9 @@ const CounterBox = () => {
             SetState((a) => a + 1)
         }
         else {
-            SetState((a) => a - 1)
+            if (state > 1) {
+                SetState((a) => a - 1)
+            }
         }
     }
 
