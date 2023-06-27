@@ -16,7 +16,7 @@ const FavoriteScreen = () => {
                 productName='Iphone 14 PRO'
                 category='Телефоны'
                 productPrice='13.000.000 сум'
-                onPress={() => navigation.navigate('ProductCard')} />
+                onPress={() => navigation.navigate('ProductCard')} isFocus={true} />
         </View>
     )
 }

@@ -46,7 +46,7 @@ export default function SignUpTemplate(props: SignUpProps) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        color: COLORS.bgColor
+        backgroundColor: COLORS.bgColor
     },
     image: {
         justifyContent: 'center',

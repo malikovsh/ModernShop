@@ -17,6 +17,9 @@ import ProductCard from '../product/productCard/ProductCard';
 import NewsCard from '../product/newsCard/NewsCard';
 import FilterScreen from '../product/filterScreen/FilterScreen';
 import PhoneScreen from '../product/phoneScreen/PhoneScreen';
+import PresonalDataScreen from './personalData/PresonalDataScreen';
+import EditScreen from './editScreen/EditScreen';
+import NewEditPassword from './personalData/NewEditPassword';
 
 type ScreenNames = [
     'Lecince',
@@ -32,7 +35,10 @@ type ScreenNames = [
     'ProductCard',
     'NewsCard',
     'Filter',
-    'Phone'
+    'Phone',
+    'Personal',
+    'Edit',
+    'NewEdit'
 ];
 type RootStackParamList = Record<ScreenNames[number], undefined>
 export type StackNavigationType = StackNavigationProp<RootStackParamList>
@@ -59,6 +65,9 @@ export default function AuthStack() {
                 <Stack.Screen name="NewsCard" component={NewsCard} />
                 <Stack.Screen name="Filter" component={FilterScreen} />
                 <Stack.Screen name="Phone" component={PhoneScreen} />
+                <Stack.Screen name="Personal" component={PresonalDataScreen} />
+                <Stack.Screen name="Edit" component={EditScreen} />
+                <Stack.Screen name="NewEdit" component={NewEditPassword} />
             </Stack.Navigator>
         </NavigationContainer>
     )

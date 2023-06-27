@@ -24,7 +24,7 @@ const ProfileScreen = () => {
                 </View>
             </View>
             <View style={{ gap: 10 }}>
-                <ProfileBtn title='Личные данные' showIcon onPress={() => navigation.navigate} />
+                <ProfileBtn title='Личные данные' showIcon onPress={() => navigation.navigate('Personal')} />
                 <ProfileBtn title='Мои заказы' showIcon2 onPress={() => navigation.navigate} />
             </View>
         </View>

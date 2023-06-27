@@ -16,12 +16,16 @@ const RestoreScreen = () => {
     const navigation = useNavigation<StackNavigationType>()
     const [open, setOpen] = useState(false)
 
+    const onPress = () => {
+        navigation.navigate('NewPassword')
+    }
+
     return (
 
         <SignUpTemplate title='Восстановление'>
             <InputText icon={<TelephoneIcon />} title='Номер телефона' text='Номер' />
             <View style={styles.btnBox}>
-                <ModalComponent visible={open} onClose={() => setOpen(false)} />
+                <ModalComponent visible={open} onClose={() => setOpen(false)} onPress={onPress} />
                 <Button text='Запросить код' onPress={() => setOpen(true)} />
                 <TouchableOpacity onPress={() => navigation.navigate('Lecince')}>
                     <Text style={styles.registarBtn}>Уже есть аккаунт?</Text>

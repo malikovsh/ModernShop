@@ -10,9 +10,10 @@ import { AntDesign } from '@expo/vector-icons';
 type ModalProps = {
     visible: boolean,
     onClose: () => void,
+    onPress: () => void,
 }
 
-const ModalComponent = ({ visible, onClose }: ModalProps) => {
+const ModalComponent = ({ visible, onClose, onPress }: ModalProps) => {
 
     const navigation = useNavigation<StackNavigationType>()
 
@@ -44,7 +45,7 @@ const ModalComponent = ({ visible, onClose }: ModalProps) => {
                                 style={styles.input}
                             />
                         </View>
-                        <Button text='Подтвердить' onPress={() => { navigation.navigate("NewPassword"), onClose() }} />
+                        <Button text='Подтвердить' onPress={() => { onPress(), onClose() }} />
                         <TouchableOpacity style={{ marginTop: 20 }}>
                             <Text style={styles.smsTime}>Запросить еще раз (0:50)</Text>
                         </TouchableOpacity>
@@ -83,13 +84,14 @@ const styles = StyleSheet.create({
         marginVertical: 25,
         width: "90%",
         paddingVertical: 5,
-        gap: 20,
         padding: 20,
     },
     input: {
-        fontWeight: "400",
-        fontSize: 17,
-        borderBottomWidth: 1
+        fontWeight: "500",
+        fontSize: 20,
+        borderBottomWidth: 1,
+        paddingTop: 20,
+        color: COLORS.titlecolor
     },
     smsTime: {
         fontWeight: "700",

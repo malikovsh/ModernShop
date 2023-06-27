@@ -12,7 +12,7 @@ type BasketProps = {
 
 const BasketItem = ({ productName, productPrice, description }: BasketProps) => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <View style={{ width: '20%' }}>
                 <Image source={require('./../../assets/Images/phone.png')} />
             </View>
@@ -32,7 +32,7 @@ const BasketItem = ({ productName, productPrice, description }: BasketProps) => 
             <TouchableOpacity style={styles.deleteBtn}>
                 <DeleteIcon />
             </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     )
 }
 

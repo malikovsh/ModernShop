@@ -16,6 +16,10 @@ const RegisterScreen = () => {
     const navigation = useNavigation<StackNavigationType>();
     const [open, setOpen] = useState(false)
 
+    const onPress = () => {
+        navigation.navigate('NewPassword')
+    }
+
 
     return (
         <View style={{ flex: 1 }}>
@@ -30,7 +34,7 @@ const RegisterScreen = () => {
                     </TouchableOpacity>
                 </View>
             </SignUpTemplate >
-            <ModalComponent visible={open} onClose={() => setOpen(false)} />
+            <ModalComponent visible={open} onClose={() => setOpen(false)} onPress={onPress} />
         </View >
     )
 }
@@ -42,6 +46,7 @@ const styles = StyleSheet.create({
         width: "100%",
         gap: 20,
         alignItems: 'center',
+        backgroundColor: COLORS.bgColor
     },
     registarBtn: {
         fontSize: 16,

@@ -10,8 +10,7 @@ type InputProps = {
 
 export default function InputText(props: InputProps) {
     return (
-        <View
-            style={styles.container}>
+        <View style={styles.container}>
             <Text style={styles.discription}>{props.title}</Text>
             <View style={styles.inputBtn}>
                 {props.icon || null}

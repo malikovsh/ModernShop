@@ -8,5 +8,6 @@ export const COLORS = {
   tabBtnColor: "#E4E4E4",
   famouseColor: '#1ED55C',
   textColor: '#C2C2C2',
-  ellipseColor: '#179AE4'
+  ellipseColor: '#179AE4',
+  btnBgColor: '#EFEFEF'
 }

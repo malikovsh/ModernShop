@@ -1,6 +1,5 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { AntDesign } from '@expo/vector-icons';
 import InputText from '../../../components/uikit/InputText';
 import Button from '../../../components/button/Button';
 import { useNavigation } from '@react-navigation/native';
@@ -38,7 +37,7 @@ export default NewPaswordScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        colors: COLORS.bgColor
+        backgroundColor: COLORS.bgColor
     },
     title: {
         fontWeight: "700",
