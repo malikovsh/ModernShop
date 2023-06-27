@@ -360,3 +360,19 @@ export const OrderIcon = () => {
         </Svg>
     );
 };
+
+export const ConfirmIcon = (props: SvgProps & { isFocus?: boolean }) => {
+    return (
+        <Svg
+            width={133}
+            height={133}
+            viewBox="0 0 133 133"
+            fill="none"
+        >
+            <Path
+                d="M66.5 0a66.5 66.5 0 100 133 66.5 66.5 0 000-133zM57 93.052l-23.75-23.75 7.553-7.552L57 77.948 92.198 42.75l7.58 7.533L57 93.053z"
+                fill="#E4B717"
+            />
+        </Svg>
+    );
+};

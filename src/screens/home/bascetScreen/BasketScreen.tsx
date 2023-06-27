@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { COLORS } from '../../../constants/Color'
 import BasketItem from '../../../components/basketItem/BasketItem'
 import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
+import OrderModal from '../../../components/Modal/OrderModal'
+import { StackNavigationType } from '../../auth'
 
 const BasketScreen = () => {
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<StackNavigationType>();
+    const [open, setOpen] = useState(false)
 
     return (
         <View style={styles.container}>
@@ -19,8 +22,9 @@ const BasketScreen = () => {
                 <Text style={{ fontSize: 24, fontWeight: '700', color: COLORS.black, padding: 5 }}>13.000.000 сум</Text>
             </View>
             <View style={{ position: 'absolute', bottom: 30, alignSelf: "center", width: '110%' }}>
-                <Button text='Заказать' onPress={() => navigation.navigate} />
+                <Button text='Заказать' onPress={() => setOpen(true)} />
             </View>
+            <OrderModal visible={open} onClose={() => setOpen(false)} />
         </View>
     )
 }

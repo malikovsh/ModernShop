@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
-import { ExistIcon, FilterIcon } from '../../assets/icons/icons';
+import { ExistIcon } from '../../assets/icons/icons';
 import { COLORS } from '../../constants/Color';
 
 type TitleProps = {
@@ -24,12 +24,6 @@ const TitleNavbar = ({ title, showArrow, showFilter, showExist, onPress }: Title
                 }
                 <Text style={styles.text}>{title}</Text>
             </View>
-            {
-                showFilter ?
-                    <TouchableOpacity style={styles.btnFilter} onPress={onPress}>
-                        <FilterIcon />
-                    </TouchableOpacity> : null
-            }
             <View>
                 {
                     showExist ?
@@ -39,7 +33,6 @@ const TitleNavbar = ({ title, showArrow, showFilter, showExist, onPress }: Title
                         </TouchableOpacity> : null
                 }
             </View>
-
         </View>
     )
 }
@@ -65,11 +58,6 @@ const styles = StyleSheet.create({
     btn: {
         paddingVertical: 15,
         paddingRight: 15
-    },
-    btnFilter: {
-        padding: 15,
-        backgroundColor: COLORS.white,
-        borderRadius: 20
     },
     btnExist: {
         flexDirection: "row",

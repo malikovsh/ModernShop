@@ -15,6 +15,8 @@ import FamoseScreen from '../product/famouseScreen/FamoseScreen';
 import NewsScreen from '../product/newsScreen/NewsScreen';
 import ProductCard from '../product/productCard/ProductCard';
 import NewsCard from '../product/newsCard/NewsCard';
+import FilterScreen from '../product/filterScreen/FilterScreen';
+import PhoneScreen from '../product/phoneScreen/PhoneScreen';
 
 type ScreenNames = [
     'Lecince',
@@ -28,7 +30,9 @@ type ScreenNames = [
     'Famouse',
     'News',
     'ProductCard',
-    'NewsCard'
+    'NewsCard',
+    'Filter',
+    'Phone'
 ];
 type RootStackParamList = Record<ScreenNames[number], undefined>
 export type StackNavigationType = StackNavigationProp<RootStackParamList>
@@ -53,6 +57,8 @@ export default function AuthStack() {
                 <Stack.Screen name="News" component={NewsScreen} />
                 <Stack.Screen name="ProductCard" component={ProductCard} />
                 <Stack.Screen name="NewsCard" component={NewsCard} />
+                <Stack.Screen name="Filter" component={FilterScreen} />
+                <Stack.Screen name="Phone" component={PhoneScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -9,10 +9,11 @@ import FamouseProducts from '../../../components/femouseProduct/FamouseProducts'
 import NewsComponents from '../../../components/news/NewsComponents'
 import GapView from '../../../components/GapView/GapView'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import { StackNavigationType } from '../../auth'
 
 const HomeScreen = () => {
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<StackNavigationType>()
 
     return (
         <View style={styles.container}>
@@ -20,7 +21,7 @@ const HomeScreen = () => {
                 flex: 1,
                 paddingTop: 25,
             }}>
-                <SearchNavBar onPress={() => navigation.navigate} />
+                <SearchNavBar onPress={() => navigation.navigate('Filter')} />
                 <CategoriesComponent />
                 <NewProducts />
                 <FamouseProducts />

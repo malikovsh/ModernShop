@@ -2,24 +2,21 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { COLORS } from '../../../constants/Color'
-import CategoriesComponent from '../../../components/categories/CategoriesComponent'
-import CategriesItem from '../../../components/categories/CategriesItem'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth'
 
-const CategoriesScreen = () => {
+const FilterScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
 
     return (
         <View style={styles.container}>
-            <TitleNavbar title='Категории' showArrow onPress={() => navigation.navigate('BottomTab')} />
-            <CategriesItem title='Телефоны' onPress={() => navigation.navigate('Phone')} />
+            <TitleNavbar title='Фильтр' showArrow onPress={() => navigation.navigate('BottomTab')} />
         </View>
     )
 }
 
-export default CategoriesScreen
+export default FilterScreen
 
 const styles = StyleSheet.create({
     container: {

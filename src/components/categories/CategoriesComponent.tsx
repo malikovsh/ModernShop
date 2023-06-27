@@ -12,7 +12,7 @@ const CategoriesComponent = () => {
     return (
         <View style={styles.container}>
             <TitleComponent title='Категории для вас' textBtn='Все' onPress={() => navigation.navigate('Categories')} />
-            <CategriesItem title='Телефоны' onPress={() => navigation.navigate} />
+            <CategriesItem title='Телефоны' onPress={() => navigation.navigate('Phone')} />
         </View>
     )
 }

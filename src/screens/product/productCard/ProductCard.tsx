@@ -16,7 +16,7 @@ const ProductCard = () => {
     const navigation = useNavigation()
 
     return (
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1, backgroundColor: COLORS.bgColor }} showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={{ paddingHorizontal: 20 }}>
                     <TitleNavbar showArrow title='' />
