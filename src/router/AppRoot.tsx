@@ -8,13 +8,11 @@ import useRootStore from '../hooks/useRootStore'
 
 const AppRoot = () => {
 
-    const { isAuthenticated } = useRootStore().loginStore
+    // const { token } = useRootStore().tokenStore
 
     return (
         <View style={styles.container}>
-            {
-                isAuthenticated ? <HomeStack /> : <AuthStack />
-            }
+            <HomeStack />
         </View>
     )
 }

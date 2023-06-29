@@ -10,16 +10,17 @@ type TitleProps = {
     showFilter?: boolean;
     showExist?: boolean;
     onPress?: () => void;
+    colour?: boolean
 }
 
-const TitleNavbar = ({ title, showArrow, showFilter, showExist, onPress }: TitleProps) => {
+const TitleNavbar = ({ title, showArrow, showFilter, showExist, onPress, colour }: TitleProps) => {
     return (
         <View style={styles.container}>
             <View style={styles.title}>
                 {
                     showArrow ?
                         <TouchableOpacity style={styles.btn} onPress={onPress}>
-                            <AntDesign name="arrowleft" size={24} color="black" />
+                            <AntDesign name="arrowleft" size={24} color={colour ? COLORS.white : COLORS.black} />
                         </TouchableOpacity> : null
                 }
                 <Text style={styles.text}>{title}</Text>

@@ -1,31 +1,28 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { createContext } from "react";
 import { LoginStore } from "./authStore/loginStore";
+import TokenStore from "./tokenStore/tokenStore";
 
+export class AppStore {
+  loginStore: LoginStore;
+  tokenStore = new TokenStore();
 
-class AppStore {
+  constructor() {
+    makeAutoObservable(this);
+    this.loginStore = new LoginStore(this);
+    this.run();
+  }
 
-    loginStore = new LoginStore()
+  private run = () => {
+    runInAction(() => {
+      const list: any[] = [];
 
-    constructor() {
-        makeAutoObservable(this)
-    }
-
-    private run = () => {
-        runInAction(()=> {
-
-            const list: any[] =[]
-
-            Promise.all(list).then(() => {
-
-            })
-            .catch(()=>{
-                
-            })
-        })
-    }
-
+      Promise.all(list)
+        .then(() => {})
+        .catch(() => {});
+    });
+  };
 }
 
 const rootStore = new AppStore();
-export default createContext(rootStore)
+export default createContext(rootStore);

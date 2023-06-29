@@ -25,7 +25,7 @@ const NewPaswordScreen = () => {
                     <InputText title='Подтвердите пароль' />
                 </View>
                 <View style={styles.btnBox}>
-                    <Button text='Сохранить' onPress={() => navigation.navigate("BottomTab")} />
+                    <Button text='Сохранить' onPress={() => navigation.navigate("Lecince")} />
                 </View>
             </View>
         </KeyboardAvoidingView>

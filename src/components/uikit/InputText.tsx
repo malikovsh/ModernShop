@@ -5,7 +5,9 @@ import { COLORS } from '../../constants/Color';
 type InputProps = {
     title: string;
     text?: string;
-    icon?: React.ReactNode
+    icon?: React.ReactNode,
+    value?: string
+    onChange: (e: string) => void;
 };
 
 export default function InputText(props: InputProps) {
@@ -14,7 +16,7 @@ export default function InputText(props: InputProps) {
             <Text style={styles.discription}>{props.title}</Text>
             <View style={styles.inputBtn}>
                 {props.icon || null}
-                <TextInput placeholder={props.text} style={styles.inputText} />
+                <TextInput placeholder={props.text} style={styles.inputText} value={props.value} onChangeText={(e) => props.onChange(e)} />
             </View>
         </View>
     )

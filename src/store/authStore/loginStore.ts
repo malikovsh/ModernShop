@@ -1,18 +1,55 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { LoginPayloadType, LoginResponseType } from "../../api/requestType";
+import { Operation } from "../operation";
+import requests from "../../api/api";
+import { AppStore } from "../AppStore";
 
+const initialStateLoginPayload: LoginPayloadType = {
+  email: "",
+  password: "",
+};
+
+const initialStateLoginResponse: LoginResponseType = {
+  email: "",
+  name: "",
+  id: "",
+  token: "",
+};
 
 export class LoginStore {
-    constructor(){
-        makeAutoObservable(this)
-    }
+  loginOperation = new Operation<LoginResponseType>({} as LoginResponseType);
 
-    isAuthenticated : boolean = false;
+  root: AppStore;
+  constructor(root: AppStore) {
+    makeAutoObservable(this);
+    this.root = root;
+  }
 
-    login = () => {
-        runInAction(() => this.isAuthenticated = true);
-    }
+  loginPayload: LoginPayloadType = initialStateLoginPayload;
+  loginResponse: LoginResponseType = initialStateLoginResponse;
 
-    logout = () => {
-        runInAction(() => this.isAuthenticated = false);
+  isLoading: boolean = false;
+
+  login = async () => {
+    runInAction(() => {
+      this.isLoading = true;
+    });
+    await this.loginOperation.run(() => requests.auth.login(this.loginPayload));
+    if (this.loginOperation.isSuccess) {
+      this.loginResponse = this.loginOperation.data;
+      await this.root.tokenStore.setToken(this.loginOperation.data.token);
+      runInAction(() => {
+        this.isLoading = false;
+      });
     }
+  };
+
+  setLoginPayload = (key: keyof LoginPayloadType, value: string) => {
+    this.loginPayload[key] = value;
+    console.log(this.loginPayload);
+  };
+
+  logout = async () => {
+    await this.root.tokenStore.removeToken();
+  };
 }

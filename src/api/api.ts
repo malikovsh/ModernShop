@@ -2,8 +2,9 @@
 
 import axios, {AxiosResponse} from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoginPayloadType, LoginResponseType } from './requestType';
 
-export let url = 'http://localhost:3000/api';
+export let url = 'http://localhost:3000/api/';
 export let assetUrl = 'http://localhost:3000';
 
 axios.interceptors.request.use(config => {
@@ -44,7 +45,7 @@ export const formData = (data: any): FormData => {
 
 let requests = {
   auth: {
-    
+    login: (data:LoginPayloadType) => axios.post<AxiosResponse<LoginResponseType>>(url+ 'users/login', data)
   },
 };
 export default requests;

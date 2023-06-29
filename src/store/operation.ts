@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from "mobx";
 
 enum OperationState {
   IDLE,
@@ -51,12 +51,12 @@ export class Operation<T> implements IOperation<T> {
     this.setInProgress();
     try {
       const response = await request();
-      console.log('response', response);          
+      // console.log('response', response);
       this.setSuccess();
       this.setData(response.data);
       return response;
     } catch (e: any) {
-      console.log('e', e);      
+      console.log("e", e);
       this._setError(e.response.data);
     } finally {
       this.setHasInitialLoading(true);

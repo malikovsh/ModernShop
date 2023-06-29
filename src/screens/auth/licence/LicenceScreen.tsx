@@ -8,26 +8,27 @@ import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 
 const LicenceScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { login } = useRootStore().loginStore
+    const { login, setLoginPayload, loginPayload, isLoading } = useRootStore().loginStore
 
     return (
         <SignUpTemplate title='Авторизация'>
             <View>
                 <View style={styles.inputBtn}>
-                    <InputText icon={<TelephoneIcon />} title='Номер телефона' text='Номер' />
-                    <InputText icon={<LockIcon />} title='Пароль' text='Пароль' />
+                    <InputText icon={<TelephoneIcon />} title='Номер телефона' text='Номер' onChange={(e) => setLoginPayload('email', e)} value={loginPayload.email} />
+                    <InputText icon={<LockIcon />} title='Пароль' text='Пароль' onChange={(e) => setLoginPayload('password', e)} value={loginPayload.password} />
                 </View>
                 <TouchableOpacity style={styles.forgottenBtn} onPress={() => navigation.navigate("Restore")}>
                     <Text style={styles.btnText}>Забыли пароль?</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.btnBox}>
-                <Button text='Войти' onPress={() => login()} />
+                <Button text='Войти' isLoading={isLoading} onPress={() => login()} />
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.registarBtn}>Регистрация</Text>
                 </TouchableOpacity>
@@ -36,7 +37,7 @@ const LicenceScreen = () => {
     )
 }
 
-export default LicenceScreen
+export default observer(LicenceScreen)
 
 const styles = StyleSheet.create({
     container: {
