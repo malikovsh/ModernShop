@@ -7,7 +7,7 @@ import { COLORS } from '../../../constants/Color'
 import Button from '../../../components/button/Button'
 import ModalComponent from '../../../components/Modal/ModalComponent'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '..'
+import { StackNavigationType } from '../AuthStack'
 
 const WIDTH = Dimensions.get('window').width
 

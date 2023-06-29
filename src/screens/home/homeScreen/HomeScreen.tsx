@@ -9,7 +9,7 @@ import FamouseProducts from '../../../components/femouseProduct/FamouseProducts'
 import NewsComponents from '../../../components/news/NewsComponents'
 import GapView from '../../../components/GapView/GapView'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { StackNavigationType } from '../../auth'
+import { StackNavigationType } from '../../auth/AuthStack'
 
 const HomeScreen = () => {
 

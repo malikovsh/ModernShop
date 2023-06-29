@@ -3,7 +3,7 @@ import React from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { COLORS } from '../../../constants/Color'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../../auth'
+import { StackNavigationType } from '../../auth/AuthStack'
 
 const FilterScreen = () => {
 
@@ -11,7 +11,7 @@ const FilterScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TitleNavbar title='Фильтр' showArrow onPress={() => navigation.navigate('BottomTab')} />
+            <TitleNavbar title='Фильтр' showArrow onPress={() => navigation.goBack()} />
         </View>
     )
 }

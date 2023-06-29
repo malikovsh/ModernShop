@@ -6,7 +6,7 @@ import BasketItem from '../../../components/basketItem/BasketItem'
 import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
 import OrderModal from '../../../components/Modal/OrderModal'
-import { StackNavigationType } from '../../auth'
+import { StackNavigationType } from '../../auth/AuthStack'
 
 const BasketScreen = () => {
 

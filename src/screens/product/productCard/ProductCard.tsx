@@ -19,7 +19,7 @@ const ProductCard = () => {
         <ScrollView style={{ flex: 1, backgroundColor: COLORS.bgColor }} showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={{ paddingHorizontal: 20 }}>
-                    <TitleNavbar showArrow title='' />
+                    <TitleNavbar showArrow title='' onPress={() => navigation.goBack()} />
                 </View>
                 <View style={styles.carousel}>
 

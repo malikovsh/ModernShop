@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '..'
+import { StackNavigationType } from '../AuthStack'
 import InputText from '../../../components/uikit/InputText'
 import Button from '../../../components/button/Button'
 
@@ -17,11 +17,12 @@ const EditScreen = () => {
             <View style={styles.container}>
                 <View style={{ gap: 15 }}>
                     <View style={{ paddingHorizontal: 20 }}>
-                        <TitleNavbar title='Редактировать' showArrow />
+                        <TitleNavbar title='Редактировать' showArrow onPress={() => navigation.goBack()} />
                     </View>
                     <InputText title='Имя' />
                     <InputText title='Фамилия' />
                     <InputText title='Номер телефона' />
+                    <InputText title='Пароль' />
                 </View>
                 <Button text='Сохранить' onPress={() => navigation.navigate('Personal')} />
             </View>

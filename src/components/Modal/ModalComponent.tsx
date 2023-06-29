@@ -4,7 +4,7 @@ import { COLORS } from '../../constants/Color'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Button from '../button/Button'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../../screens/auth'
+import { StackNavigationType } from '../../screens/auth/AuthStack'
 import { AntDesign } from '@expo/vector-icons';
 
 type ModalProps = {

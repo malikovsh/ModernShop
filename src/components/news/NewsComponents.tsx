@@ -3,7 +3,7 @@ import React from 'react'
 import TitleComponent from '../uikit/Titlecomponent'
 import { useNavigation } from '@react-navigation/native'
 import NewsItem from './NewsItem'
-import { StackNavigationType } from '../../screens/auth'
+import { StackNavigationType } from '../../screens/auth/AuthStack'
 
 const NewsComponents = () => {
 

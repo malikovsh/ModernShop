@@ -6,12 +6,14 @@ import SignUpTemplate from '../../../components/template/SignUpTemplate'
 import { LockIcon, TelephoneIcon } from '../../../assets/icons/icons'
 import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '..'
+import { StackNavigationType } from '../AuthStack'
+import useRootStore from '../../../hooks/useRootStore'
 
 
 const LicenceScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { login } = useRootStore().loginStore
 
     return (
         <SignUpTemplate title='Авторизация'>
@@ -25,7 +27,7 @@ const LicenceScreen = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.btnBox}>
-                <Button text='Войти' onPress={() => navigation.navigate("BottomTab")} />
+                <Button text='Войти' onPress={() => login()} />
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.registarBtn}>Регистрация</Text>
                 </TouchableOpacity>

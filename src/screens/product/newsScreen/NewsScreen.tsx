@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../../auth'
+import { StackNavigationType } from '../../auth/AuthStack'
 import NewsItem from '../../../components/news/NewsItem'
 
 const NewsScreen = () => {

@@ -3,7 +3,7 @@ import React from 'react'
 import InputText from '../../../components/uikit/InputText';
 import Button from '../../../components/button/Button';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationType } from '..';
+import { StackNavigationType } from '../AuthStack';
 import TitleNavbar from '../../../components/uikit/TitleNavbar';
 import { COLORS } from '../../../constants/Color';
 

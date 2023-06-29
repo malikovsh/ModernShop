@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS } from '../../constants/Color'
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationType } from '../../screens/auth';
+import { StackNavigationType } from '../../screens/auth/AuthStack';
 import Button from '../button/Button';
 import { ConfirmIcon } from '../../assets/icons/icons';
 

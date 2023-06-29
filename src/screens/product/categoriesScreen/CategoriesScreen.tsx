@@ -5,7 +5,7 @@ import { COLORS } from '../../../constants/Color'
 import CategoriesComponent from '../../../components/categories/CategoriesComponent'
 import CategriesItem from '../../../components/categories/CategriesItem'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../../auth'
+import { StackNavigationType } from '../../auth/AuthStack'
 
 const CategoriesScreen = () => {
 

@@ -5,15 +5,17 @@ import { EditIcon } from '../../../assets/icons/icons'
 import { COLORS } from '../../../constants/Color'
 import ProfileBtn from '../../../components/uikit/ProfileBtn'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../../auth'
+import { StackNavigationType } from '../../auth/AuthStack'
+import useRootStore from '../../../hooks/useRootStore'
 
 const ProfileScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { logout } = useRootStore().loginStore
 
     return (
         <View style={styles.container}>
-            <TitleNavbar title='Профиль' showExist onPress={() => navigation.navigate('Lecince')} />
+            <TitleNavbar title='Профиль' showExist onPress={() => logout()} />
             <View style={styles.profileBox}>
                 <View style={styles.profile} >
                     <Image style={{ width: 180, height: 180, borderRadius: 100 }}

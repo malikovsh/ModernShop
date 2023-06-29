@@ -5,10 +5,11 @@ import { COLORS } from '../../constants/Color'
 type ChatProps = {
     user: string,
     message: string,
-    onPress: () => void
+    onPress: () => void,
+    isFocused?: boolean
 }
 
-const ChatBox = ({ user, message, onPress }: ChatProps) => {
+const ChatBox = ({ user, message, onPress, isFocused }: ChatProps) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.imgProfile}>
@@ -27,7 +28,7 @@ export default ChatBox
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.bgColor,
         borderRadius: 20,
         flexDirection: "row",
         paddingVertical: 12,

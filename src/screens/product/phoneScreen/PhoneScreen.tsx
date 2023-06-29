@@ -3,9 +3,9 @@ import React from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../../auth'
 import { FilterIcon } from '../../../assets/icons/icons'
 import NewProductsItem from '../../../components/newProdut/NewProductsItem'
+import { StackNavigationType } from '../../home/HomeStack'
 
 const PhoneScreen = () => {
 
@@ -18,7 +18,7 @@ const PhoneScreen = () => {
                     title='Телефоны'
                     showArrow
                     showFilter
-                    onPress={() => navigation.navigate('Categories')} />
+                    onPress={() => navigation.goBack()} />
                 <TouchableOpacity style={styles.filterBtn} onPress={() => navigation.navigate('Filter')}>
                     <FilterIcon />
                 </TouchableOpacity>
@@ -26,7 +26,8 @@ const PhoneScreen = () => {
             <NewProductsItem
                 productName='Iphone 14 PRO'
                 category='Телефоны'
-                productPrice='13.000.000 сум' />
+                productPrice='13.000.000 сум'
+                onPress={() => navigation.navigate('ProductCard')} />
         </View>
     )
 }

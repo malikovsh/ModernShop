@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '..'
+import { StackNavigationType } from '../AuthStack'
 import Button from '../../../components/button/Button'
 import ModalComponent from '../../../components/Modal/ModalComponent'
 

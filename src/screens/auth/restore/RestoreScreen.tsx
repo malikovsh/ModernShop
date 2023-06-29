@@ -6,7 +6,7 @@ import { TelephoneIcon } from '../../../assets/icons/icons'
 import Button from '../../../components/button/Button'
 import { COLORS } from '../../../constants/Color'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '..'
+import { StackNavigationType } from '../AuthStack'
 import ModalComponent from '../../../components/Modal/ModalComponent'
 
 const WIDTH = Dimensions.get('window').width

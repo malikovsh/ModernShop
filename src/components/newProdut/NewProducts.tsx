@@ -3,7 +3,7 @@ import React from 'react'
 import TitleComponent from '../uikit/Titlecomponent'
 import { useNavigation } from '@react-navigation/native'
 import NewProductsItem from './NewProductsItem'
-import { StackNavigationType } from '../../screens/auth'
+import { StackNavigationType } from '../../screens/auth/AuthStack'
 import ButtonNavBar from '../uikit/BottonNavBar'
 
 
