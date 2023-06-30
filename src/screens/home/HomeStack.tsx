@@ -22,6 +22,7 @@ import LicenceScreen from '../auth/licence/LicenceScreen';
 import NewPaswordScreen from '../auth/newPassword/NewPaswordScreen';
 import RegisterScreen from '../auth/register/RegisterScreen';
 import RestoreScreen from '../auth/restore/RestoreScreen';
+import ProductsScreen from './Product/ProductsScreen';
 
 type ScreenNames = [
     'Lecince',
@@ -42,7 +43,8 @@ type ScreenNames = [
     'Edit',
     'NewEdit',
     'Writing',
-    'CreatePassword'
+    'CreatePassword',
+    'Products'
 ];
 type RootStackParamList = Record<ScreenNames[number], undefined>
 export type StackNavigationType = StackNavigationProp<RootStackParamList>
@@ -74,6 +76,7 @@ export default function HomeStack() {
                 <Stack.Screen name="Restore" component={RestoreScreen} />
                 <Stack.Screen name="NewPassword" component={NewPaswordScreen} />
                 <Stack.Screen name="CreatePassword" component={NewCreatePassword} />
+                <Stack.Screen name="Products" component={ProductsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )
