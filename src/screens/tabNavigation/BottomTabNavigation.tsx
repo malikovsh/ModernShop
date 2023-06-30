@@ -8,6 +8,7 @@ import FavoriteScreen from '../home/favoriteScreen/FavoriteScreen';
 import ChatScreen from '../home/chatSreen/ChatScreen';
 import ProfileScreen from '../home/profileScreen/ProfileScreen';
 import LookingScreen from '../home/lookingScreen/LookingScreen';
+import CreateProfileScreen from '../home/profileScreen/CreateProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -122,7 +123,7 @@ const BottomTabNavigation = () => {
             <Tab.Screen name={tabBarData[1].label} component={BasketScreen} />
             <Tab.Screen name={tabBarData[2].label} component={FavoriteScreen} />
             <Tab.Screen name={tabBarData[3].label} component={ChatScreen} />
-            <Tab.Screen name={tabBarData[4].label} component={ProfileScreen} />
+            <Tab.Screen name={tabBarData[4].label} component={CreateProfileScreen} />
         </Tab.Navigator>
     )
 }

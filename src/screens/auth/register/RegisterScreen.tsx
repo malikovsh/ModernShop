@@ -34,7 +34,7 @@ const RegisterScreen = () => {
                     </TouchableOpacity>
                 </View>
             </SignUpTemplate >
-            <ModalComponent visible={open} onClose={() => setOpen(false)} onPress={onPress} />
+            <ModalComponent visible={open} onClose={() => setOpen(false)} onPress={() => navigation.navigate('CreatePassword')} />
         </View >
     )
 }

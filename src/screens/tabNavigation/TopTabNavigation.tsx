@@ -2,8 +2,9 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import HomeScreen from '../home/homeScreen/HomeScreen';
-import ProductsScreen from '../home/Product/ProductsScreen';
+import ProductsScreen from '../home/Product/FactoriesScreen';
 import { COLORS } from '../../constants/Color';
+import FactoriesScreen from '../home/Product/FactoriesScreen';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -93,7 +94,7 @@ const TopTabNavigation = () => {
         <Tab.Navigator sceneContainerStyle={{ backgroundColor: COLORS.bgColor, }}
             tabBar={(props: any) => <MyTabBar {...props} />}>
             <Tab.Screen name={router.product.screenName} component={HomeScreen} />
-            <Tab.Screen name={router.firme.screenName} component={ProductsScreen} />
+            <Tab.Screen name={router.firme.screenName} component={FactoriesScreen} />
         </Tab.Navigator>
     )
 }

@@ -17,6 +17,11 @@ import PresonalDataScreen from '../auth/personalData/PresonalDataScreen';
 import EditScreen from '../auth/editScreen/EditScreen';
 import NewEditPassword from '../auth/personalData/NewEditPassword';
 import WritingSceen from './chatSreen/WritingSceen';
+import NewCreatePassword from '../auth/NewCreatePassword/NewCreatePassword';
+import LicenceScreen from '../auth/licence/LicenceScreen';
+import NewPaswordScreen from '../auth/newPassword/NewPaswordScreen';
+import RegisterScreen from '../auth/register/RegisterScreen';
+import RestoreScreen from '../auth/restore/RestoreScreen';
 
 type ScreenNames = [
     'Lecince',
@@ -36,7 +41,8 @@ type ScreenNames = [
     'Personal',
     'Edit',
     'NewEdit',
-    'Writing'
+    'Writing',
+    'CreatePassword'
 ];
 type RootStackParamList = Record<ScreenNames[number], undefined>
 export type StackNavigationType = StackNavigationProp<RootStackParamList>
@@ -63,6 +69,11 @@ export default function HomeStack() {
                 <Stack.Screen name="Edit" component={EditScreen} />
                 <Stack.Screen name="NewEdit" component={NewEditPassword} />
                 <Stack.Screen name="Writing" component={WritingSceen} />
+                <Stack.Screen name="Lecince" component={LicenceScreen} />
+                <Stack.Screen name="SignUp" component={RegisterScreen} />
+                <Stack.Screen name="Restore" component={RestoreScreen} />
+                <Stack.Screen name="NewPassword" component={NewPaswordScreen} />
+                <Stack.Screen name="CreatePassword" component={NewCreatePassword} />
             </Stack.Navigator>
         </NavigationContainer>
     )
