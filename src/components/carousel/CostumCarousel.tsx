@@ -30,7 +30,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
     >([]);
     const currentIndex = useRef<number>(0);
     const flatListRef = useRef<FlatList<any>>(null);
-    const [currentI, setCurrentI] = useState(1)
+    const [currentI, setCurrentI] = useState(0)
 
     useEffect(() => {
         setDataWithPlaceholders([{ id: -1 }, ...data, { id: data.length }]);
@@ -56,7 +56,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
         const autoplay = () => {
             autoplayInterval.current = setInterval(() => {
                 if (currentIndex.current === data.length)
-                    currentIndex.current = 1;
+                    currentIndex.current = 0;
                 flatListRef.current?.scrollToOffset({
                     offset: currentIndex.current * ITEM_LENGTH,
                     animated: true,
@@ -90,11 +90,10 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
                         key={index}
                         style={[
                             styles.paginationItem,
-                            currentIndex.current === index && styles.activePaginationItem,
+                            currentIndex.current === index + 1 && styles.activePaginationItem,
                         ]}
                         onPress={() => {
-                            // Bosingan pagationga o'tkazish
-                            flatListRef.current?.scrollToIndex({ index, animated: true });
+                            flatListRef.current?.scrollToIndex({ index: index + 1, animated: true });
                         }}
                     />
                 ))}
