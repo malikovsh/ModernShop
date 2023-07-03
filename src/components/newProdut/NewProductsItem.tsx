@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color'
 import { FavoriteIcon } from '../../assets/icons/icons'
@@ -11,6 +11,8 @@ type NewProductsProps = {
     onPress?: () => void;
     isFocus?: boolean;
 }
+
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 184 : 164
 
 const NewProductsItem = ({ productName, category, productPrice, showFamouse, onPress, isFocus }: NewProductsProps) => {
     return (
@@ -38,7 +40,7 @@ export default NewProductsItem
 
 const styles = StyleSheet.create({
     container: {
-        width: 164,
+        width: CATALOG_CARD_WIDTH,
         height: 220,
         justifyContent: 'center',
         alignItems: 'center',

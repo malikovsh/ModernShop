@@ -1,13 +1,19 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
-import NewProductsItem from '../../../components/newProdut/NewProductsItem'
+import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
 import ButtonNavBar from '../../../components/uikit/BottonNavBar'
 
 const DATA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+const ProductDATA = [
+    1, 2, 3, 4, 5, 6, 7, 8
+]
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window')
+const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 
 const ProductsScreen = () => {
 
@@ -29,11 +35,20 @@ const ProductsScreen = () => {
                     }}
                 />
             </View>
-            <NewProductsItem
-                productName='Iphone 14 PRO'
-                category='Телефоны'
-                productPrice='13.000.000 сум'
-                onPress={() => navigation.navigate('ProductCard')} />
+            <FlatList
+                data={ProductDATA}
+                renderItem={({ item }) => <NewProductsItem
+                    productName='Iphone 14 PRO'
+                    category='Телефоны'
+                    productPrice='13.000.000 сум'
+                    onPress={() => navigation.navigate('ProductCard')} />}
+                showsVerticalScrollIndicator={false}
+                numColumns={2}
+                contentContainerStyle={{ paddingBottom: 30 }}
+                columnWrapperStyle={{
+                    columnGap: COLUMN_GAP
+                }}
+            />
         </View>
     )
 }

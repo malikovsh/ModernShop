@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Platform, Dimensions, Keyboard } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native'
 import React from 'react'
 import BasketScreen from '../home/bascetScreen/BasketScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -6,7 +6,6 @@ import { BasketIcon, ChatIcon, HeartIcon, HomeIcon, ProfileIcon } from '../../as
 import { COLORS } from '../../constants/Color';
 import FavoriteScreen from '../home/favoriteScreen/FavoriteScreen';
 import ChatScreen from '../home/chatSreen/ChatScreen';
-import ProfileScreen from '../home/profileScreen/ProfileScreen';
 import LookingScreen from '../home/lookingScreen/LookingScreen';
 import CreateProfileScreen from '../home/profileScreen/CreateProfileScreen';
 

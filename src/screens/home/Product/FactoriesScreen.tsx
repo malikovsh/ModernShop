@@ -5,11 +5,13 @@ import { useNavigation } from '@react-navigation/native'
 import FactoryCard from './FactoryCard'
 
 const DATA = [1, 2, 3, 4]
+const CardDATA = [
+    1, 2, 3
+]
 
 const FactoriesScreen = () => {
 
     const navigation = useNavigation()
-
 
     return (
         <View style={styles.container}>
@@ -26,9 +28,16 @@ const FactoriesScreen = () => {
                     }}
                 />
             </View>
-            <View>
-                <FactoryCard />
-            </View>
+
+            <FlatList
+                data={CardDATA}
+                renderItem={({ item }) => <FactoryCard />}
+                contentContainerStyle={{
+                    gap: 10,
+                    paddingBottom: 20
+                }}
+                showsVerticalScrollIndicator={false}
+            />
         </View>
     )
 }

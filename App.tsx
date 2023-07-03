@@ -7,6 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from './src/constants/Color';
+import "./ignoreWarnings";
 
 SplashScreen.preventAutoHideAsync();
 

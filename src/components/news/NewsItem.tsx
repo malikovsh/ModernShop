@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color'
 
@@ -7,6 +7,9 @@ type NewsProps = {
     description: string,
     onPress: () => void
 }
+
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 184 : 164
+
 
 const NewsItem = ({ title, description, onPress }: NewsProps) => {
     return (
@@ -29,14 +32,14 @@ export default NewsItem
 
 const styles = StyleSheet.create({
     container: {
-        width: 170,
-        height: 215,
+        width: CATALOG_CARD_WIDTH,
+        height: 245,
         borderRadius: 20,
         marginTop: 13,
     },
     bgImg: {
-        width: 174,
-        height: 225,
+        width: CATALOG_CARD_WIDTH,
+        height: 245,
         paddingHorizontal: 11,
         gap: 8,
         justifyContent: "flex-end",

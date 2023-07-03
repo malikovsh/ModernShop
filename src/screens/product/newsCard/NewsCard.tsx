@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 19,
-        fontWeight: "700"
+        fontWeight: "700",
+        width: '90%'
     },
     text: {
         fontSize: 16,

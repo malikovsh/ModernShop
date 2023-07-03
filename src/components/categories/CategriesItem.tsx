@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color'
 
@@ -7,6 +7,8 @@ type Props = {
     title: string,
     item?: any
 }
+
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 122 : 110
 
 const CategriesItem = ({ onPress, title, item }: Props) => {
     return (
@@ -26,9 +28,9 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white,
         borderRadius: 20,
         gap: 10,
-        width: 115,
+        width: CATALOG_CARD_WIDTH,
         height: 125,
-        marginTop: 13
+        marginTop: 13,
     },
     text: {
         fontSize: 16,
