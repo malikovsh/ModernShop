@@ -15,6 +15,8 @@ type NewProductsProps = {
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 184 : 164
 
 const NewProductsItem = ({ data, showFamouse, onPress, isFocus }: NewProductsProps) => {
+
+
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <TouchableOpacity style={styles.favriteBtn}>
