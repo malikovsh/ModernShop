@@ -1,35 +1,33 @@
-import { FlatList, StyleSheet, View } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, View, Text } from 'react-native'
+import React, { useEffect } from 'react'
 import TitleComponent from '../uikit/Titlecomponent'
 import { useNavigation } from '@react-navigation/native'
 import NewProductsItem from './NewProductsItem'
 import { StackNavigationType } from '../../screens/auth/AuthStack'
 import ButtonNavBar from '../uikit/BottonNavBar'
-
-const DATA = [
-    1, 2, 3
-]
+import useRootStore from '../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 
 const NewProducts = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+
+    useEffect(() => {
+        getAllProducts()
+    }, [])
 
     return (
         <View>
             <TitleComponent title='Новые продукты' textBtn='Все продукты' onPress={() => navigation.navigate('NewProducts')} />
-            {/* <NewProductsItem 
-            onPress={() => navigation.navigate("ProductCard")} 
-            productName='Iphone 14 PRO' 
-            category='Телефоны' 
-            productPrice='13.000.000 сум' /> */}
+            {isLoading && <Text>Loading...</Text>}
             <FlatList
-                data={DATA}
+                data={allProducts.products}
                 renderItem={({ item }) => <NewProductsItem
+                    data={item}
                     onPress={() => navigation.navigate("ProductCard")}
-                    productName='Iphone 14 PRO'
-                    category='Телефоны'
-                    productPrice='13.000.000 сум' />}
+                />}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 contentContainerStyle={{ gap: 8 }}
@@ -38,6 +36,6 @@ const NewProducts = () => {
     )
 }
 
-export default NewProducts
+export default observer(NewProducts)
 
 const styles = StyleSheet.create({})

@@ -1,19 +1,17 @@
 import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import ButtonNavBar from '../../../components/uikit/BottonNavBar'
+import useRootStore from '../../../hooks/useRootStore'
 
 
 
 const DATA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-const newProdutDATA = [
-    1, 2, 3, 4, 5, 6, 7, 8
-]
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
@@ -21,6 +19,11 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const NewProductsScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+
+    useEffect(() => {
+        getAllProducts()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -39,11 +42,11 @@ const NewProductsScreen = () => {
                 />
             </View>
             <FlatList
-                data={newProdutDATA}
+                data={allProducts.products}
                 renderItem={({ item }) => <NewProductsItem
                     onPress={() => navigation.navigate('ProductCard')}
-                    productName='Iphone 14 PRO' category='Iphone 14 PRO'
-                    productPrice='13.000.000 сум' />}
+                    data={item}
+                />}
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
                 columnWrapperStyle={{

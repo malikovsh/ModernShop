@@ -1,17 +1,19 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import TitleComponent from '../uikit/Titlecomponent'
 import { useNavigation } from '@react-navigation/native'
 import NewProductsItem from '../newProdut/NewProductsItem'
 import { StackNavigationType } from '../../screens/auth/AuthStack'
-
-const DATA = [
-    1, 2, 3
-]
+import useRootStore from '../../hooks/useRootStore'
 
 const FamouseProducts = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+
+    useEffect(() => {
+        getAllProducts()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -20,11 +22,10 @@ const FamouseProducts = () => {
                 textBtn='Все продукты'
                 onPress={() => navigation.navigate('Famouse')} />
             <FlatList
-                data={DATA}
+                data={allProducts.products}
                 renderItem={({ item }) => <NewProductsItem
                     onPress={() => navigation.navigate('ProductCard')}
-                    productName='Iphone 14 PRO' category='Телефоны'
-                    productPrice='13.000.000 сум'
+                    data={item}
                     showFamouse />}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}

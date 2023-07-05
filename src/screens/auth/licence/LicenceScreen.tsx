@@ -20,7 +20,7 @@ const LicenceScreen = () => {
         <SignUpTemplate title='Авторизация'>
             <View>
                 <View style={styles.inputBtn}>
-                    <InputText icon={<TelephoneIcon />} title='Номер телефона' text='Номер' onChange={(e) => setLoginPayload('email', e)} value={loginPayload.email} />
+                    <InputText icon={<TelephoneIcon />} title='Номер телефона' text='Номер' onChange={(e) => setLoginPayload('phoneNumber', e)} value={loginPayload.phoneNumber} />
                     <InputText icon={<LockIcon />} title='Пароль' text='Пароль' onChange={(e) => setLoginPayload('password', e)} value={loginPayload.password} />
                 </View>
                 <TouchableOpacity style={styles.forgottenBtn} onPress={() => navigation.navigate("Restore")}>

@@ -1,14 +1,12 @@
 import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
+import useRootStore from '../../../hooks/useRootStore'
 
-const DATA = [
-    1, 2, 3, 4, 5, 6, 7, 8
-]
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
@@ -16,23 +14,21 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const FamoseScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+
+    useEffect(() => {
+        getAllProducts()
+    }, [])
 
     return (
         <View style={styles.container}>
             <TitleNavbar
                 title='Популярные продукты'
                 showArrow onPress={() => navigation.navigate('BottomTab')} />
-            {/* <NewProductsItem
-                productName='Iphone 14 PRO'
-                category='Iphone 14 PRO'
-                productPrice='13.000.000 сум'
-                showFamouse onPress={() => navigation.navigate('ProductCard')} /> */}
             <FlatList
-                data={DATA}
+                data={allProducts.products}
                 renderItem={({ item }) => <NewProductsItem
-                    productName='Iphone 14 PRO'
-                    category='Телефоны'
-                    productPrice='13.000.000 сум'
+                    data={item}
                     onPress={() => navigation.navigate('ProductCard')}
                     showFamouse />}
                 showsVerticalScrollIndicator={false}

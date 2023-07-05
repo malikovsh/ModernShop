@@ -6,10 +6,30 @@ import CategriesItem from '../../../components/categories/CategriesItem'
 import { useNavigation } from '@react-navigation/native'
 import { FavoriteIcon } from '../../../assets/icons/icons'
 import StorageBtn from '../../../components/uikit/StorageBtn'
+import ImageCarousel from '../../../components/carousel/CostumCarousel'
+import ProductsCardItem from './ProductsCardItem'
+import { Item } from 'react-native-paper/lib/typescript/src/components/Drawer/Drawer'
+import { keys } from 'mobx'
 
-const DATA = [
-    1, 2, 3, 4, 5
-]
+
+const data = [
+    {
+        id: 0,
+        image: require('./../../../assets/Images/phone.png')
+    },
+    {
+        id: 1,
+        image: require('./../../../assets/Images/phone.png')
+    },
+    {
+        id: 2,
+        image: require('./../../../assets/Images/phone.png')
+    },
+    {
+        id: 3,
+        image: require('./../../../assets/Images/phone.png')
+    }
+];
 
 const ProductCard = () => {
 
@@ -21,16 +41,19 @@ const ProductCard = () => {
                 <View style={{ paddingHorizontal: 20 }}>
                     <TitleNavbar showArrow title='' onPress={() => navigation.goBack()} />
                 </View>
-                <View style={styles.carousel}>
 
-                </View>
                 <View style={styles.description}>
                     <View>
                         <FlatList
-                            data={DATA}
-                            renderItem={({ item }) => <CategriesItem title='' onPress={() => navigation.navigate} />}
+                            data={data}
+                            renderItem={({ item }) => <ProductsCardItem imageUrl={item.image} />}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
+                            contentContainerStyle={{
+                                paddingHorizontal: 20,
+                                gap: 6,
+                                paddingVertical: 10
+                            }}
                         />
                     </View>
                     <View style={styles.productName}>
@@ -89,12 +112,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.bgColor,
         paddingBottom: 30
-    },
-    carousel: {
-        width: 226,
-        height: 256,
-        borderWidth: 1,
-        alignSelf: "center",
     },
     description: {
         marginTop: 60,

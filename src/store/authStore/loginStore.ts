@@ -5,12 +5,12 @@ import requests from "../../api/api";
 import { AppStore } from "../AppStore";
 
 const initialStateLoginPayload: LoginPayloadType = {
-  email: "",
+  phoneNumber: "",
   password: "",
 };
 
 const initialStateLoginResponse: LoginResponseType = {
-  email: "",
+  phoneNumber: "",
   name: "",
   id: "",
   token: "",

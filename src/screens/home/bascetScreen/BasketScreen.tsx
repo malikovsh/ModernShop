@@ -9,7 +9,7 @@ import OrderModal from '../../../components/Modal/OrderModal'
 import { StackNavigationType } from '../../auth/AuthStack'
 
 const DATA = [
-    1, 2, 3, 4, 5, 6
+    1, 2, 3
 ]
 
 const BasketScreen = () => {

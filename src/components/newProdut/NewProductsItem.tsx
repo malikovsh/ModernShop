@@ -2,11 +2,11 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react
 import React from 'react'
 import { COLORS } from '../../constants/Color'
 import { FavoriteIcon } from '../../assets/icons/icons'
+import { ProductType } from '../../api/requestType'
+import { mediaUrl } from '../../api/api'
 
 type NewProductsProps = {
-    productName: string;
-    category: string;
-    productPrice: string,
+    data: ProductType,
     showFamouse?: boolean;
     onPress?: () => void;
     isFocus?: boolean;
@@ -14,17 +14,27 @@ type NewProductsProps = {
 
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 184 : 164
 
-const NewProductsItem = ({ productName, category, productPrice, showFamouse, onPress, isFocus }: NewProductsProps) => {
+const NewProductsItem = ({ data, showFamouse, onPress, isFocus }: NewProductsProps) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <TouchableOpacity style={styles.favriteBtn}>
                 <FavoriteIcon isFocus={isFocus} />
             </TouchableOpacity>
-            <Image source={require('./../../assets/Images/phone2.png')} />
-            <View>
-                <Text style={styles.productName}>{productName}</Text>
-                <Text style={styles.category}>{category}</Text>
-                <Text style={styles.productPrice}>{productPrice}</Text>
+            <Image style={{
+                width: '100%',
+                height: 130,
+                borderRadius: 20
+            }} source={{ uri: mediaUrl + data?.media[0]?.name }} />
+            <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+            }}>
+                <View>
+                    <Text style={styles.productName}>{data?.name}</Text>
+                    <Text style={styles.category}>{data?.description}</Text>
+                </View>
+                <Text style={styles.productPrice}>{data?.price[0]?.price + ' sum'}</Text>
             </View>
             {
                 showFamouse ?
@@ -41,12 +51,11 @@ export default NewProductsItem
 const styles = StyleSheet.create({
     container: {
         width: CATALOG_CARD_WIDTH,
-        height: 220,
-        justifyContent: 'center',
-        alignItems: 'center',
+        height: 250,
         borderRadius: 20,
         backgroundColor: COLORS.white,
-        marginTop: 20
+        marginTop: 20,
+        padding: 10,
     },
     productName: {
         fontWeight: '700',
@@ -69,7 +78,8 @@ const styles = StyleSheet.create({
     favriteBtn: {
         position: 'absolute',
         top: 10,
-        right: 10
+        right: 10,
+        zIndex: 2,
     },
     famouse: {
         position: 'absolute',

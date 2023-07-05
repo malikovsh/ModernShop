@@ -1,15 +1,24 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useEffect } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
 import { FilterIcon } from '../../../assets/icons/icons'
-import NewProductsItem from '../../../components/newProdut/NewProductsItem'
+import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import { StackNavigationType } from '../../home/HomeStack'
+import useRootStore from '../../../hooks/useRootStore'
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window')
+const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 
 const PhoneScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+
+    useEffect(() => {
+        getAllProducts()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -23,11 +32,19 @@ const PhoneScreen = () => {
                     <FilterIcon />
                 </TouchableOpacity>
             </View>
-            <NewProductsItem
-                productName='Iphone 14 PRO'
-                category='Телефоны'
-                productPrice='13.000.000 сум'
-                onPress={() => navigation.navigate('ProductCard')} />
+            <FlatList
+                data={allProducts.products}
+                renderItem={({ item }) => <NewProductsItem
+                    data={item}
+                    onPress={() => navigation.navigate('ProductCard')}
+                />}
+                showsVerticalScrollIndicator={false}
+                numColumns={2}
+                contentContainerStyle={{ paddingBottom: 30 }}
+                columnWrapperStyle={{
+                    columnGap: COLUMN_GAP
+                }}
+            />
         </View>
     )
 }

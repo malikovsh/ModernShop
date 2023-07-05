@@ -16,13 +16,13 @@ import PhoneScreen from '../product/phoneScreen/PhoneScreen';
 import PresonalDataScreen from '../auth/personalData/PresonalDataScreen';
 import EditScreen from '../auth/editScreen/EditScreen';
 import NewEditPassword from '../auth/personalData/NewEditPassword';
-import WritingSceen from './chatSreen/WritingSceen';
 import NewCreatePassword from '../auth/NewCreatePassword/NewCreatePassword';
 import LicenceScreen from '../auth/licence/LicenceScreen';
 import NewPaswordScreen from '../auth/newPassword/NewPaswordScreen';
 import RegisterScreen from '../auth/register/RegisterScreen';
 import RestoreScreen from '../auth/restore/RestoreScreen';
 import ProductsScreen from './Product/ProductsScreen';
+import WritingScreen from './chatSreen/WritingScreen';
 
 type ScreenNames = [
     'Lecince',
@@ -70,7 +70,7 @@ export default function HomeStack() {
                 <Stack.Screen name="Personal" component={PresonalDataScreen} />
                 <Stack.Screen name="Edit" component={EditScreen} />
                 <Stack.Screen name="NewEdit" component={NewEditPassword} />
-                <Stack.Screen name="Writing" component={WritingSceen} />
+                <Stack.Screen name="Writing" component={WritingScreen} />
                 <Stack.Screen name="Lecince" component={LicenceScreen} />
                 <Stack.Screen name="SignUp" component={RegisterScreen} />
                 <Stack.Screen name="Restore" component={RestoreScreen} />

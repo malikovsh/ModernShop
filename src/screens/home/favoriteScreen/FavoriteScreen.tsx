@@ -1,9 +1,10 @@
 import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
+import useRootStore from '../../../hooks/useRootStore'
 
 const DATA = [
     1, 2, 3, 4
@@ -16,6 +17,11 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const FavoriteScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+
+    useEffect(() => {
+        getAllProducts()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -26,11 +32,9 @@ const FavoriteScreen = () => {
                 productPrice='13.000.000 сум'
                 onPress={() => navigation.navigate('ProductCard')} isFocus={true} /> */}
             <FlatList
-                data={DATA}
+                data={allProducts.products}
                 renderItem={({ item }) => <NewProductsItem
-                    productName='Iphone 14 PRO'
-                    category='Телефоны'
-                    productPrice='13.000.000 сум'
+                    data={item}
                     onPress={() => navigation.navigate('ProductCard')} isFocus={true} />}
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
