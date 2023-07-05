@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import CategriesItem from '../../../components/categories/CategriesItem'
@@ -10,9 +10,11 @@ import ImageCarousel from '../../../components/carousel/CostumCarousel'
 import ProductsCardItem from './ProductsCardItem'
 import { Item } from 'react-native-paper/lib/typescript/src/components/Drawer/Drawer'
 import { keys } from 'mobx'
+import ProductsCardCarousel from '../../../components/carousel/ProductsCardCarousel'
+import ColorBtn from '../../../components/uikit/ColorBtn'
 
 
-const data = [
+const DATA = [
     {
         id: 0,
         image: require('./../../../assets/Images/phone.png')
@@ -31,21 +33,78 @@ const data = [
     }
 ];
 
+const data: any = [
+    {
+        id: 0,
+        uri: 'https://seeddownload.cdn-apple.com/s3/prod/SEED/package/T043383A-en_AU/4.0/T043383A-iPhone14Pro-FL-AR_2_2/images/T043383A_desktop-hero-2136x1068.png',
+        title: 'Dahlia',
+    },
+    {
+        id: 1,
+        uri: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-gold?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841907',
+        title: 'Dahlia',
+    },
+    {
+        id: 2,
+        uri: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-spaceblack?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841897',
+        title: 'Dahlia',
+    },
+    {
+        id: 3,
+        uri: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple_AV1_GEO_EMEA?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1662060528139',
+        title: 'Dahlia',
+    }
+];
+
+const StorageData = [
+    {
+        id: 0,
+        tilele: '128 гб',
+    },
+    {
+        id: 1,
+        tilele: '216 гб',
+    },
+    {
+        id: 2,
+        tilele: '1 тб',
+    }
+];
+
+const ColorsData = [
+    {
+        id: 0,
+        color: COLORS.black,
+    },
+    {
+        id: 1,
+        color: COLORS.blue,
+    },
+    {
+        id: 2,
+        color: COLORS.btnColor,
+    }
+]
+
 const ProductCard = () => {
 
     const navigation = useNavigation()
+    const [selectBtnColor, setSelectBtnColor] = useState<number>(StorageData[0].id)
+    const [selectColor, setSelectColor] = useState<number>(ColorsData[0].id)
 
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: COLORS.bgColor }} showsVerticalScrollIndicator={false}>
-            <View style={styles.container}>
+        <View style={styles.container}>
+            <View style={{ paddingHorizontal: 20 }}>
+                <TitleNavbar showArrow title='' onPress={() => navigation.goBack()} />
+            </View>
+            <ScrollView style={{ flex: 1, backgroundColor: COLORS.bgColor }} showsVerticalScrollIndicator={false}>
                 <View style={{ paddingHorizontal: 20 }}>
-                    <TitleNavbar showArrow title='' onPress={() => navigation.goBack()} />
+                    <ProductsCardCarousel data={data} />
                 </View>
-
                 <View style={styles.description}>
                     <View>
                         <FlatList
-                            data={data}
+                            data={DATA}
                             renderItem={({ item }) => <ProductsCardItem imageUrl={item.image} />}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -85,23 +144,53 @@ const ProductCard = () => {
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.titlecolor
-                        }}>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Cupiditate, excepturi? Voluptates fugit ratione nemo,
-                            laborum dignissimos tenetur. Atque vitae eum corporis
-                            ullam sunt officiis ab animi nam, deserunt ex ad
-                            dolores molestiae mollitia quidem,
-                        </Text>
+                        }}>Экран....................................... 6.8</Text>
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.titlecolor
+                        }}>Модель процессора............... Snapdragon 8 Gen 2</Text>
+                        <Text style={{
+                            fontSize: 16,
+                            color: COLORS.titlecolor
+                        }}>Встроенная память................. 256 Гб</Text>
                         <TouchableOpacity style={{ alignSelf: "center", padding: 5 }}>
                             <Text style={{ color: COLORS.btnColor, textDecorationLine: 'underline' }}>Подробнее...</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.storage}>
                         <Text style={styles.informationTitle}>Память</Text>
-                        <StorageBtn title='128 гб' />
+                        <FlatList
+                            data={StorageData}
+                            renderItem={({ item }) =>
+                                <StorageBtn
+                                    title={item.tilele}
+                                    selectColor={selectBtnColor === item.id}
+                                    onSelectColor={() => setSelectBtnColor(item.id)}
+                                />}
+                            horizontal
+                            contentContainerStyle={{ gap: 5 }}
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
+                    <View style={styles.storage}>
+                        <Text style={styles.informationTitle}>Цвет</Text>
+                        {/* <ColorBtn color={COLORS.black} /> */}
+                        <FlatList
+                            data={ColorsData}
+                            renderItem={({ item }) =>
+                                <ColorBtn
+                                    color={item.color}
+                                    selectColor={selectColor === item.id}
+                                    onSelectColor={() => setSelectColor(item.id)}
+                                />}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            contentContainerStyle={{ gap: 7 }}
+                        />
                     </View>
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 }
 
@@ -114,7 +203,6 @@ const styles = StyleSheet.create({
         paddingBottom: 30
     },
     description: {
-        marginTop: 60,
         width: '100%',
         backgroundColor: COLORS.white,
         borderRadius: 20
@@ -147,7 +235,8 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         textDecorationLine: "underline",
         borderBottomWidth: 1,
-        borderColor: COLORS.titlecolor
+        borderColor: COLORS.titlecolor,
+        gap: 10
     },
     storage: {
         marginHorizontal: 20,

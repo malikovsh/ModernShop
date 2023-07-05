@@ -1,15 +1,18 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { COLORS } from '../../constants/Color'
 
 type Props = {
     title: string
+    selectColor: boolean
+    onSelectColor: () => void
 }
 
-const StorageBtn = ({ title }: Props) => {
+const StorageBtn = ({ title, onSelectColor, selectColor }: Props) => {
+
     return (
-        <TouchableOpacity style={styles.container}>
-            <Text style={styles.title}>{title}</Text>
+        <TouchableOpacity style={[styles.container, { borderColor: selectColor ? COLORS.btnColor : COLORS.titlecolor }]} onPress={onSelectColor}>
+            <Text style={[styles.title, { color: selectColor ? COLORS.btnColor : COLORS.titlecolor }]}>{title}</Text>
         </TouchableOpacity>
     )
 }
@@ -23,13 +26,11 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 30,
         borderWidth: 1,
-        borderColor: COLORS.titlecolor,
         alignItems: 'center',
         justifyContent: 'center'
     },
     title: {
         fontSize: 16,
         fontWeight: '500',
-        color: COLORS.titlecolor
     }
 })

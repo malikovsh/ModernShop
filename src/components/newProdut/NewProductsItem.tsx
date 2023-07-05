@@ -34,7 +34,7 @@ const NewProductsItem = ({ data, showFamouse, onPress, isFocus }: NewProductsPro
                     <Text style={styles.productName}>{data?.name}</Text>
                     <Text style={styles.category}>{data?.description}</Text>
                 </View>
-                <Text style={styles.productPrice}>{data?.price[0]?.price + ' sum'}</Text>
+                <Text style={styles.productPrice}>{data?.price[0]?.price + ' сум'}</Text>
             </View>
             {
                 showFamouse ?

@@ -13,32 +13,22 @@ import ImageCarousel from '../../../components/carousel/CostumCarousel'
 const data: any = [
     {
         id: 0,
-        uri: 'https://images.unsplash.com/photo-1607326957431-29d25d2b386f',
+        uri: 'https://s.yimg.com/uu/api/res/1.2/NoQRhHGBqs3yr89l7yiDxg--~B/aD0xMDEzO3c9MTgwMDthcHBpZD15dGFjaHlvbg--/https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2021-09/25c681c0-1cfe-11ec-b1ed-aff3c2fd2c38.cf.jpg',
         title: 'Dahlia',
     },
     {
         id: 1,
-        uri: 'https://images.unsplash.com/photo-1512238701577-f182d9ef8af7',
+        uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNM9Lde3NxvJI2uY1UeN37QNmHyim8cWJv4w&usqp=CAU',
         title: 'Dahlia',
     },
     {
         id: 2,
-        uri: 'https://images.unsplash.com/photo-1627522460108-215683bdc9f6',
+        uri: 'https://media.designcafe.com/wp-content/uploads/2020/12/10181909/pop-designs-for-your-home.jpg',
         title: 'Dahlia',
     },
     {
         id: 3,
-        uri: 'https://images.unsplash.com/photo-1587814213271-7a6625b76c33',
-        title: 'Dahlia',
-    },
-    {
-        id: 4,
-        uri: 'https://images.unsplash.com/photo-1588628566587-dbd176de94b4',
-        title: 'Dahlia',
-    },
-    {
-        id: 5,
-        uri: 'https://images.unsplash.com/photo-1501577316686-a5cbf6c1df7e',
+        uri: 'https://writers.com/wp-content/uploads/2021/11/gift-ideas-for-writers-scaled-e1637685660360.jpg',
         title: 'Dahlia',
     }
 ];

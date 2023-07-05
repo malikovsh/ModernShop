@@ -10,7 +10,6 @@ import { StackNavigationType } from '../AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 
-
 const LicenceScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
