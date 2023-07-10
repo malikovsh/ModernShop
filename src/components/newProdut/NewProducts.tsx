@@ -4,10 +4,8 @@ import TitleComponent from '../uikit/Titlecomponent'
 import { useNavigation } from '@react-navigation/native'
 import NewProductsItem from './NewProductsItem'
 import { StackNavigationType } from '../../screens/auth/AuthStack'
-import ButtonNavBar from '../uikit/BottonNavBar'
 import useRootStore from '../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
-
 
 const NewProducts = () => {
 

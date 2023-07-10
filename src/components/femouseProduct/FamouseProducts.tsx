@@ -27,7 +27,7 @@ const FamouseProducts = () => {
                     onPress={() => navigation.navigate('ProductCard')}
                     data={item}
                     showFamouse />}
-                horizontal={true}
+                horizontal
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{ gap: 8 }}
             />
