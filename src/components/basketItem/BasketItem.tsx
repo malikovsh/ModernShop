@@ -5,12 +5,13 @@ import { DeleteIcon } from '../../assets/icons/icons'
 import CounterBox from '../uikit/CounterBox'
 
 type BasketProps = {
-    productName: string;
-    description: string;
-    productPrice: string;
+    productName?: string;
+    description?: string;
+    productPrice?: string;
+    onPress: () => void;
 }
 
-const BasketItem = ({ productName, productPrice, description }: BasketProps) => {
+const BasketItem = ({ productName, productPrice, description, onPress }: BasketProps) => {
     return (
         <TouchableOpacity style={styles.container}>
             <View style={{ width: '20%' }}>
@@ -29,7 +30,7 @@ const BasketItem = ({ productName, productPrice, description }: BasketProps) => 
                     <CounterBox />
                 </View>
             </View>
-            <TouchableOpacity style={styles.deleteBtn}>
+            <TouchableOpacity style={styles.deleteBtn} onPress={onPress}>
                 <DeleteIcon />
             </TouchableOpacity>
         </TouchableOpacity>
