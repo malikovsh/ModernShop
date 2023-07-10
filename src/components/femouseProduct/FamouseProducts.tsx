@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import NewProductsItem from '../newProdut/NewProductsItem'
 import { StackNavigationType } from '../../screens/auth/AuthStack'
 import useRootStore from '../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const FamouseProducts = () => {
 
@@ -21,6 +22,7 @@ const FamouseProducts = () => {
                 title="Популярные продукты"
                 textBtn='Все продукты'
                 onPress={() => navigation.navigate('Famouse')} />
+            {isLoading && <Text>Loading...</Text>}
             <FlatList
                 data={allProducts.products}
                 renderItem={({ item }) => <NewProductsItem
@@ -35,7 +37,7 @@ const FamouseProducts = () => {
     )
 }
 
-export default FamouseProducts
+export default observer(FamouseProducts)
 
 const styles = StyleSheet.create({
     container: {

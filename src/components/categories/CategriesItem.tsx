@@ -1,22 +1,26 @@
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color'
+import { AllCatigoryRespnseType, CatigoriesType } from '../../api/requestType'
+import { mediaUrl } from '../../api/api'
 
 type Props = {
+    data: AllCatigoryRespnseType,
     onPress: () => void,
-    title: string,
-    item?: any,
-    image: any
+    title?: string,
+    image?: any
 }
 
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 122 : 110
 
-const CategriesItem = ({ onPress, title, item, image }: Props) => {
+const CategriesItem = ({ onPress, title, data }: Props) => {
+
+    console.log('item', data);
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
-            <Image style={{ width: '80%', height: 100 }} source={{ uri: image }} />
-            <Text style={styles.text}>{title}</Text>
+            <Image style={styles.img} source={{ uri: mediaUrl + data.icon?.name }} />
+            <Text style={styles.text}>{data?.name}</Text>
         </TouchableOpacity>
     )
 }
@@ -38,5 +42,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         color: COLORS.titlecolor
+    },
+    img: {
+        width: '80%',
+        height: 100,
+        borderRadius: 10,
+        resizeMode: 'cover',
+        alignSelf: 'center'
     }
 })

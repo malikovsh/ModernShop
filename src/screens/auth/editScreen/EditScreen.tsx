@@ -19,10 +19,15 @@ const EditScreen = () => {
                     <View style={{ paddingHorizontal: 20 }}>
                         <TitleNavbar title='Редактировать' showArrow onPress={() => navigation.goBack()} />
                     </View>
-                    <InputText title='Имя' />
-                    <InputText title='Фамилия' />
-                    <InputText title='Номер телефона' />
-                    <InputText title='Пароль' />
+                    <InputText title='Имя' text='Рафаэль' />
+                    <InputText title='Фамилия' text='Ройтман' />
+                    <InputText title='Номер телефона' text='+998 99 999 99 99' />
+                    <View style={styles.itemBox}>
+                        <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Пароль</Text>
+                        <View style={styles.name}>
+                            <Text >*****</Text>
+                        </View>
+                    </View>
                 </View>
                 <Button text='Сохранить' onPress={() => navigation.navigate('Personal')} />
             </View>
@@ -38,5 +43,17 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.bgColor,
         justifyContent: "space-between",
         paddingBottom: 40
+    },
+    itemBox: {
+        width: '100%',
+        gap: 10,
+        paddingHorizontal: 20
+    },
+    name: {
+        width: '100%',
+        paddingHorizontal: 20,
+        paddingVertical: 21,
+        backgroundColor: COLORS.btnBgColor,
+        borderRadius: 50,
     }
 })

@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     name: {
         width: '100%',
         paddingHorizontal: 20,
-        paddingVertical: 13,
+        paddingVertical: 21,
         backgroundColor: COLORS.btnBgColor,
         borderRadius: 50,
     },

@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
+  AllCatigoryRespnseType,
   AllProductsResponseType,
   LoginPayloadType,
   LoginResponseType,
 } from "./requestType";
 
-export let url = "http://localhost:3000/api/";
-export let assetUrl = "http://localhost:3000";
+// export let url = "http://localhost:3000/api/";
+export let url = "https://modern-api.onrender.com/api/";
 export let mediaUrl = "https://ik.imagekit.io/z6k3ktb71/";
 
 axios.interceptors.request.use((config) => {
@@ -35,7 +36,7 @@ axios.interceptors.response.use(
 );
 
 export const appendUrl = (str: string) => {
-  return `${assetUrl}${str}`;
+  return `${mediaUrl}${str}`;
 };
 
 export const formData = (data: any): FormData => {
@@ -55,6 +56,11 @@ let requests = {
   products: {
     getAllProducts: () =>
       axios.get<AxiosResponse<AllProductsResponseType>>(url + "products"),
+  },
+
+  catigories: {
+    getAllCatigories: () =>
+      axios.get<AxiosResponse<AllCatigoryRespnseType>>(url + "categories"),
   },
 };
 export default requests;

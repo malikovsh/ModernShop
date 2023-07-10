@@ -30,7 +30,7 @@ export class LoginStore {
 
   isLoading: boolean = false;
 
-  login = async () => {
+  login = async (navigaton: () => void) => {
     runInAction(() => {
       this.isLoading = true;
     });
@@ -38,6 +38,7 @@ export class LoginStore {
     if (this.loginOperation.isSuccess) {
       this.loginResponse = this.loginOperation.data;
       await this.root.tokenStore.setToken(this.loginOperation.data.token);
+      navigaton();
       runInAction(() => {
         this.isLoading = false;
       });

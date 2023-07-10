@@ -8,6 +8,9 @@ import FavoriteScreen from '../home/favoriteScreen/FavoriteScreen';
 import ChatScreen from '../home/chatSreen/ChatScreen';
 import LookingScreen from '../home/lookingScreen/LookingScreen';
 import CreateProfileScreen from '../home/profileScreen/CreateProfileScreen';
+import { observer } from 'mobx-react-lite';
+import useRootStore from '../../hooks/useRootStore';
+import ProfileScreen from '../home/profileScreen/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -111,6 +114,11 @@ function MyTabBar({ state, descriptors, navigation }: any) {
 }
 
 const BottomTabNavigation = () => {
+
+    const { token } = useRootStore().tokenStore
+
+    const Profile = token ? ProfileScreen : CreateProfileScreen
+
     return (
         <Tab.Navigator sceneContainerStyle={{ backgroundColor: COLORS.bgColor }}
             screenOptions={{
@@ -122,11 +130,11 @@ const BottomTabNavigation = () => {
             <Tab.Screen name={tabBarData[1].label} component={BasketScreen} />
             <Tab.Screen name={tabBarData[2].label} component={FavoriteScreen} />
             <Tab.Screen name={tabBarData[3].label} component={ChatScreen} />
-            <Tab.Screen name={tabBarData[4].label} component={CreateProfileScreen} />
+            <Tab.Screen name={tabBarData[4].label} component={Profile} />
         </Tab.Navigator>
     )
 }
 
-export default BottomTabNavigation
+export default observer(BottomTabNavigation)
 
 const styles = StyleSheet.create({})

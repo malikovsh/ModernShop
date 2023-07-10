@@ -18,7 +18,10 @@ const NewProducts = () => {
 
     return (
         <View>
-            <TitleComponent title='Новые продукты' textBtn='Все продукты' onPress={() => navigation.navigate('NewProducts')} />
+            <TitleComponent
+                title='Новые продукты'
+                textBtn='Все продукты'
+                onPress={() => navigation.navigate('NewProducts')} />
             {isLoading && <Text>Loading...</Text>}
             <FlatList
                 data={allProducts.products}

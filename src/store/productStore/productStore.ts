@@ -23,10 +23,6 @@ class ProductStore {
       requests.products.getAllProducts()
     );
     if (this.allProductsOperation.isSuccess) {
-      console.log(
-        "All Products",
-        JSON.stringify(toJS(this.allProductsOperation.data), null, 2)
-      );
       runInAction(() => {
         this.allProducts = this.allProductsOperation.data;
         this.isLoading = false;

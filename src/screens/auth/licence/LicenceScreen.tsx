@@ -27,7 +27,7 @@ const LicenceScreen = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.btnBox}>
-                <Button text='Войти' isLoading={isLoading} onPress={() => login()} />
+                <Button text='Войти' isLoading={isLoading} onPress={() => login(() => navigation.navigate('BottomTab'))} />
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.registarBtn}>Регистрация</Text>
                 </TouchableOpacity>
