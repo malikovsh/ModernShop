@@ -1,25 +1,45 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import ButtonNavBar from '../../../components/uikit/BottonNavBar'
 import { useNavigation } from '@react-navigation/native'
 import FactoryCard from './FactoryCard'
 
-const DATA = [1, 2, 3, 4]
+const BorderColorData = [
+    {
+        id: 0,
+        title: 'Все',
+    },
+    {
+        id: 1,
+        title: 'Одежда',
+    },
+    {
+        id: 2,
+        title: 'Телефоны',
+    },
+    {
+        id: 3,
+        title: 'Телефоны',
+    }
+]
 const CardDATA = [
     1, 2, 3
 ]
 
 const FactoriesScreen = () => {
 
-    const navigation = useNavigation()
+    const [selectBtnColor, setSelectBtnColor] = useState<number>(BorderColorData[0].id)
 
     return (
         <View style={styles.container}>
             <View>
                 <FlatList
-                    data={DATA}
+                    data={BorderColorData}
                     renderItem={({ item }) =>
-                        <ButtonNavBar title='Одежда' onPress={() => navigation.navigate} />}
+                        <ButtonNavBar
+                            selectColor={selectBtnColor === item.id}
+                            onSelectColor={() => setSelectBtnColor(item.id)}
+                            title={item.title} />}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{

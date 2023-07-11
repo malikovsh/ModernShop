@@ -1,5 +1,5 @@
 import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
@@ -9,9 +9,23 @@ import ButtonNavBar from '../../../components/uikit/BottonNavBar'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 
-const DATA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-const ProductDATA = [
-    1, 2, 3, 4, 5, 6, 7, 8
+const BorderColorData = [
+    {
+        id: 0,
+        title: 'Все',
+    },
+    {
+        id: 1,
+        title: 'Одежда',
+    },
+    {
+        id: 2,
+        title: 'Телефоны',
+    },
+    {
+        id: 3,
+        title: 'Телефоны',
+    }
 ]
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
@@ -21,6 +35,8 @@ const ProductsScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
     const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+    const [selectBtnColor, setSelectBtnColor] = useState<number>(BorderColorData[0].id)
+
 
     useEffect(() => {
         getAllProducts()
@@ -31,9 +47,13 @@ const ProductsScreen = () => {
             <TitleNavbar title='Товары' showArrow onPress={() => navigation.goBack()} />
             <View>
                 <FlatList
-                    data={DATA}
+                    data={BorderColorData}
                     renderItem={({ item }) =>
-                        <ButtonNavBar title='Все' onPress={() => navigation.navigate} />}
+                        <ButtonNavBar
+                            selectColor={selectBtnColor === item.id}
+                            onSelectColor={() => setSelectBtnColor(item.id)}
+                            title={item.title}
+                        />}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{

@@ -4,14 +4,17 @@ import { COLORS } from '../../constants/Color'
 
 type ButtonProps = {
     title: string,
-    onPress: () => void,
-    item?: any
+    onSelectColor: () => void,
+    selectColor: boolean
 }
 
-const ButtonNavBar = ({ title, onPress, item }: ButtonProps) => {
+
+const ButtonNavBar = ({ title, onSelectColor, selectColor }: ButtonProps) => {
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
-            <Text style={styles.title}>{title}</Text>
+        <TouchableOpacity style={[styles.container,
+        { backgroundColor: selectColor ? COLORS.btnColor : COLORS.white }]}
+            onPress={onSelectColor}>
+            <Text style={[styles.title, { color: selectColor ? COLORS.white : COLORS.titlecolor }]}>{title}</Text>
         </TouchableOpacity>
     )
 }

@@ -11,7 +11,10 @@ type Props = {
 const StorageBtn = ({ title, onSelectColor, selectColor }: Props) => {
 
     return (
-        <TouchableOpacity style={[styles.container, { borderColor: selectColor ? COLORS.btnColor : COLORS.titlecolor }]} onPress={onSelectColor}>
+        <TouchableOpacity
+            style={[styles.container,
+            { borderColor: selectColor ? COLORS.btnColor : COLORS.titlecolor }]}
+            onPress={onSelectColor}>
             <Text style={[styles.title, { color: selectColor ? COLORS.btnColor : COLORS.titlecolor }]}>{title}</Text>
         </TouchableOpacity>
     )
