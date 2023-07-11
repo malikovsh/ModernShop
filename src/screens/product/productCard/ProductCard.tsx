@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
-import { FavoriteIcon } from '../../../assets/icons/icons'
+import { FavoriteIcon, MassageIcon } from '../../../assets/icons/icons'
 import StorageBtn from '../../../components/uikit/StorageBtn'
 import ProductsCardItem from './ProductsCardItem'
 import ProductsCardCarousel from '../../../components/carousel/ProductsCardCarousel'
 import ColorBtn from '../../../components/uikit/ColorBtn'
+import Button from '../../../components/button/Button'
 
 
 const DATA = [
@@ -186,6 +187,29 @@ const ProductCard = () => {
                     </View>
                 </View>
             </ScrollView>
+            <View style={styles.bottomPart}>
+                <View>
+                    <Text style={{
+                        fontSize: 14,
+                        fontWeight: '400',
+                        color: COLORS.titlecolor
+                    }}>
+                        Стоимость
+                    </Text>
+                    <Text style={{
+                        fontSize: 23,
+                        fontWeight: '700',
+                        color: COLORS.black,
+                        paddingVertical: 5
+                    }}>
+                        13.000.000 сум
+                    </Text>
+                </View>
+                <TouchableOpacity>
+                    <MassageIcon />
+                </TouchableOpacity>
+                <Button text='В корзину' BasketIcon={true} onPress={() => navigation.navigate} />
+            </View>
         </View>
     )
 }
@@ -241,4 +265,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: COLORS.titlecolor
     },
+    bottomPart: {
+        width: '55%',
+        paddingBottom: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        gap: 10,
+        paddingTop: 20
+    }
 })

@@ -7,13 +7,12 @@ import { COLORS } from '../../constants/Color';
 type TitleProps = {
     title: string;
     showArrow?: boolean;
-    showFilter?: boolean;
     showExist?: boolean;
     onPress?: () => void;
     colour?: boolean
 }
 
-const TitleNavbar = ({ title, showArrow, showFilter, showExist, onPress, colour }: TitleProps) => {
+const TitleNavbar = ({ title, showArrow, showExist, onPress, colour }: TitleProps) => {
     return (
         <View style={styles.container}>
             <View style={styles.title}>

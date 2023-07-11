@@ -31,12 +31,21 @@ export type ProductType = {
   }[];
   reviews: string[];
   props: [];
+  viewCount: number;
+  category: {
+    name: string;
+    id: string;
+  };
+  subcategory: {
+    name: string;
+    id: string;
+  };
   media: {
     name: string;
     fileId: string;
   }[];
   __v: 1;
-  id: "649267a57f9c2e9ad84ea961";
+  id: string;
   isFavourite: boolean;
   isBasket: boolean;
 };

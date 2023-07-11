@@ -36,7 +36,7 @@ const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
             }}>
                 <View>
                     <Text style={styles.productName}>{data?.name}</Text>
-                    <Text style={styles.category}>{data?.description}</Text>
+                    <Text style={styles.category}>{data?.subcategory?.name}</Text>
                 </View>
                 <Text style={styles.productPrice}>{data?.price[0]?.price + ' сум'}</Text>
             </View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 17,
         color: COLORS.btnColor,
-        lineHeight: 27
+        lineHeight: 17
     },
     favriteBtn: {
         position: 'absolute',
