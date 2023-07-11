@@ -6,6 +6,7 @@ import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
@@ -42,7 +43,7 @@ const FamoseScreen = () => {
     )
 }
 
-export default FamoseScreen
+export default observer(FamoseScreen)
 
 const styles = StyleSheet.create({
     container: {

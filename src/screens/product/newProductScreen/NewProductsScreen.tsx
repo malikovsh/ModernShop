@@ -7,6 +7,7 @@ import { StackNavigationType } from '../../auth/AuthStack'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import ButtonNavBar from '../../../components/uikit/BottonNavBar'
 import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 
 
@@ -57,7 +58,7 @@ const NewProductsScreen = () => {
     )
 }
 
-export default NewProductsScreen
+export default observer(NewProductsScreen)
 
 const styles = StyleSheet.create({
     container: {

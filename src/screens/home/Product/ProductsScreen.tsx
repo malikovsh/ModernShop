@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
 import ButtonNavBar from '../../../components/uikit/BottonNavBar'
 import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const DATA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 const ProductDATA = [
@@ -58,7 +59,7 @@ const ProductsScreen = () => {
     )
 }
 
-export default ProductsScreen
+export default observer(ProductsScreen)
 
 const styles = StyleSheet.create({
     container: {

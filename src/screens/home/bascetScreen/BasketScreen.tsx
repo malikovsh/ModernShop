@@ -8,8 +8,6 @@ import { useNavigation } from '@react-navigation/native'
 import OrderModal from '../../../components/Modal/OrderModal'
 import { StackNavigationType } from '../../auth/AuthStack'
 
-const { width } = Dimensions.get('window');
-
 const layoutAnimConfig = {
     duration: 300,
     update: {

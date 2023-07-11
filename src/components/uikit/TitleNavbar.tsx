@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: '700',
-        paddingVertical: 15
+        paddingVertical: 15,
+
     },
     btn: {
         paddingVertical: 15,

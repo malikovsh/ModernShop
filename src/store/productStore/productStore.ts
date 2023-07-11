@@ -24,7 +24,16 @@ class ProductStore {
     );
     if (this.allProductsOperation.isSuccess) {
       runInAction(() => {
-        this.allProducts = this.allProductsOperation.data;
+        this.allProducts = {
+          ...this.allProductsOperation.data,
+          products: this.allProductsOperation.data.products.map((item) => {
+            return {
+              ...item,
+              isFavourite: false,
+              isBasket: false,
+            };
+          }),
+        };
         this.isLoading = false;
       });
     }

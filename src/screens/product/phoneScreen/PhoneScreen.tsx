@@ -7,6 +7,7 @@ import { FilterIcon } from '../../../assets/icons/icons'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import { StackNavigationType } from '../../home/HomeStack'
 import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
@@ -49,7 +50,7 @@ const PhoneScreen = () => {
     )
 }
 
-export default PhoneScreen
+export default observer(PhoneScreen)
 
 const styles = StyleSheet.create({
     container: {

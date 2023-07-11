@@ -12,6 +12,7 @@ const NewProducts = () => {
     const navigation = useNavigation<StackNavigationType>()
     const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
 
+
     useEffect(() => {
         getAllProducts()
     }, [])

@@ -5,6 +5,7 @@ import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProd
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const DATA = [
     1, 2, 3, 4
@@ -17,37 +18,29 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const FavoriteScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
-
-    useEffect(() => {
-        getAllProducts()
-    }, [])
+    const { inFavouriteProducts, togleFavourite } = useRootStore().favouriteStore
 
     return (
         <View style={styles.container}>
             <TitleNavbar title='Избранное' />
-            {/* <NewProductsItem
-                productName='Iphone 14 PRO'
-                category='Телефоны'
-                productPrice='13.000.000 сум'
-                onPress={() => navigation.navigate('ProductCard')} isFocus={true} /> */}
             <FlatList
-                data={allProducts.products}
+                data={inFavouriteProducts}
                 renderItem={({ item }) => <NewProductsItem
                     data={item}
-                    onPress={() => navigation.navigate('ProductCard')} isFocus={true} />}
+                    onPress={() => navigation.navigate('ProductCard')} />}
                 showsVerticalScrollIndicator={false}
                 numColumns={2}
                 contentContainerStyle={{ paddingBottom: 20 }}
                 columnWrapperStyle={{
                     columnGap: COLUMN_GAP
                 }}
+                keyExtractor={(item, index) => index.toString()}
             />
         </View>
     )
 }
 
-export default FavoriteScreen
+export default observer(FavoriteScreen)
 
 const styles = StyleSheet.create({
     container: {

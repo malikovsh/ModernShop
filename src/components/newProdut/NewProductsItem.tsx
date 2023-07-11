@@ -4,23 +4,25 @@ import { COLORS } from '../../constants/Color'
 import { FavoriteIcon } from '../../assets/icons/icons'
 import { ProductType } from '../../api/requestType'
 import { mediaUrl } from '../../api/api'
+import { observer } from 'mobx-react-lite'
+import useRootStore from '../../hooks/useRootStore'
 
 type NewProductsProps = {
     data: ProductType,
     showFamouse?: boolean;
     onPress?: () => void;
-    isFocus?: boolean;
 }
 
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 184 : 164
 
-const NewProductsItem = ({ data, showFamouse, onPress, isFocus }: NewProductsProps) => {
+const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
 
+    const { togleFavourite } = useRootStore().favouriteStore
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
-            <TouchableOpacity style={styles.favriteBtn}>
-                <FavoriteIcon isFocus={isFocus} />
+            <TouchableOpacity style={styles.favriteBtn} onPress={() => togleFavourite(data)}>
+                <FavoriteIcon isFocus={data.isFavourite} />
             </TouchableOpacity>
             <Image style={{
                 width: '100%',
@@ -48,7 +50,7 @@ const NewProductsItem = ({ data, showFamouse, onPress, isFocus }: NewProductsPro
     )
 }
 
-export default NewProductsItem
+export default observer(NewProductsItem)
 
 const styles = StyleSheet.create({
     container: {

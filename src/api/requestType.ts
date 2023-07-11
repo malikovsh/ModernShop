@@ -37,6 +37,8 @@ export type ProductType = {
   }[];
   __v: 1;
   id: "649267a57f9c2e9ad84ea961";
+  isFavourite: boolean;
+  isBasket: boolean;
 };
 
 export type EdititngType = {};
