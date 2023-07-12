@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   AllCatigoryRespnseType,
   AllProductsResponseType,
+  CarouselType,
   LoginPayloadType,
   LoginResponseType,
 } from "./requestType";
@@ -61,6 +62,10 @@ let requests = {
   catigories: {
     getAllCatigories: () =>
       axios.get<AxiosResponse<AllCatigoryRespnseType>>(url + "categories"),
+  },
+  carousel: {
+    getAllCarousel: () =>
+      axios.get<AxiosResponse<CarouselType>>(url + "slides"),
   },
 };
 export default requests;

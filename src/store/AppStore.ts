@@ -5,6 +5,8 @@ import TokenStore from "./tokenStore/tokenStore";
 import ProductStore from "./productStore/productStore";
 import CatigoryStore from "./catigoriesStore/catigoryStore";
 import FavouriteStore from "./favouriteStore/favouriteStore";
+import BasketStore from "./basketStore/basketStore";
+import CarouselStore from "./carouselStore/CarouselStore";
 
 export class AppStore {
   loginStore: LoginStore;
@@ -12,6 +14,8 @@ export class AppStore {
   productStore = new ProductStore();
   catigoryStore = new CatigoryStore();
   favouriteStore: FavouriteStore;
+  basketStore: BasketStore | undefined;
+  carouselStore = new CarouselStore();
 
   constructor() {
     makeAutoObservable(this);

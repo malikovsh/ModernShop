@@ -69,3 +69,14 @@ export type CatigoriesType = {
   __v: 0;
   id: string;
 };
+
+export type CarouselStore = {
+  title: string;
+  productId: string;
+  image: {
+    name: string;
+    fileId: string;
+  };
+  __v: number;
+  id: string;
+};

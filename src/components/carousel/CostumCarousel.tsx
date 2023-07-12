@@ -6,7 +6,6 @@ import {
     Image,
     Pressable,
     StyleSheet,
-    Text,
     View,
 } from 'react-native';
 import { COLORS } from '../../constants/Color';
