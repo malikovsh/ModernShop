@@ -11,6 +11,7 @@ import ColorBtn from '../../../components/uikit/ColorBtn'
 import Button from '../../../components/button/Button'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
+import { StackNavigationType } from '../../home/HomeStack'
 
 const StorageData = [
     {
@@ -44,7 +45,7 @@ const ColorsData = [
 
 const ProductCard = () => {
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<StackNavigationType>()
     const [selectBtnColor, setSelectBtnColor] = useState<number>(StorageData[0].id)
     const [selectColor, setSelectColor] = useState<number>(ColorsData[0].id)
     const { oneProduct, isLoading } = useRootStore().productStore
@@ -168,7 +169,7 @@ const ProductCard = () => {
                         {oneProduct?.price[0].price} сум
                     </Text>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Writing')}>
                     <MassageIcon />
                 </TouchableOpacity>
                 <Button text='В корзину' BasketIcon={true} onPress={() => navigation.navigate} />

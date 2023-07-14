@@ -28,7 +28,7 @@ const HomeScreen = () => {
                 <CategoriesComponent />
                 <NewProducts />
                 <FamouseProducts />
-                <NewsComponents />
+                {/* <NewsComponents /> */}
                 <GapView height={60} />
             </ScrollView>
         </View>

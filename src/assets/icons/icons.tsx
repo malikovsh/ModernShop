@@ -460,3 +460,28 @@ export const BasketWhiteIcon = () => {
         </Svg>
     );
 };
+
+export const DateIcon = () => {
+    return (
+        <Svg
+            width={12}
+            height={13}
+            viewBox="0 0 12 13"
+            fill="none"
+        >
+            <Path
+                d="M1.051 5.072h9.985M8.53 7.22h.006M6.044 7.22h.005M3.553 7.22h.005M8.53 9.358h.006M6.044 9.358h.005M3.553 9.358h.005M8.307 1v1.81M3.781 1v1.81"
+                stroke="#A1A5A9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+            <Path
+                clipRule="evenodd"
+                d="M8.416 1.868H3.673C2.028 1.868 1 2.768 1 4.422V9.4C1 11.08 2.028 12 3.673 12H8.41c1.65 0 2.672-.904 2.672-2.558V4.422c.005-1.654-1.017-2.554-2.667-2.554z"
+                stroke="#A1A5A9"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </Svg>
+    );
+};

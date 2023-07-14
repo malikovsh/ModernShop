@@ -12,6 +12,7 @@ import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
 import { MediaIcon, SendIcon } from '../../../assets/icons/icons'
+import ChatComponentItem from '../../../components/chatComponent/ChatComponentItem'
 
 const WritingScreen = () => {
 
@@ -29,7 +30,7 @@ const WritingScreen = () => {
                 <ScrollView
                     style={{ flex: 1, backgroundColor: COLORS.bgColor }}
                     showsVerticalScrollIndicator={false}>
-
+                    <ChatComponentItem />
                 </ScrollView>
                 <View style={styles.input}>
                     <View style={{
