@@ -1,17 +1,27 @@
 import { Image, Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../../constants/Color'
+import { ProductType } from '../../../api/requestType';
+import { mediaUrl } from '../../../api/api';
 
 type Props = {
-    imageUrl: any
+    data: {
+        name: string;
+        fileId: string;
+    };
+
 }
 
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 122 : 110
 
-const ProductsCardItem = ({ imageUrl }: Props) => {
+const ProductsCardItem = ({ data }: Props) => {
     return (
         <View style={styles.container}>
-            <Image source={imageUrl} />
+            <Image style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: 10
+            }} source={{ uri: mediaUrl + data.name }} />
         </View>
     )
 }

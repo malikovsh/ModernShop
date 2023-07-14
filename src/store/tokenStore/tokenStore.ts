@@ -44,9 +44,7 @@ class TokenStore {
       runInAction(() => {
         this.token = "";
       });
-    } catch (error) {
-      console.log("remove token error");
-    }
+    } catch (error) {}
   };
 }
 

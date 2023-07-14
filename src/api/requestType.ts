@@ -41,6 +41,7 @@ export type ProductType = {
     id: string;
   };
   media: {
+    id: string;
     name: string;
     fileId: string;
   }[];
@@ -70,7 +71,7 @@ export type CatigoriesType = {
   id: string;
 };
 
-export type CarouselStore = {
+export type CarouselType = {
   title: string;
   productId: string;
   image: {

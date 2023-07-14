@@ -23,10 +23,6 @@ class CatigoryStore {
       requests.catigories.getAllCatigories()
     );
     if (this.allCatigoriesOperation.isSuccess) {
-      console.log(
-        "All Catigories",
-        JSON.stringify(toJS(this.allCatigoriesOperation.data), null, 2)
-      );
       runInAction(() => {
         this.allCatigories = this.allCatigoriesOperation.data;
         this.isLoading = false;

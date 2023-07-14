@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
@@ -9,49 +9,8 @@ import ProductsCardItem from './ProductsCardItem'
 import ProductsCardCarousel from '../../../components/carousel/ProductsCardCarousel'
 import ColorBtn from '../../../components/uikit/ColorBtn'
 import Button from '../../../components/button/Button'
-
-
-const DATA = [
-    {
-        id: 0,
-        image: require('./../../../assets/Images/phone.png')
-    },
-    {
-        id: 1,
-        image: require('./../../../assets/Images/phone.png')
-    },
-    {
-        id: 2,
-        image: require('./../../../assets/Images/phone.png')
-    },
-    {
-        id: 3,
-        image: require('./../../../assets/Images/phone.png')
-    }
-];
-
-const data: any = [
-    {
-        id: 0,
-        uri: 'https://seeddownload.cdn-apple.com/s3/prod/SEED/package/T043383A-en_AU/4.0/T043383A-iPhone14Pro-FL-AR_2_2/images/T043383A_desktop-hero-2136x1068.png',
-        title: 'Dahlia',
-    },
-    {
-        id: 1,
-        uri: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-gold?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841907',
-        title: 'Dahlia',
-    },
-    {
-        id: 2,
-        uri: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-spaceblack?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703841897',
-        title: 'Dahlia',
-    },
-    {
-        id: 3,
-        uri: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple_AV1_GEO_EMEA?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1662060528139',
-        title: 'Dahlia',
-    }
-];
+import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const StorageData = [
     {
@@ -88,6 +47,11 @@ const ProductCard = () => {
     const navigation = useNavigation()
     const [selectBtnColor, setSelectBtnColor] = useState<number>(StorageData[0].id)
     const [selectColor, setSelectColor] = useState<number>(ColorsData[0].id)
+    const { oneProduct, isLoading } = useRootStore().productStore
+
+    if (isLoading) {
+        return <Text>Loading...</Text>
+    }
 
     return (
         <View style={styles.container}>
@@ -96,13 +60,13 @@ const ProductCard = () => {
             </View>
             <ScrollView style={{ flex: 1, backgroundColor: COLORS.bgColor }} showsVerticalScrollIndicator={false}>
                 <View style={{ paddingHorizontal: 20 }}>
-                    <ProductsCardCarousel data={data} />
+                    <ProductsCardCarousel data={oneProduct.media} />
                 </View>
                 <View style={styles.description}>
                     <View>
                         <FlatList
-                            data={DATA}
-                            renderItem={({ item }) => <ProductsCardItem imageUrl={item.image} />}
+                            data={oneProduct.media}
+                            renderItem={({ item }) => <ProductsCardItem data={item} />}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             contentContainerStyle={{
@@ -110,13 +74,14 @@ const ProductCard = () => {
                                 gap: 6,
                                 paddingVertical: 10
                             }}
+                            keyExtractor={(item, index) => { return index.toString() }}
                         />
                     </View>
                     <View style={styles.productName}>
                         <Text style={{
                             fontSize: 20,
                             fontWeight: '700'
-                        }}>Iphone 14 PRO</Text>
+                        }}>{oneProduct.name}</Text>
                         <TouchableOpacity>
                             <FavoriteIcon isFocus={false} />
                         </TouchableOpacity>
@@ -126,11 +91,8 @@ const ProductCard = () => {
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.titlecolor
-                        }}>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Cupiditate, excepturi? Voluptates fugit ratione nemo,
-                            laborum dignissimos tenetur. Atque vitae eum corporis
-                            ullam sunt officiis ab animi nam, deserunt ex ad
-                            dolores molestiae mollitia quidem,
+                        }}>
+                            {oneProduct.description}
                         </Text>
                         <TouchableOpacity style={{ alignSelf: "center", padding: 5 }}>
                             <Text style={{ color: COLORS.btnColor, textDecorationLine: 'underline' }}>Подробнее...</Text>
@@ -167,11 +129,11 @@ const ProductCard = () => {
                             horizontal
                             contentContainerStyle={{ gap: 5 }}
                             showsHorizontalScrollIndicator={false}
+                            keyExtractor={(item) => { return item.id.toString() }}
                         />
                     </View>
                     <View style={styles.storage}>
                         <Text style={styles.informationTitle}>Цвет</Text>
-                        {/* <ColorBtn color={COLORS.black} /> */}
                         <FlatList
                             data={ColorsData}
                             renderItem={({ item }) =>
@@ -183,6 +145,7 @@ const ProductCard = () => {
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             contentContainerStyle={{ gap: 7 }}
+                            keyExtractor={(item) => { return item.id.toString() }}
                         />
                     </View>
                 </View>
@@ -202,7 +165,7 @@ const ProductCard = () => {
                         color: COLORS.black,
                         paddingVertical: 5
                     }}>
-                        13.000.000 сум
+                        {oneProduct?.price[0].price} сум
                     </Text>
                 </View>
                 <TouchableOpacity>
@@ -214,7 +177,7 @@ const ProductCard = () => {
     )
 }
 
-export default ProductCard
+export default observer(ProductCard)
 
 const styles = StyleSheet.create({
     container: {
@@ -266,12 +229,13 @@ const styles = StyleSheet.create({
         borderColor: COLORS.titlecolor
     },
     bottomPart: {
-        width: '55%',
+        width: '70%',
         paddingBottom: 20,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,
-        gap: 10,
-        paddingTop: 20
+        justifyContent: 'space-between',
+        paddingTop: 20,
+        gap: 10
     }
 })

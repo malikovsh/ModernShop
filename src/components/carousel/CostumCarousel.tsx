@@ -9,6 +9,7 @@ import {
     View,
 } from 'react-native';
 import { COLORS } from '../../constants/Color';
+import { mediaUrl } from '../../api/api';
 
 const { width } = Dimensions.get('window');
 
@@ -108,7 +109,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
                 ref={flatListRef}
                 data={dataWithPlaceholders}
                 renderItem={({ item, index }) => {
-                    if (!item.uri || !item.title) {
+                    if (!item.image?.name || !item.title) {
                         return <View style={{ width: EMPTY_ITEM_LENGTH }} />;
                     }
 
@@ -137,7 +138,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
                                     },
                                     styles.itemContent,
                                 ]}>
-                                <Image source={{ uri: item.uri }} style={styles.itemImage} />
+                                <Image source={{ uri: mediaUrl + item.image.name }} style={styles.itemImage} />
                             </Animated.View>
                         </View>
                     );

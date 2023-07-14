@@ -57,6 +57,7 @@ let requests = {
   products: {
     getAllProducts: () =>
       axios.get<AxiosResponse<AllProductsResponseType>>(url + "products"),
+    getProductsById: (id: string) => axios.get(url + "products/" + id),
   },
 
   catigories: {

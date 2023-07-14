@@ -18,17 +18,25 @@ export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 184 : 164
 const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
 
     const { togleFavourite } = useRootStore().favouriteStore
+    const { getProductById } = useRootStore().productStore
+
+    const handlePress = () => {
+        getProductById(data.id)
+        onPress && onPress()
+    }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container} onPress={handlePress}>
             <TouchableOpacity style={styles.favriteBtn} onPress={() => togleFavourite(data)}>
                 <FavoriteIcon isFocus={data.isFavourite} />
             </TouchableOpacity>
-            <Image style={{
-                width: '100%',
-                height: 130,
-                borderRadius: 20
-            }} source={{ uri: mediaUrl + data?.media[0]?.name }} />
+            <View style={{ width: "100%", height: 150 }}>
+                <Image style={{
+                    width: '100%',
+                    height: "100%",
+                    borderRadius: 20
+                }} source={{ uri: mediaUrl + data?.media[1]?.name }} />
+            </View>
             <View style={{
                 flex: 1,
                 flexDirection: 'column',

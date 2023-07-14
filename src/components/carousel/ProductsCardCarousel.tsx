@@ -2,6 +2,7 @@ import { Dimensions, FlatList, Pressable, StyleSheet, Animated, View } from 'rea
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { COLORS } from '../../constants/Color';
 import { Image } from 'react-native';
+import { mediaUrl } from '../../api/api';
 
 const { width } = Dimensions.get('window');
 
@@ -81,7 +82,7 @@ const ProductsCardCarousel: FC<ProductsCardCarouselProps> = ({ data }) => {
                 ref={flatListRef}
                 data={dataWithPlaceholders}
                 renderItem={({ item, index }) => {
-                    if (!item.uri || !item.title) {
+                    if (!item.name || !item.fileId) {
                         return <View style={{ width: EMPTY_ITEM_LENGTH }} />;
                     }
 
@@ -110,7 +111,7 @@ const ProductsCardCarousel: FC<ProductsCardCarouselProps> = ({ data }) => {
                                     },
                                     styles.itemContent,
                                 ]}>
-                                <Image source={{ uri: item.uri }} style={styles.itemImage} />
+                                <Image source={{ uri: mediaUrl + item.name }} style={styles.itemImage} />
                             </Animated.View>
                         </View>
                     );
@@ -118,7 +119,7 @@ const ProductsCardCarousel: FC<ProductsCardCarouselProps> = ({ data }) => {
                 getItemLayout={getItemLayout}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index) => index.toString()}
                 bounces={false}
                 decelerationRate={0}
                 renderToHardwareTextureAndroid
