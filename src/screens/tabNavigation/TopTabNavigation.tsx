@@ -25,7 +25,8 @@ function MyTabBar({ state, descriptors, navigation }: any) {
             flexDirection: 'row',
             justifyContent: 'space-around',
             gap: 30,
-            paddingHorizontal: 10
+            paddingHorizontal: 10,
+            paddingVertical: 10,
         }}>
             {state.routes.map((route: { key: string | number; name: any; }, index: any) => {
                 const { options } = descriptors[route.key];
@@ -91,8 +92,8 @@ function MyTabBar({ state, descriptors, navigation }: any) {
 
 const TopTabNavigation = () => {
     return (
-        <Tab.Navigator sceneContainerStyle={{ backgroundColor: COLORS.bgColor, }}
-            tabBar={(props: any) => <MyTabBar {...props} />}>
+        <Tab.Navigator sceneContainerStyle={{ backgroundColor: COLORS.bgColor }}
+            tabBar={(props: any) => <MyTabBar {...props} />} >
             <Tab.Screen name={router.product.screenName} component={HomeScreen} />
             <Tab.Screen name={router.firme.screenName} component={FactoriesScreen} />
         </Tab.Navigator>

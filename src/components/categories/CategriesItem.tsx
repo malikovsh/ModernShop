@@ -11,7 +11,8 @@ type Props = {
     image?: any
 }
 
-export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 122 : 110
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 130 : 120
+export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 120 : 110
 
 const CategriesItem = ({ onPress, title, data }: Props) => {
 
@@ -35,8 +36,9 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         gap: 10,
         width: CATALOG_CARD_WIDTH,
-        height: 145,
         marginTop: 13,
+        height: "auto",
+        padding: 5,
     },
     text: {
         fontSize: 16,
@@ -44,8 +46,8 @@ const styles = StyleSheet.create({
         color: COLORS.titlecolor
     },
     img: {
-        width: '80%',
-        height: 100,
+        width: "100%",
+        height: CATALOG_IMAGE_HEIGHT,
         borderRadius: 10,
         resizeMode: 'cover',
         alignSelf: 'center'

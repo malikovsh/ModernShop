@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color'
 import { DateIcon } from '../../assets/icons/icons'
-import { autoAction } from 'mobx/dist/internal'
 
 const ChatComponentItem = () => {
     return (
@@ -36,7 +35,6 @@ export default ChatComponentItem
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 1,
         alignItems: "flex-end",
     },
     chatItem: {
