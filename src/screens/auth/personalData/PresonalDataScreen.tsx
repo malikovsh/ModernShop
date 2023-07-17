@@ -1,16 +1,19 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
-import { COLORS } from '../../../constants/Color'
-import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../AuthStack'
-import Button from '../../../components/button/Button'
+import { observer } from 'mobx-react-lite'
+import React, { useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import ModalComponent from '../../../components/Modal/ModalComponent'
+import Button from '../../../components/button/Button'
+import TitleNavbar from '../../../components/uikit/TitleNavbar'
+import { COLORS } from '../../../constants/Color'
+import useRootStore from '../../../hooks/useRootStore'
+import { StackNavigationType } from '../AuthStack'
 
 const PresonalDataScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
     const [open, setOpen] = useState(false)
+    const { state } = useRootStore().personalData;
 
     const onPress = () => {
         navigation.navigate('NewEdit')
@@ -23,25 +26,25 @@ const PresonalDataScreen = () => {
                 <View style={styles.itemBox}>
                     <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Имя</Text>
                     <View style={styles.name}>
-                        <Text >Рафаэль</Text>
+                        <Text >{state.name}</Text>
                     </View>
                 </View>
                 <View style={styles.itemBox}>
                     <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Фамилия</Text>
                     <View style={styles.name}>
-                        <Text >Ройтман</Text>
+                        <Text >{state.surname}</Text>
                     </View>
                 </View>
                 <View style={styles.itemBox}>
                     <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Номер телефона</Text>
                     <View style={styles.name}>
-                        <Text >+998 99 999 99 99</Text>
+                        <Text >{state.phone}</Text>
                     </View>
                 </View>
                 <View style={styles.itemBox}>
                     <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Пароль</Text>
                     <View style={styles.name}>
-                        <Text >*****</Text>
+                        <Text >{state.password}</Text>
                     </View>
                 </View>
             </View>
@@ -60,7 +63,7 @@ const PresonalDataScreen = () => {
     )
 }
 
-export default PresonalDataScreen
+export default observer(PresonalDataScreen)
 
 const styles = StyleSheet.create({
     container: {

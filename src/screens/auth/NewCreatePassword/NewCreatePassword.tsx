@@ -22,7 +22,7 @@ const NewCreatePassword = () => {
                 </View>
                 <View style={styles.inputBox}>
                     <InputText title='Новый пароль' />
-                    <InputText title='Подтвердите пароль' />
+                    <InputText title='Подтвердите парольu' />
                 </View>
                 <View style={styles.btnBox}>
                     <Button text='Сохранить' onPress={() => navigation.navigate("Lecince")} />

@@ -1,17 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AppRoot from './src/router/AppRoot';
-import Constants from 'expo-constants';
-import { useCallback, useEffect, useState } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
-import { COLORS } from './src/constants/Color';
+import Constants from 'expo-constants';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { useCallback, useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import "./ignoreWarnings";
+import { COLORS } from './src/constants/Color';
+import AppRoot from './src/router/AppRoot';
+
 
 SplashScreen.preventAutoHideAsync();
 
-export default function App() {
+const App = () => {
 
   const HIGHT = Constants.statusBarHeight
 
@@ -49,6 +50,12 @@ export default function App() {
     </View>
   );
 }
+
+const Inner = () => (
+  <App />
+)
+
+export default Inner;
 
 const styles = StyleSheet.create({
   container: {

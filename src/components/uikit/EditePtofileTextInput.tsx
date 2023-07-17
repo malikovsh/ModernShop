@@ -5,23 +5,20 @@ import { COLORS } from '../../constants/Color';
 type InputProps = {
     title: string;
     text?: string;
-    icon?: React.ReactNode,
-    value?: string
-    onChange: (e: string) => void
-    onChangetext?: Function
+    onChangetext(value: string): void;
+    value?: string;
 };
 
-export default function InputText({ title, text, icon, onChange, value }: InputProps) {
+export default function EditProfileText({ title, text, onChangetext, value }: InputProps) {
     return (
         <View style={styles.container}>
             <Text style={styles.discription}>{title}</Text>
             <View style={styles.inputBtn}>
-                {icon || null}
                 <TextInput
                     placeholder={text}
                     style={styles.inputText}
                     value={value}
-                    onChangeText={(e) => onChange(e)} />
+                    onChangeText={(value) => onChangetext(value)} />
             </View>
         </View>
     )

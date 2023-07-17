@@ -1,16 +1,34 @@
-import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
-import React from 'react'
-import { COLORS } from '../../../constants/Color'
-import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../AuthStack'
-import InputText from '../../../components/uikit/InputText'
+import React, { useCallback, useState } from 'react'
+import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import Button from '../../../components/button/Button'
+import EditProfileText from '../../../components/uikit/EditePtofileTextInput'
+import TitleNavbar from '../../../components/uikit/TitleNavbar'
+import { COLORS } from '../../../constants/Color'
+import { StackNavigationType } from '../AuthStack'
+import useRootStore from '../../../hooks/useRootStore'
+import { PersonalData } from '../../../store/personalDataStore/personalDataStore.types'
 
 
 const EditScreen = () => {
-
+    const { updateState, state: data } = useRootStore().personalData;
     const navigation = useNavigation<StackNavigationType>()
+    const [state, setState] = useState<PersonalData>(data)
+
+    const goBack = useCallback(() => {
+        navigation.goBack()
+    }, [navigation])
+
+    const changeInput = useCallback((key: keyof PersonalData, value: string) => {
+        setState(prev => ({ ...prev, [key]: value }))
+    }, [])
+
+
+    const onSave = useCallback(() => {
+        updateState(state)
+        goBack()
+    }, [updateState, state, goBack])
+
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -19,17 +37,17 @@ const EditScreen = () => {
                     <View style={{ paddingHorizontal: 20 }}>
                         <TitleNavbar title='Редактировать' showArrow onPress={() => navigation.goBack()} />
                     </View>
-                    <InputText title='Имя' text='Рафаэль' />
-                    <InputText title='Фамилия' text='Ройтман' />
-                    <InputText title='Номер телефона' text='+998 99 999 99 99' />
-                    <View style={styles.itemBox}>
+                    <EditProfileText value={state.name} onChangetext={value => changeInput("name", value)} title='Имя' text='Рафаэль' />
+                    <EditProfileText value={state.surname} onChangetext={value => changeInput("surname", value)} title='Фамилия' text='Ройтман' />
+                    <EditProfileText value={state.phone} onChangetext={value => changeInput("phone", value)} title='Номер телефона' text='+998 99 999 99 99' />
+                    {/* <View style={styles.itemBox}>
                         <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Пароль</Text>
                         <View style={styles.name}>
                             <Text >*****</Text>
                         </View>
-                    </View>
+                    </View> */}
                 </View>
-                <Button text='Сохранить' onPress={() => navigation.navigate('Personal')} />
+                <Button text='Сохранить' onPress={onSave} />
             </View>
         </TouchableWithoutFeedback>
     )
