@@ -15,7 +15,7 @@ export class AppStore {
   productStore = new ProductStore();
   catigoryStore = new CatigoryStore();
   favouriteStore: FavouriteStore;
-  basketStore: BasketStore | undefined;
+  basketStore: BasketStore;
   carouselStore = new CarouselStore();
   personalData = new PersonalDataStore();
 
@@ -23,6 +23,7 @@ export class AppStore {
     makeAutoObservable(this);
     this.loginStore = new LoginStore(this);
     this.favouriteStore = new FavouriteStore(this);
+    this.basketStore = new BasketStore(this);
     this.run();
   }
 

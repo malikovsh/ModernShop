@@ -7,10 +7,6 @@ import { StackNavigationType } from '../../auth/AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 
-const DATA = [
-    1, 2, 3, 4
-]
-
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 
