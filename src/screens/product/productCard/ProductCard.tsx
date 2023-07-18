@@ -12,6 +12,11 @@ import Button from '../../../components/button/Button'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 import { StackNavigationType } from '../../home/HomeStack'
+import { ProductType } from '../../../api/requestType'
+
+type ProductCardProps = {
+    data: ProductType
+}
 
 const StorageData = [
     {
@@ -49,6 +54,7 @@ const ProductCard = () => {
     const [selectBtnColor, setSelectBtnColor] = useState<number>(StorageData[0].id)
     const [selectColor, setSelectColor] = useState<number>(ColorsData[0].id)
     const { oneProduct, isLoading } = useRootStore().productStore
+    const { togleBasket } = useRootStore().basketStore
 
     if (isLoading) {
         return <Text>Loading...</Text>
@@ -172,7 +178,7 @@ const ProductCard = () => {
                 <TouchableOpacity onPress={() => navigation.navigate('Writing')}>
                     <MassageIcon />
                 </TouchableOpacity>
-                <Button text='В корзину' BasketIcon={true} onPress={() => navigation.navigate} />
+                <Button text='В корзину' BasketIcon={true} onPress={() => togleBasket(oneProduct)} />
             </View>
         </View>
     )

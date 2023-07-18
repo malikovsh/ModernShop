@@ -10,6 +10,16 @@ export type LoginResponseType = {
   token: string;
 };
 
+export type RegistarPayloadType = {
+  phoneNumber: string;
+};
+
+export type RegistarResponseType = {
+  id: string;
+  phoneNumber: string;
+  token: string;
+};
+
 export type AllProductsResponseType = {
   page: number;
   totalCount: number;

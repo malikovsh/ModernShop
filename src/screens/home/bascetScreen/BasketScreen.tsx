@@ -7,55 +7,25 @@ import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
 import OrderModal from '../../../components/Modal/OrderModal'
 import { StackNavigationType } from '../../auth/AuthStack'
-
-const layoutAnimConfig = {
-    duration: 300,
-    update: {
-        type: LayoutAnimation.Types.easeInEaseOut,
-    },
-    delete: {
-        duration: 100,
-        type: LayoutAnimation.Types.easeInEaseOut,
-        property: LayoutAnimation.Properties.opacity,
-    },
-};
-
-if (
-    Platform.OS === "android" &&
-    UIManager.setLayoutAnimationEnabledExperimental
-) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
-const DATA = [
-    {
-        id: 0,
-    },
-    {
-        id: 1,
-    },
-    {
-        id: 2
-    }
-]
+import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const BasketScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>();
     const [open, setOpen] = useState(false)
-    const [data, setData] = useState(DATA);
+    const { inBasket } = useRootStore().basketStore
 
     return (
         <View style={styles.container}>
             <View>
                 <TitleNavbar title='Корзина' />
                 <FlatList
-                    data={data}
+                    data={inBasket}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => <BasketItem
-                        productName='Iphone 14 PRO'
-                        description='Память: 128 гб'
-                        productPrice='13.000.000 сум'
+                        data={item}
+                        description='128 GB'
                         onPress={() => navigation.navigate}
                     />}
                     showsVerticalScrollIndicator={false}
@@ -92,7 +62,7 @@ const BasketScreen = () => {
     )
 }
 
-export default BasketScreen
+export default observer(BasketScreen)
 
 const styles = StyleSheet.create({
     container: {

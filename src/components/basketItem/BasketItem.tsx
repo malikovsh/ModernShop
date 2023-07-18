@@ -3,34 +3,45 @@ import React from 'react'
 import { COLORS } from '../../constants/Color'
 import { DeleteIcon } from '../../assets/icons/icons'
 import CounterBox from '../uikit/CounterBox'
+import { ProductType } from '../../api/requestType'
+import { mediaUrl } from '../../api/api'
+import useRootStore from '../../hooks/useRootStore'
 
 type BasketProps = {
+    data: ProductType;
     productName?: string;
     description?: string;
     productPrice?: string;
     onPress: () => void;
 }
 
-const BasketItem = ({ productName, productPrice, description, onPress }: BasketProps) => {
+const BasketItem = ({ description, onPress, data }: BasketProps) => {
+
+    const { deleteBasket } = useRootStore().basketStore
+
     return (
-        <TouchableOpacity style={styles.container}>
-            <View style={{ width: '20%' }}>
-                <Image source={require('./../../assets/Images/phone.png')} />
+        <TouchableOpacity style={styles.container} >
+            <View style={{ width: '25%' }}>
+                <Image style={{
+                    width: '100%',
+                    height: 100,
+                    borderRadius: 10
+                }} source={{ uri: mediaUrl + data?.media[1]?.name }} />
             </View>
             <View style={{ width: "80%", }}>
-                <Text style={styles.productName}>{productName}</Text>
+                <Text style={styles.productName}>{data?.name}</Text>
                 <View style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }} >
                     <View style={styles.color}></View>
                     <Text style={styles.colorName}>Цвет</Text>
                     <Text style={[styles.colorName, {}]}>|</Text>
-                    <Text style={styles.colorName}>{description}</Text>
+                    <Text style={styles.colorName}>{'Память:' + description}</Text>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                    <Text style={styles.productPrice}>{productPrice}</Text>
+                    <Text style={styles.productPrice}>{data?.price[0]?.price + 'сум'}</Text>
                     <CounterBox />
                 </View>
             </View>
-            <TouchableOpacity style={styles.deleteBtn} onPress={onPress}>
+            <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteBasket(data)}>
                 <DeleteIcon />
             </TouchableOpacity>
         </TouchableOpacity>
@@ -48,8 +59,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 10,
-        gap: 25
-
+        gap: 20
     },
     deleteBtn: {
         position: 'absolute',

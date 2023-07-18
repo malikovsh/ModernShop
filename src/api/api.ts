@@ -6,6 +6,7 @@ import {
   CarouselType,
   LoginPayloadType,
   LoginResponseType,
+  RegistarPayloadType,
 } from "./requestType";
 
 // export let url = "http://localhost:3000/api/";
@@ -14,7 +15,6 @@ export let mediaUrl = "https://ik.imagekit.io/z6k3ktb71/";
 
 axios.interceptors.request.use((config) => {
   let token = AsyncStorage.getItem("token") || "";
-  console.log("token----", token);
 
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
@@ -52,6 +52,14 @@ let requests = {
   auth: {
     login: (data: LoginPayloadType) =>
       axios.post<AxiosResponse<LoginResponseType>>(url + "users/login", data),
+  },
+
+  registar: {
+    registar: (data: RegistarPayloadType) =>
+      axios.post<AxiosResponse<RegistarPayloadType>>(
+        url + "users/register",
+        data
+      ),
   },
 
   products: {

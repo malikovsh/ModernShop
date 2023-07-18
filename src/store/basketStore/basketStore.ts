@@ -36,6 +36,19 @@ class BasketStore {
         });
     }
   };
+
+  deleteBasket = (product: ProductType) => {
+    runInAction(() => {
+      this.inBasket = this.inBasket.filter((item) => item.id !== product.id);
+    });
+    this.appStore.productStore.allProducts.products =
+      this.appStore.productStore.allProducts.products.map((item) => {
+        if (item.id === product.id) {
+          return { ...item, isBasket: false };
+        }
+        return item;
+      });
+  };
 }
 
 export default BasketStore;
