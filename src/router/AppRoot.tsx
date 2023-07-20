@@ -3,6 +3,7 @@ import React from 'react'
 import AuthStack from '../screens/auth/AuthStack'
 import { COLORS } from '../constants/Color'
 import { observer } from 'mobx-react-lite'
+import HomeStack from '../screens/home/HomeStack'
 
 const AppRoot = () => {
 
@@ -10,7 +11,7 @@ const AppRoot = () => {
 
     return (
         <View style={styles.container}>
-            <AuthStack />
+            <HomeStack />
         </View>
     )
 }
