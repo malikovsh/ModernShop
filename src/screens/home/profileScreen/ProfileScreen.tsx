@@ -1,5 +1,5 @@
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { EditIcon } from '../../../assets/icons/icons'
 import { COLORS } from '../../../constants/Color'

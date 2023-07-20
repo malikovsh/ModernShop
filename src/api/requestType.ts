@@ -18,6 +18,7 @@ export type RegistarResponseType = {
   id: string;
   phoneNumber: string;
   token: string;
+  pasword: string;
 };
 
 export type AllProductsResponseType = {

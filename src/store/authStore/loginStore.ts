@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable, runInAction, toJS } from "mobx";
 import { LoginPayloadType, LoginResponseType } from "../../api/requestType";
 import { Operation } from "../operation";
 import requests from "../../api/api";
@@ -36,9 +36,10 @@ export class LoginStore {
     });
     await this.loginOperation.run(() => requests.auth.login(this.loginPayload));
     if (this.loginOperation.isSuccess) {
+      console.log("=====s", JSON.stringify(toJS(this.loginOperation.data)));
       this.loginResponse = this.loginOperation.data;
       await this.root.tokenStore.setToken(this.loginOperation.data.token);
-      navigaton();
+      // navigaton();
       runInAction(() => {
         this.isLoading = false;
       });

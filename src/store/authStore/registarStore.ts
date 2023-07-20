@@ -15,6 +15,7 @@ const initialStateRegistarResponse: RegistarResponseType = {
   id: "",
   phoneNumber: "",
   token: "",
+  pasword: "",
 };
 
 export class RegistarStore {
