@@ -8,6 +8,9 @@ import Button from '../../../components/button/Button'
 import ModalComponent from '../../../components/Modal/ModalComponent'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../AuthStack'
+import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
+import axios from 'axios'
 
 const WIDTH = Dimensions.get('window').width
 
@@ -15,31 +18,57 @@ const RegisterScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>();
     const [open, setOpen] = useState(false)
+    const {
+        registar,
+        setRegistarPayload,
+        registarPayload,
+        isLoading,
+        registarResponse,
+        verefication,
+        setVereficationPayload,
+        vereficationPayload,
+        time
+    } = useRootStore().loginStore
 
-    const onPress = () => {
-        navigation.navigate('NewPassword')
-    }
+    const handleRegistar = async () => {
+        registar(() => setOpen(true))
 
+    };
 
     return (
         <View style={{ flex: 1 }}>
             <SignUpTemplate title='Регистрация'>
                 <View>
-                    <InputText icon={<TelephoneIcon />} text='Номер' title='Номер телефона' />
+                    <InputText
+                        keyboardType='phone-pad'
+                        icon={<TelephoneIcon />}
+                        text='Номер'
+                        title='Номер телефона'
+                        onChange={(e) => setRegistarPayload('phoneNumber', e)}
+                        value={registarPayload.phoneNumber} />
                 </View>
                 <View style={styles.btnBox}>
-                    <Button text='Запросить код' onPress={() => setOpen(true)} />
+                    <Button
+                        isLoading={isLoading}
+                        text='Запросить код'
+                        onPress={handleRegistar} />
                     <TouchableOpacity onPress={() => navigation.navigate('Lecince')}>
                         <Text style={styles.registarBtn}>Уже есть аккаунт?</Text>
                     </TouchableOpacity>
                 </View>
             </SignUpTemplate >
-            <ModalComponent visible={open} onClose={() => setOpen(false)} onPress={() => navigation.navigate('CreatePassword')} />
+            <ModalComponent
+                time={time}
+                onChange={(e) => setVereficationPayload('code', e)}
+                value={vereficationPayload?.code}
+                visible={open}
+                onClose={() => setOpen(false)}
+                onPress={() => verefication(() => { setOpen(false), navigation.navigate('CreatePassword') })} />
         </View >
     )
 }
 
-export default RegisterScreen
+export default observer(RegisterScreen)
 
 const styles = StyleSheet.create({
     btnBox: {

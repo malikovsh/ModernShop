@@ -8,7 +8,6 @@ import FavouriteStore from "./favouriteStore/favouriteStore";
 import BasketStore from "./basketStore/basketStore";
 import CarouselStore from "./carouselStore/CarouselStore";
 import PersonalDataStore from "./personalDataStore/personalDataStore";
-import { RegistarStore } from "./authStore/registarStore";
 
 export class AppStore {
   loginStore: LoginStore;
@@ -19,12 +18,10 @@ export class AppStore {
   basketStore: BasketStore;
   carouselStore = new CarouselStore();
   personalData = new PersonalDataStore();
-  registar: RegistarStore;
 
   constructor() {
     makeAutoObservable(this);
     this.loginStore = new LoginStore(this);
-    this.registar = new RegistarStore(this);
     this.favouriteStore = new FavouriteStore(this);
     this.basketStore = new BasketStore(this);
     this.run();

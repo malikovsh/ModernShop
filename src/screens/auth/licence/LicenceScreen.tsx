@@ -20,6 +20,7 @@ const LicenceScreen = () => {
             <View>
                 <View style={styles.inputBtn}>
                     <InputText
+                        keyboardType='phone-pad'
                         icon={<TelephoneIcon />}
                         title='Номер телефона'
                         text='Номер'
@@ -36,7 +37,10 @@ const LicenceScreen = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.btnBox}>
-                <Button text='Войти' isLoading={isLoading} onPress={() => login(() => navigation.navigate('BottomTab'))} />
+                <Button
+                    text='Войти'
+                    isLoading={isLoading}
+                    onPress={() => login(() => navigation.navigate('BottomTab'))} />
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.registarBtn}>Регистрация</Text>
                 </TouchableOpacity>

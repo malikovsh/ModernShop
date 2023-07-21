@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from 'react-native'
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View, ReturnKeyType, KeyboardType } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color';
 
@@ -8,16 +8,19 @@ type InputProps = {
     icon?: React.ReactNode,
     value?: string
     onChange: (e: string) => void
-    onChangetext?: Function
+    onChangetext?: Function,
+    keyboardType?: KeyboardType
 };
 
-export default function InputText({ title, text, icon, onChange, value }: InputProps) {
+export default function InputText({ title, text, icon, onChange, value, keyboardType = 'default' }: InputProps) {
+
     return (
         <View style={styles.container}>
             <Text style={styles.discription}>{title}</Text>
             <View style={styles.inputBtn}>
                 {icon || null}
                 <TextInput
+                    keyboardType={keyboardType}
                     placeholder={text}
                     style={styles.inputText}
                     value={value}

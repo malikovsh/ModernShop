@@ -6,14 +6,20 @@ import Button from '../button/Button'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../screens/auth/AuthStack'
 import { AntDesign } from '@expo/vector-icons';
+import { observer } from 'mobx-react-lite'
 
 type ModalProps = {
     visible: boolean,
     onClose: () => void,
     onPress: () => void,
+    onChange: (e: string) => void,
+    onChangetext?: Function,
+    value?: string,
+    time?: string
+
 }
 
-const ModalComponent = ({ visible, onClose, onPress }: ModalProps) => {
+const ModalComponent = ({ visible, onClose, onPress, onChangetext, onChange, value, time }: ModalProps) => {
 
     const navigation = useNavigation<StackNavigationType>()
 
@@ -43,11 +49,13 @@ const ModalComponent = ({ visible, onClose, onPress }: ModalProps) => {
                             </Text>
                             <TextInput
                                 style={styles.input}
+                                value={value}
+                                onChangeText={(e) => onChange(e)}
                             />
                         </View>
-                        <Button text='Подтвердить' onPress={() => { onPress(), onClose() }} />
+                        <Button text='Подтвердить' onPress={() => onPress()} />
                         <TouchableOpacity style={{ marginTop: 20 }}>
-                            <Text style={styles.smsTime}>Запросить еще раз (0:50)</Text>
+                            <Text style={styles.smsTime}>Запросить еще раз ({time})</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -56,7 +64,7 @@ const ModalComponent = ({ visible, onClose, onPress }: ModalProps) => {
     )
 }
 
-export default ModalComponent
+export default observer(ModalComponent)
 
 const styles = StyleSheet.create({
     container: {

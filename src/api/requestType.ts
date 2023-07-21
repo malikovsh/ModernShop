@@ -15,10 +15,18 @@ export type RegistarPayloadType = {
 };
 
 export type RegistarResponseType = {
+  massage: string;
+};
+
+export type VereficationPayloadType = {
+  code: string;
+  phoneNumber: string;
+};
+
+export type VereficationResponseType = {
+  token: string;
   id: string;
   phoneNumber: string;
-  token: string;
-  pasword: string;
 };
 
 export type AllProductsResponseType = {

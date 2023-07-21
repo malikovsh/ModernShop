@@ -7,6 +7,8 @@ import {
   LoginPayloadType,
   LoginResponseType,
   RegistarPayloadType,
+  RegistarResponseType,
+  VereficationPayloadType,
 } from "./requestType";
 
 // export let url = "http://localhost:3000/api/";
@@ -52,14 +54,14 @@ let requests = {
   auth: {
     login: (data: LoginPayloadType) =>
       axios.post<AxiosResponse<LoginResponseType>>(url + "users/login", data),
-  },
 
-  registar: {
     registar: (data: RegistarPayloadType) =>
-      axios.post<AxiosResponse<RegistarPayloadType>>(
+      axios.post<AxiosResponse<RegistarResponseType>>(
         url + "users/register",
         data
       ),
+    verification: (data: VereficationPayloadType) =>
+      axios.post<AxiosResponse<LoginResponseType>>(url + "users/verify", data),
   },
 
   products: {

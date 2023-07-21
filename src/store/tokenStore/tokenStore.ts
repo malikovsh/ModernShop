@@ -30,7 +30,7 @@ class TokenStore {
       runInAction(() => {
         this.token = token;
       });
-    } catch {
+    } catch (error) {
       runInAction(() => {
         this.token = "";
       });

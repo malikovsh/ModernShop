@@ -51,7 +51,7 @@ export class Operation<T> implements IOperation<T> {
     this.setInProgress();
     try {
       const response = await request();
-      console.log("response", toJS(response));
+      // console.log("response", toJS(response));
       this.setSuccess();
       this.setData(response.data);
       return response;
