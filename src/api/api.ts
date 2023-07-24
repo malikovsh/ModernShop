@@ -4,6 +4,7 @@ import {
   AllCatigoryRespnseType,
   AllProductsResponseType,
   CarouselType,
+  CreatePasswordPayloadType,
   LoginPayloadType,
   LoginResponseType,
   RegistarPayloadType,
@@ -57,11 +58,20 @@ let requests = {
 
     registar: (data: RegistarPayloadType) =>
       axios.post<AxiosResponse<RegistarResponseType>>(
-        url + "users/register",
+        url + "users/get-code",
         data
       ),
     verification: (data: VereficationPayloadType) =>
-      axios.post<AxiosResponse<LoginResponseType>>(url + "users/verify", data),
+      axios.post<AxiosResponse<LoginResponseType>>(
+        url + "users/register",
+        data
+      ),
+
+    createPassword: (data: CreatePasswordPayloadType) =>
+      axios.put<AxiosResponse<CreatePasswordPayloadType>>(
+        url + "users/update",
+        data
+      ),
   },
 
   products: {

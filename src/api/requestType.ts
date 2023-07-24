@@ -29,6 +29,16 @@ export type VereficationResponseType = {
   phoneNumber: string;
 };
 
+export type CreatePasswordPayloadType = {
+  password: string;
+  phoneNumber: string;
+};
+
+export type CreatePasswordResponseType = {
+  token: string;
+  phoneNumber: string;
+};
+
 export type AllProductsResponseType = {
   page: number;
   totalCount: number;

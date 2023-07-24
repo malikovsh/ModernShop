@@ -1,5 +1,7 @@
 import { makeAutoObservable, runInAction, toJS } from "mobx";
 import {
+  CreatePasswordPayloadType,
+  CreatePasswordResponseType,
   LoginPayloadType,
   LoginResponseType,
   RegistarPayloadType,
@@ -42,6 +44,16 @@ const initialStateVerificationResponse: VereficationResponseType = {
   phoneNumber: "",
 };
 
+const initialStateCreatePasswordPayload: CreatePasswordPayloadType = {
+  password: "",
+  phoneNumber: "",
+};
+
+const initialStateCreatePasswordResponse: CreatePasswordResponseType = {
+  token: "",
+  phoneNumber: "",
+};
+
 export class LoginStore {
   loginOperation = new Operation<LoginResponseType>({} as LoginResponseType);
   registarOperation = new Operation<RegistarResponseType>(
@@ -50,7 +62,9 @@ export class LoginStore {
   vereficationOperation = new Operation<VereficationResponseType>(
     {} as VereficationResponseType
   );
-
+  createPasswordOperation = new Operation<CreatePasswordResponseType>(
+    {} as CreatePasswordResponseType
+  );
   root: AppStore;
   constructor(root: AppStore) {
     makeAutoObservable(this);
@@ -65,6 +79,10 @@ export class LoginStore {
     initialStateVerificationPayload;
   vereficationResponse: VereficationResponseType =
     initialStateVerificationResponse;
+  createPasswordPayload: CreatePasswordPayloadType =
+    initialStateCreatePasswordPayload;
+  createPasswordResponse: CreatePasswordResponseType =
+    initialStateCreatePasswordResponse;
 
   isLoading: boolean = false;
 
@@ -112,6 +130,13 @@ export class LoginStore {
     value: string
   ) => {
     this.vereficationPayload[key] = value;
+  };
+
+  setCreatePasswordPayload = (
+    key: keyof CreatePasswordPayloadType,
+    value: string
+  ) => {
+    this.createPasswordPayload[key] = value;
   };
 
   logout = async () => {
@@ -196,5 +221,33 @@ export class LoginStore {
         this.time = `${min}:${sec}`;
       });
     }, 1000);
+  };
+
+  createPassword = async (navigatoin: () => void) => {
+    if (this.createPasswordPayload.password.length < 8) {
+      alert("Parol kamida 8 ta belgidan iborat bo'lishi kerak");
+      return;
+    }
+    runInAction(() => {
+      this.isLoading = true;
+    });
+    const data = await this.createPasswordOperation.run(() =>
+      requests.auth.createPassword({
+        password: this.createPasswordPayload.password,
+        phoneNumber: this.vereficationPayload.phoneNumber,
+      })
+    );
+
+    console.log(JSON.stringify(toJS(data), null, 2));
+    if (data.status === 200) {
+      this.createPasswordResponse = this.createPasswordOperation.data;
+      await this.root.tokenStore.setToken(
+        this.createPasswordOperation.data.token
+      );
+      navigatoin();
+      runInAction(() => {
+        this.isLoading = false;
+      });
+    }
   };
 }

@@ -26,7 +26,7 @@ const CreateProfileScreen = () => {
                     <Ionicons name="person-outline" size={70} color="white" />
                 </View>
                 <View style={styles.btnBox}>
-                    <Button text='Регистрация' onPress={() => navigation.navigate('Lecince')} />
+                    <Button text='Выйти' onPress={() => navigation.navigate('Lecince')} />
                 </View>
 
             </View>

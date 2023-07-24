@@ -6,10 +6,13 @@ import { StackNavigationType } from '../AuthStack'
 import InputText from '../../../components/uikit/InputText'
 import Button from '../../../components/button/Button'
 import { COLORS } from '../../../constants/Color'
+import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const NewCreatePassword = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { createPassword, setCreatePasswordPayload, isLoading, createPasswordPayload } = useRootStore().loginStore
 
     return (
         <KeyboardAvoidingView
@@ -21,18 +24,27 @@ const NewCreatePassword = () => {
                     <TitleNavbar title='Создать новый пароль' showArrow onPress={() => navigation.navigate("SignUp")} />
                 </View>
                 <View style={styles.inputBox}>
-                    <InputText title='Новый пароль' />
-                    <InputText title='Подтвердите парольu' />
+                    <InputText
+                        title='Новый пароль'
+                        onChange={(e) => setCreatePasswordPayload('password', e)}
+                        value={createPasswordPayload.password} />
+                    <InputText
+                        title='Подтвердите парольu'
+                        onChange={(e) => setCreatePasswordPayload('password', e)}
+                        value={createPasswordPayload.password} />
                 </View>
                 <View style={styles.btnBox}>
-                    <Button text='Сохранить' onPress={() => navigation.navigate("Lecince")} />
+                    <Button
+                        text='Сохранить'
+                        onPress={() => createPassword(() => navigation.navigate("Lecince"))}
+                    />
                 </View>
             </View>
         </KeyboardAvoidingView>
     )
 }
 
-export default NewCreatePassword
+export default observer(NewCreatePassword)
 
 const styles = StyleSheet.create({
     container: {
