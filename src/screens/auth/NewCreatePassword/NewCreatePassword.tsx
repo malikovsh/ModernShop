@@ -35,8 +35,9 @@ const NewCreatePassword = () => {
                 </View>
                 <View style={styles.btnBox}>
                     <Button
+                        isLoading={isLoading}
                         text='Сохранить'
-                        onPress={() => createPassword(() => navigation.navigate("Lecince"))}
+                        onPress={() => createPassword(() => navigation.navigate("BottomTab"))}
                     />
                 </View>
             </View>

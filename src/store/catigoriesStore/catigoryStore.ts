@@ -22,6 +22,8 @@ class CatigoryStore {
     await this.allCatigoriesOperation.run(() =>
       requests.catigories.getAllCatigories()
     );
+    console.log(toJS(this.allCatigoriesOperation));
+
     if (this.allCatigoriesOperation.isSuccess) {
       runInAction(() => {
         this.allCatigories = this.allCatigoriesOperation.data;

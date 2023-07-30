@@ -6,21 +6,22 @@ import { mediaUrl } from '../../api/api'
 
 type Props = {
     data: AllCatigoryRespnseType,
+    img?: CatigoriesType;
     onPress: () => void,
     title?: string,
     image?: any
 }
 
-export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 130 : 120
-export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 120 : 110
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
+export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 110 : 100
 
-const CategriesItem = ({ onPress, title, data }: Props) => {
+const CategriesItem = ({ onPress, img, data }: Props) => {
 
     console.log('item', data);
 
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
-            <Image style={styles.img} source={{ uri: mediaUrl + data.icon?.name }} />
+            <Image style={styles.img} source={{ uri: mediaUrl + img?.name }} />
             <Text style={styles.text}>{data?.name}</Text>
         </TouchableOpacity>
     )
@@ -37,8 +38,7 @@ const styles = StyleSheet.create({
         gap: 10,
         width: CATALOG_CARD_WIDTH,
         marginTop: 13,
-        height: "auto",
-        padding: 5,
+        height: "auto"
     },
     text: {
         fontSize: 16,

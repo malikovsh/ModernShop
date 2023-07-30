@@ -19,8 +19,8 @@ export type RegistarResponseType = {
 };
 
 export type VereficationPayloadType = {
-  code: string;
   phoneNumber: string;
+  code: string;
 };
 
 export type VereficationResponseType = {
@@ -31,12 +31,13 @@ export type VereficationResponseType = {
 
 export type CreatePasswordPayloadType = {
   password: string;
-  phoneNumber: string;
+  phoneNumber?: string;
 };
 
 export type CreatePasswordResponseType = {
-  token: string;
+  id: string;
   phoneNumber: string;
+  __v: 0;
 };
 
 export type AllProductsResponseType = {
@@ -85,10 +86,6 @@ export type EdititngType = {};
 export type AllCatigoryRespnseType = {
   name: string;
   subcategories: CatigoriesType[];
-  icon: {
-    name: string;
-    fileId: string;
-  };
   __v: 2;
   id: string;
 };

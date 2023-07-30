@@ -10,7 +10,7 @@ import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
-const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
+const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 40) / 2
 
 const PhoneScreen = () => {
 
@@ -27,7 +27,6 @@ const PhoneScreen = () => {
                 <TitleNavbar
                     title='Телефоны'
                     showArrow
-                    showFilter
                     onPress={() => navigation.goBack()} />
                 <TouchableOpacity style={styles.filterBtn} onPress={() => navigation.navigate('Filter')}>
                     <FilterIcon />
@@ -43,7 +42,8 @@ const PhoneScreen = () => {
                 numColumns={2}
                 contentContainerStyle={{ paddingBottom: 30 }}
                 columnWrapperStyle={{
-                    columnGap: COLUMN_GAP
+                    columnGap: COLUMN_GAP,
+                    justifyContent: 'space-between'
                 }}
             />
         </View>

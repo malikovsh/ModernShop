@@ -34,8 +34,8 @@ const initialStateRegistarResponse: RegistarResponseType = {
 };
 
 const initialStateVerificationPayload: VereficationPayloadType = {
-  code: "",
   phoneNumber: "",
+  code: "",
 };
 
 const initialStateVerificationResponse: VereficationResponseType = {
@@ -50,8 +50,9 @@ const initialStateCreatePasswordPayload: CreatePasswordPayloadType = {
 };
 
 const initialStateCreatePasswordResponse: CreatePasswordResponseType = {
-  token: "",
+  id: "",
   phoneNumber: "",
+  __v: 0,
 };
 
 export class LoginStore {
@@ -234,16 +235,10 @@ export class LoginStore {
     const data = await this.createPasswordOperation.run(() =>
       requests.auth.createPassword({
         password: this.createPasswordPayload.password,
-        phoneNumber: this.vereficationPayload.phoneNumber,
       })
     );
 
-    console.log(JSON.stringify(toJS(data), null, 2));
     if (data.status === 200) {
-      this.createPasswordResponse = this.createPasswordOperation.data;
-      await this.root.tokenStore.setToken(
-        this.createPasswordOperation.data.token
-      );
       navigatoin();
       runInAction(() => {
         this.isLoading = false;

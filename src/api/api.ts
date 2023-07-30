@@ -11,16 +11,17 @@ import {
   RegistarResponseType,
   VereficationPayloadType,
 } from "./requestType";
+import { TOKEN } from "../store/tokenStore/tokenStore";
 
 // export let url = "http://localhost:3000/api/";
 export let url = "https://modern-api.onrender.com/api/";
 export let mediaUrl = "https://ik.imagekit.io/z6k3ktb71/";
 
-axios.interceptors.request.use((config) => {
-  let token = AsyncStorage.getItem("token") || "";
+axios.interceptors.request.use(async (config) => {
+  let token = await AsyncStorage.getItem(TOKEN).then((res) => res);
 
-  if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+  if (!!token) {
+    config.headers["Authorization"] = `${token}`;
   }
   return config;
 });

@@ -13,7 +13,7 @@ type NewProductsProps = {
     onPress?: () => void;
 }
 
-export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 184 : 164
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 174 : 164
 
 const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
 

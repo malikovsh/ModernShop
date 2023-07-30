@@ -2,7 +2,6 @@ import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { COLORS } from '../../../constants/Color'
-import CategoriesComponent from '../../../components/categories/CategoriesComponent'
 import CategriesItem, { CATALOG_CARD_WIDTH } from '../../../components/categories/CategriesItem'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
@@ -10,7 +9,7 @@ import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
-const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 40) / 2
+const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 50) / 2
 
 
 const CategoriesScreen = () => {
@@ -34,7 +33,8 @@ const CategoriesScreen = () => {
                 showsVerticalScrollIndicator={false}
                 numColumns={3}
                 columnWrapperStyle={{
-                    columnGap: COLUMN_GAP
+                    columnGap: COLUMN_GAP,
+                    justifyContent: 'space-between'
                 }}
             />
         </View>
