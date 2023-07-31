@@ -12,6 +12,7 @@ import {
   VereficationPayloadType,
 } from "./requestType";
 import { TOKEN } from "../store/tokenStore/tokenStore";
+import { sub } from "react-native-reanimated";
 
 // export let url = "http://localhost:3000/api/";
 export let url = "https://modern-api.onrender.com/api/";
@@ -77,13 +78,17 @@ let requests = {
 
   products: {
     getAllProducts: () =>
-      axios.get<AxiosResponse<AllProductsResponseType>>(url + "products"),
+      axios.get<AxiosResponse<AllProductsResponseType>>(
+        url + "products?popularProducts=true"
+      ),
     getProductsById: (id: string) => axios.get(url + "products/" + id),
   },
-
   catigories: {
     getAllCatigories: () =>
       axios.get<AxiosResponse<AllCatigoryRespnseType>>(url + "categories"),
+    getSubCatigories: (subcategories: []) => {
+      return axios.get(url + "categories/" + subcategories);
+    },
   },
   carousel: {
     getAllCarousel: () =>

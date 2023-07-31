@@ -92,7 +92,7 @@ export type AllCatigoryRespnseType = {
 
 export type CatigoriesType = {
   name: string;
-  props: [];
+  props: [string];
   __v: 0;
   id: string;
 };

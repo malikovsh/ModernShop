@@ -3,15 +3,15 @@ import React, { useEffect } from 'react'
 import TitleComponent from '../uikit/Titlecomponent'
 import { useNavigation } from '@react-navigation/native'
 import CategriesItem from './CategriesItem'
-import { StackNavigationType } from '../../screens/auth/AuthStack'
 import useRootStore from '../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
+import { StackNavigationType } from '../../screens/home/HomeStack'
 
 
 const CategoriesComponent = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allCatigories, getAllCatigories, isLoading } = useRootStore().catigoryStore
+    const { allCatigories, getAllCatigories, isLoading, setSubCatigories } = useRootStore().catigoryStore
 
     useEffect(() => {
         getAllCatigories()
@@ -26,7 +26,10 @@ const CategoriesComponent = () => {
                 data={allCatigories}
                 renderItem={({ item }) => <CategriesItem
                     data={item}
-                    onPress={() => navigation.navigate('Phone')} />}
+                    onPress={() => {
+                        setSubCatigories(item.subcategories)
+                        navigation.navigate('SubCatigory')
+                    }} />}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 contentContainerStyle={{ gap: 8 }}

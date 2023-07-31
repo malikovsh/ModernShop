@@ -4,17 +4,22 @@ import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { COLORS } from '../../../constants/Color'
 import CategriesItem, { CATALOG_CARD_WIDTH } from '../../../components/categories/CategriesItem'
 import { useNavigation } from '@react-navigation/native'
+import { StackNavigationType } from '../../auth/AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
-import { StackNavigationType } from '../../home/HomeStack'
+import SubCatigory from '../../../components/categories/SubCatItem'
+import { useRoute } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
 const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 50) / 2
 
-const CategoriesScreen = () => {
+
+const SubCatigoriesScreen = () => {
+
+    const route = useRoute<any>();
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allCatigories, getAllCatigories, isLoading, setSubCatigories } = useRootStore().catigoryStore
+    const { subCatigories, getAllCatigories, isLoading, allCatigories } = useRootStore().catigoryStore
 
     useEffect(() => {
         getAllCatigories()
@@ -22,18 +27,13 @@ const CategoriesScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TitleNavbar title='Категории' showArrow onPress={() => navigation.goBack()} />
+            <TitleNavbar title={route.params.title} showArrow onPress={() => navigation.goBack()} />
             <FlatList
-                data={allCatigories}
+                data={subCatigories}
                 renderItem={({ item }) =>
-                    <CategriesItem
+                    <SubCatigory
                         data={item}
-                        onPress={() => {
-                            setSubCatigories(item.subcategories)
-                            navigation.navigate('SubCatigory', {
-                                title: item.name
-                            } as any)
-                        }} />}
+                        onPress={() => navigation.navigate('Phone')} />}
                 showsVerticalScrollIndicator={false}
                 numColumns={3}
                 columnWrapperStyle={{
@@ -45,7 +45,7 @@ const CategoriesScreen = () => {
     )
 }
 
-export default observer(CategoriesScreen)
+export default observer(SubCatigoriesScreen)
 
 const styles = StyleSheet.create({
     container: {

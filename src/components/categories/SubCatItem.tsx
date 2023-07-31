@@ -1,12 +1,12 @@
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color'
-import { AllCatigoryRespnseType, CatigoriesType } from '../../api/requestType'
+import { CatigoriesType } from '../../api/requestType'
 import { mediaUrl } from '../../api/api'
-import useRootStore from '../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 type Props = {
-    data: AllCatigoryRespnseType,
+    data: CatigoriesType,
     onPress: () => void,
     title?: string,
     image?: any
@@ -15,7 +15,7 @@ type Props = {
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
 export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 110 : 100
 
-const CategriesItem = ({ onPress, data }: Props) => {
+const SubCatigory = ({ onPress, data }: Props) => {
 
     const handlePress = () => {
         onPress && onPress()
@@ -29,7 +29,7 @@ const CategriesItem = ({ onPress, data }: Props) => {
     )
 }
 
-export default CategriesItem
+export default observer(SubCatigory)
 
 const styles = StyleSheet.create({
     container: {
