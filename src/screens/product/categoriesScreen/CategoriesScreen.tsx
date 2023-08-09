@@ -7,9 +7,10 @@ import { useNavigation } from '@react-navigation/native'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 import { StackNavigationType } from '../../home/HomeStack'
+import { eq } from 'react-native-reanimated'
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
-const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 50) / 2
+const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 40) / 2
 
 const CategoriesScreen = () => {
 
@@ -38,7 +39,6 @@ const CategoriesScreen = () => {
                 numColumns={3}
                 columnWrapperStyle={{
                     columnGap: COLUMN_GAP,
-                    justifyContent: 'space-between'
                 }}
             />
         </View>

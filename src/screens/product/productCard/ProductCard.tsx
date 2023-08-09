@@ -110,15 +110,15 @@ const ProductCard = () => {
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.titlecolor
-                        }}>Экран....................................... 6.8</Text>
+                        }}>Экран.................................. 6.8</Text>
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.titlecolor
-                        }}>Модель процессора............... Snapdragon 8 Gen 2</Text>
+                        }}>Модель процессора...........Snapdragon 8 Gen 2</Text>
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.titlecolor
-                        }}>Встроенная память................. 256 Гб</Text>
+                        }}>Встроенная память............. 256 Гб</Text>
                         <TouchableOpacity style={{ alignSelf: "center", padding: 5 }}>
                             <Text style={{ color: COLORS.btnColor, textDecorationLine: 'underline' }}>Подробнее...</Text>
                         </TouchableOpacity>

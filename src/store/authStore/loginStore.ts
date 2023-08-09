@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction, toJS } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import {
   CreatePasswordPayloadType,
   CreatePasswordResponseType,
@@ -40,8 +40,7 @@ const initialStateVerificationPayload: VereficationPayloadType = {
 
 const initialStateVerificationResponse: VereficationResponseType = {
   token: "",
-  id: "",
-  phoneNumber: "",
+  message: "",
 };
 
 const initialStateCreatePasswordPayload: CreatePasswordPayloadType = {
@@ -52,7 +51,7 @@ const initialStateCreatePasswordPayload: CreatePasswordPayloadType = {
 const initialStateCreatePasswordResponse: CreatePasswordResponseType = {
   id: "",
   phoneNumber: "",
-  __v: 0,
+  token: "",
 };
 
 export class LoginStore {
@@ -87,7 +86,7 @@ export class LoginStore {
 
   isLoading: boolean = false;
 
-  time: string = "5:00";
+  time: string = "1:00";
 
   login = async (navigatoin: () => void) => {
     if (
@@ -178,7 +177,13 @@ export class LoginStore {
     }
   };
 
-  verefication = async (navigatoin: () => void) => {
+  verefication = async ({
+    setOpen,
+    navigation,
+  }: {
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    navigation: any;
+  }) => {
     this.vereficationPayload.phoneNumber = this.registarPayload.phoneNumber;
     runInAction(() => {
       this.isLoading = true;
@@ -186,13 +191,18 @@ export class LoginStore {
     const data = await this.vereficationOperation.run(() =>
       requests.auth.verification(this.vereficationPayload)
     );
-
     if (data.status === 200) {
       this.vereficationResponse = this.vereficationOperation.data;
       await this.root.tokenStore.setToken(
         this.vereficationOperation.data.token
       );
-      navigatoin();
+
+      setOpen(false);
+      navigation.navigate("CreatePassword", {
+        phone: this.registarPayload.phoneNumber,
+        token: this.vereficationOperation.data.token,
+      });
+
       runInAction(() => {
         this.isLoading = false;
       });
@@ -204,7 +214,7 @@ export class LoginStore {
     }
   };
 
-  // time check for verefication code 5 min 4:59 4:58 4:57
+  // time check for verefication code 1 min 0:59 0:58 0:57
   timeCheck = () => {
     let time = this.time.split(":");
     let min = Number(time[0]);
@@ -224,7 +234,15 @@ export class LoginStore {
     }, 1000);
   };
 
-  createPassword = async (navigatoin: () => void) => {
+  createPassword = async ({
+    phone,
+    token,
+    navigation,
+  }: {
+    phone?: string;
+    token?: string;
+    navigation: any;
+  }) => {
     if (this.createPasswordPayload.password.length < 8) {
       alert("Parol kamida 8 ta belgidan iborat bo'lishi kerak");
       return;
@@ -233,13 +251,17 @@ export class LoginStore {
       this.isLoading = true;
     });
     const data = await this.createPasswordOperation.run(() =>
-      requests.auth.createPassword({
-        password: this.createPasswordPayload.password,
-      })
+      requests.auth.createPassword(
+        {
+          password: this.createPasswordPayload.password,
+          phoneNumber: phone,
+        },
+        token as string
+      )
     );
 
     if (data.status === 200) {
-      navigatoin();
+      navigation.navigate("BottomTab");
       runInAction(() => {
         this.isLoading = false;
       });

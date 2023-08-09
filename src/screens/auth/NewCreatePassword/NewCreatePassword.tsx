@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { StackNavigationType } from '../AuthStack'
 import InputText from '../../../components/uikit/InputText'
 import Button from '../../../components/button/Button'
@@ -12,6 +12,11 @@ import { observer } from 'mobx-react-lite'
 const NewCreatePassword = () => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const params = useRoute().params;
+
+
+
+
     const { createPassword, setCreatePasswordPayload, isLoading, createPasswordPayload } = useRootStore().loginStore
 
     return (
@@ -37,7 +42,7 @@ const NewCreatePassword = () => {
                     <Button
                         isLoading={isLoading}
                         text='Сохранить'
-                        onPress={() => createPassword(() => navigation.navigate("BottomTab"))}
+                        onPress={() => createPassword({ ...params, navigation })}
                     />
                 </View>
             </View>

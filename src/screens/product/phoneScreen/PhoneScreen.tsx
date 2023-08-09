@@ -2,7 +2,7 @@ import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from '
 import React, { useEffect } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { FilterIcon } from '../../../assets/icons/icons'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
 import { StackNavigationType } from '../../home/HomeStack'
@@ -14,18 +14,17 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 40) / 2
 
 const PhoneScreen = () => {
 
-    const navigation = useNavigation<StackNavigationType>()
-    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+    const route = useRoute<any>();
 
-    useEffect(() => {
-        getAllProducts()
-    }, [])
+
+    const navigation = useNavigation<StackNavigationType>()
+    const { subCatigoryProducts, isLoading } = useRootStore().catigoryStore
 
     return (
         <View style={styles.container}>
             <View style={styles.tabNavBar}>
                 <TitleNavbar
-                    title='Телефоны'
+                    title={route.params.title}
                     showArrow
                     onPress={() => navigation.goBack()} />
                 <TouchableOpacity style={styles.filterBtn} onPress={() => navigation.navigate('Filter')}>
@@ -33,7 +32,7 @@ const PhoneScreen = () => {
                 </TouchableOpacity>
             </View>
             <FlatList
-                data={allProducts.products}
+                data={subCatigoryProducts.products}
                 renderItem={({ item }) => <NewProductsItem
                     data={item}
                     onPress={() => navigation.navigate('ProductCard')}

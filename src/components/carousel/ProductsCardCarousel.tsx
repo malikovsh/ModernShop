@@ -3,6 +3,7 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import { COLORS } from '../../constants/Color';
 import { Image } from 'react-native';
 import { mediaUrl } from '../../api/api';
+import { observer } from 'mobx-react-lite';
 
 const { width } = Dimensions.get('window');
 
@@ -137,7 +138,7 @@ const ProductsCardCarousel: FC<ProductsCardCarouselProps> = ({ data }) => {
     )
 }
 
-export default ProductsCardCarousel
+export default observer(ProductsCardCarousel)
 
 const styles = StyleSheet.create({
     container: {

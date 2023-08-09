@@ -21,14 +21,15 @@ const CategoriesComponent = () => {
         <View style={styles.container}>
             <TitleComponent title='Категории для вас' textBtn='Все' onPress={() => navigation.navigate('Categories')} />
             {isLoading && <Text>Loading...</Text>}
-            {/* <CategriesItem title='Телефоны' onPress={() => navigation.navigate('Phone')} /> */}
             <FlatList
                 data={allCatigories}
                 renderItem={({ item }) => <CategriesItem
                     data={item}
                     onPress={() => {
                         setSubCatigories(item.subcategories)
-                        navigation.navigate('SubCatigory')
+                        navigation.navigate('SubCatigory', {
+                            title: item.name
+                        } as any)
                     }} />}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}

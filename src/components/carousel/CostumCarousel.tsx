@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { COLORS } from '../../constants/Color';
 import { mediaUrl } from '../../api/api';
+import { observer } from 'mobx-react-lite';
 
 const { width } = Dimensions.get('window');
 
@@ -165,7 +166,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
     );
 };
 
-export default ImageCarousel;
+export default observer(ImageCarousel);
 
 const styles = StyleSheet.create({
     container: {

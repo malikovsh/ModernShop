@@ -1,5 +1,9 @@
 import { makeAutoObservable, runInAction, toJS } from "mobx";
-import { AllCatigoryRespnseType, CatigoriesType } from "../../api/requestType";
+import {
+  AllCatigoryRespnseType,
+  CatigoriesType,
+  ProductType,
+} from "../../api/requestType";
 import { Operation } from "../operation";
 import requests from "../../api/api";
 
@@ -10,6 +14,17 @@ class CatigoryStore {
   getSubCatigoriesOperation = new Operation<CatigoriesType[]>(
     [] as CatigoriesType[]
   );
+  getSubCatigoryByIdOperation = new Operation<{
+    page: number;
+    total: number;
+    products: ProductType[];
+  }>(
+    {} as {
+      page: number;
+      total: number;
+      products: ProductType[];
+    }
+  );
 
   constructor() {
     makeAutoObservable(this);
@@ -17,6 +32,15 @@ class CatigoryStore {
 
   allCatigories: AllCatigoryRespnseType[] = [];
   subCatigories: CatigoriesType[] = [];
+  subCatigoryProducts: {
+    page: number;
+    total: number;
+    products: ProductType[];
+  } = {
+    page: 0,
+    total: 0,
+    products: [],
+  };
   isLoading: boolean = false;
 
   getAllCatigories = async () => {
@@ -52,6 +76,21 @@ class CatigoryStore {
     if (this.getSubCatigoriesOperation.isSuccess) {
       runInAction(() => {
         this.subCatigories = this.getSubCatigoriesOperation.data;
+        this.isLoading = false;
+      });
+    }
+  };
+
+  getSubCatigoryById = async (id: string) => {
+    runInAction(() => {
+      this.isLoading = true;
+    });
+    await this.getSubCatigoryByIdOperation.run(() =>
+      requests.catigories.getSubCatigoriesById(id)
+    );
+    if (this.getSubCatigoryByIdOperation.isSuccess) {
+      runInAction(() => {
+        this.subCatigoryProducts = this.getSubCatigoryByIdOperation.data;
         this.isLoading = false;
       });
     }

@@ -24,9 +24,8 @@ export type VereficationPayloadType = {
 };
 
 export type VereficationResponseType = {
+  message: string;
   token: string;
-  id: string;
-  phoneNumber: string;
 };
 
 export type CreatePasswordPayloadType = {
@@ -34,10 +33,14 @@ export type CreatePasswordPayloadType = {
   phoneNumber?: string;
 };
 
+export type CreatePasswordDataType = CreatePasswordPayloadType & {
+  token?: string;
+};
+
 export type CreatePasswordResponseType = {
   id: string;
   phoneNumber: string;
-  __v: 0;
+  token: string;
 };
 
 export type AllProductsResponseType = {
@@ -56,16 +59,23 @@ export type ProductType = {
   description: string;
   price: {
     price: number;
+    oldPrice: number;
     qtyMin: number;
     qtyMax: number;
   }[];
   reviews: string[];
-  props: [];
+  props: [
+    {
+      value: string;
+      prop: {
+        name: string;
+        label: string;
+        __v: 0;
+      };
+    }
+  ];
   viewCount: number;
-  category: {
-    name: string;
-    id: string;
-  };
+  category: null;
   subcategory: {
     name: string;
     id: string;
@@ -75,6 +85,11 @@ export type ProductType = {
     name: string;
     fileId: string;
   }[];
+  video: {
+    name: string;
+    fileId: string;
+  };
+  author: string;
   __v: 1;
   id: string;
   isFavourite: boolean;
@@ -91,6 +106,13 @@ export type AllCatigoryRespnseType = {
 };
 
 export type CatigoriesType = {
+  name: string;
+  props: [string];
+  __v: 0;
+  id: string;
+};
+
+export type SubCatigoryType = {
   name: string;
   props: [string];
   __v: 0;

@@ -64,23 +64,23 @@ let requests = {
         data
       ),
     verification: (data: VereficationPayloadType) =>
-      axios.post<AxiosResponse<LoginResponseType>>(
-        url + "users/register",
-        data
-      ),
+      axios.put<AxiosResponse<LoginResponseType>>(url + "users/verify", data),
 
-    createPassword: (data: CreatePasswordPayloadType) =>
-      axios.put<AxiosResponse<CreatePasswordPayloadType>>(
-        url + "users/update",
-        data
+    createPassword: (data: CreatePasswordPayloadType, token: string) =>
+      axios.post<AxiosResponse<CreatePasswordPayloadType>>(
+        url + "users/register",
+        data,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       ),
   },
 
   products: {
     getAllProducts: () =>
-      axios.get<AxiosResponse<AllProductsResponseType>>(
-        url + "products?popularProducts=true"
-      ),
+      axios.get<AxiosResponse<AllProductsResponseType>>(url + "products"),
     getProductsById: (id: string) => axios.get(url + "products/" + id),
   },
   catigories: {
@@ -88,6 +88,9 @@ let requests = {
       axios.get<AxiosResponse<AllCatigoryRespnseType>>(url + "categories"),
     getSubCatigories: (subcategories: []) => {
       return axios.get(url + "categories/" + subcategories);
+    },
+    getSubCatigoriesById: (id: string) => {
+      return axios.get(url + "products?subcategory=" + id);
     },
   },
   carousel: {

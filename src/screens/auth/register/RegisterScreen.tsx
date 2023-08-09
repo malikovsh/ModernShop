@@ -10,7 +10,6 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
-import axios from 'axios'
 
 const WIDTH = Dimensions.get('window').width
 
@@ -23,7 +22,6 @@ const RegisterScreen = () => {
         setRegistarPayload,
         registarPayload,
         isLoading,
-        registarResponse,
         verefication,
         setVereficationPayload,
         vereficationPayload,
@@ -32,7 +30,6 @@ const RegisterScreen = () => {
 
     const handleRegistar = async () => {
         registar(() => setOpen(true))
-
     };
 
     return (
@@ -63,7 +60,15 @@ const RegisterScreen = () => {
                 value={vereficationPayload?.code}
                 visible={open}
                 onClose={() => setOpen(false)}
-                onPress={() => verefication(() => { setOpen(false), navigation.navigate('CreatePassword') })} />
+                onPress={() => verefication({ setOpen, navigation })} />
+
+            {/* <ModalComponent
+                time={time}
+                onChange={(e) => setVereficationPayload('code', e)}
+                value={vereficationPayload?.code}
+                visible={open}
+                onClose={() => setOpen(false)}
+                onPress={() => verefication(() => { setOpen(false), navigation.navigate('CreatePassword') })} /> */}
         </View >
     )
 }

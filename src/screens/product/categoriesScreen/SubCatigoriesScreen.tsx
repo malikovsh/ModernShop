@@ -11,7 +11,7 @@ import SubCatigory from '../../../components/categories/SubCatItem'
 import { useRoute } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
-const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 50) / 2
+const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 40) / 2
 
 
 const SubCatigoriesScreen = () => {
@@ -19,11 +19,7 @@ const SubCatigoriesScreen = () => {
     const route = useRoute<any>();
 
     const navigation = useNavigation<StackNavigationType>()
-    const { subCatigories, getAllCatigories, isLoading, allCatigories } = useRootStore().catigoryStore
-
-    useEffect(() => {
-        getAllCatigories()
-    }, [])
+    const { subCatigories, isLoading, setSubCatigories } = useRootStore().catigoryStore
 
     return (
         <View style={styles.container}>
@@ -33,12 +29,16 @@ const SubCatigoriesScreen = () => {
                 renderItem={({ item }) =>
                     <SubCatigory
                         data={item}
-                        onPress={() => navigation.navigate('Phone')} />}
+                        onPress={() => {
+                            setSubCatigories(subCatigories)
+                            navigation.navigate('Phone', {
+                                title: item.name
+                            } as any)
+                        }} />}
                 showsVerticalScrollIndicator={false}
                 numColumns={3}
                 columnWrapperStyle={{
                     columnGap: COLUMN_GAP,
-                    justifyContent: 'space-between'
                 }}
             />
         </View>
