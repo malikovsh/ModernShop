@@ -102,6 +102,10 @@ export type AllCatigoryRespnseType = {
   name: string;
   subcategories: CatigoriesType[];
   __v: 2;
+  icon: {
+    name: string;
+    fileId: string;
+  };
   id: string;
 };
 

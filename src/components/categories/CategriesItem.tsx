@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
-export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 125 : 115
+export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 115 : 115
 
 const CategriesItem = ({ onPress, data }: Props) => {
 
@@ -26,7 +26,9 @@ const CategriesItem = ({ onPress, data }: Props) => {
             <View style={{
                 width: "100%", height: CATALOG_IMAGE_HEIGHT
             }}>
-                <Image style={styles.img} source={require('./../../assets/Images/imgBg.png')} />
+                <Image style={styles.img} source={{
+                    uri: mediaUrl + data.icon?.name
+                }} />
             </View>
             <View style={{
                 width: "100%",

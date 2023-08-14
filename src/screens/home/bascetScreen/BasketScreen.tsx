@@ -35,7 +35,7 @@ const BasketScreen = () => {
                     }}
                 />
             </View>
-            <View style={styles.allPrice}>
+            {/* <View style={styles.allPrice}>
                 <Text style={{
                     fontWeight: '500',
                     fontSize: 14,
@@ -48,7 +48,7 @@ const BasketScreen = () => {
                     color: COLORS.black,
                     padding: 5
                 }}>13.000.000 сум</Text>
-            </View>
+            </View> */}
             <View style={{
                 position: 'absolute',
                 bottom: 30,
