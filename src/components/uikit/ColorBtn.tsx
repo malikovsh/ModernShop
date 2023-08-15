@@ -1,21 +1,21 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { COLORS } from '../../constants/Color'
 
 type Props = {
-    color: string,
+    title: string
     selectColor: boolean
     onSelectColor: () => void
 }
 
-const ColorBtn = ({ color, selectColor, onSelectColor }: Props) => {
+const ColorBtn = ({ title, selectColor, onSelectColor }: Props) => {
 
     return (
-        <TouchableOpacity style={[styles.container, { borderColor: color, borderWidth: selectColor ? 1 : 0 }]} onPress={onSelectColor}>
-            <View style={[styles.ellipse, { backgroundColor: color }]}>
-
-            </View>
+        <TouchableOpacity
+            style={[styles.container,
+            { borderColor: selectColor ? COLORS.btnColor : COLORS.titlecolor }]}
+            onPress={onSelectColor}>
+            <Text style={[styles.title, { color: selectColor ? COLORS.btnColor : COLORS.titlecolor }]}>{title}</Text>
         </TouchableOpacity>
     )
 }
@@ -24,15 +24,16 @@ export default ColorBtn
 
 const styles = StyleSheet.create({
     container: {
-        width: 30,
-        height: 30,
+        width: 100,
+        paddingHorizontal: 21,
+        paddingVertical: 5,
         borderRadius: 30,
+        borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center'
     },
-    ellipse: {
-        width: '90%',
-        height: '90%',
-        borderRadius: 30
+    title: {
+        fontSize: 16,
+        fontWeight: '500',
     }
 })

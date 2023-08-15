@@ -12,11 +12,6 @@ import Button from '../../../components/button/Button'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 import { StackNavigationType } from '../../home/HomeStack'
-import { ProductType } from '../../../api/requestType'
-
-type ProductCardProps = {
-    data: ProductType
-}
 
 const StorageData = [
     {
@@ -36,15 +31,11 @@ const StorageData = [
 const ColorsData = [
     {
         id: 0,
-        color: COLORS.black,
+        text: "Red",
     },
     {
         id: 1,
-        color: COLORS.blue,
-    },
-    {
-        id: 2,
-        color: COLORS.btnColor,
+        text: "Blue",
     }
 ]
 
@@ -55,6 +46,23 @@ const ProductCard = () => {
     const [selectColor, setSelectColor] = useState<number>(ColorsData[0].id)
     const { oneProduct, isLoading } = useRootStore().productStore
     const { togleBasket } = useRootStore().basketStore
+    const [colors, setColors] = useState<[]>([])
+    const [storage, setStorage] = useState<[]>([])
+
+
+    useEffect(() => {
+        if (oneProduct.id) {
+            setColors(oneProduct.props.filter(item => item.prop.name === 'Color'))
+        }
+    }, [oneProduct])
+
+    useEffect(() => {
+        if (oneProduct.id) {
+            setStorage(oneProduct.props.filter(item => item.prop.name === 'Storage'))
+        }
+    }, [oneProduct])
+
+
 
     if (isLoading) {
         return <Text>Loading...</Text>
@@ -114,7 +122,7 @@ const ProductCard = () => {
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.titlecolor
-                        }}>Модель процессора...........Snapdragon 8 Gen 2</Text>
+                        }}>Модель процессора........... Snapdragon 8 Gen 2</Text>
                         <Text style={{
                             fontSize: 16,
                             color: COLORS.titlecolor
@@ -126,33 +134,35 @@ const ProductCard = () => {
                     <View style={styles.storage}>
                         <Text style={styles.informationTitle}>Память</Text>
                         <FlatList
-                            data={StorageData}
-                            renderItem={({ item }) =>
+                            data={storage}
+                            // @ts-ignore
+                            renderItem={({ item }: { value: string, id: string }) =>
                                 <StorageBtn
-                                    title={item.tilele}
+                                    title={item.value}
                                     selectColor={selectBtnColor === item.id}
                                     onSelectColor={() => setSelectBtnColor(item.id)}
                                 />}
                             horizontal
                             contentContainerStyle={{ gap: 5 }}
                             showsHorizontalScrollIndicator={false}
-                            keyExtractor={(item) => { return item.id.toString() }}
+                            keyExtractor={(item) => { return item.id }}
                         />
                     </View>
-                    <View style={styles.storage}>
+                    <View style={styles.color}>
                         <Text style={styles.informationTitle}>Цвет</Text>
                         <FlatList
-                            data={ColorsData}
-                            renderItem={({ item }) =>
+                            data={colors}
+                            // @ts-ignore
+                            renderItem={({ item }: { value: string, id: string }) =>
                                 <ColorBtn
-                                    color={item.color}
+                                    title={item.value}
                                     selectColor={selectColor === item.id}
                                     onSelectColor={() => setSelectColor(item.id)}
                                 />}
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             contentContainerStyle={{ gap: 7 }}
-                            keyExtractor={(item) => { return item.id.toString() }}
+                            keyExtractor={(item) => { return item.id }}
                         />
                     </View>
                 </View>
@@ -229,6 +239,13 @@ const styles = StyleSheet.create({
         gap: 10
     },
     storage: {
+        marginHorizontal: 20,
+        paddingVertical: 16,
+        textDecorationLine: "underline",
+        borderBottomWidth: 1,
+        borderColor: COLORS.titlecolor
+    },
+    color: {
         marginHorizontal: 20,
         paddingVertical: 16,
         textDecorationLine: "underline",
