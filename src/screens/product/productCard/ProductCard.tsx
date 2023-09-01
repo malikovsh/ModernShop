@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useMemo } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
@@ -13,55 +13,21 @@ import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 import { StackNavigationType } from '../../home/HomeStack'
 
-const StorageData = [
-    {
-        id: 0,
-        tilele: '128 гб',
-    },
-    {
-        id: 1,
-        tilele: '216 гб',
-    },
-    {
-        id: 2,
-        tilele: '1 тб',
-    }
-];
-
-const ColorsData = [
-    {
-        id: 0,
-        text: "Red",
-    },
-    {
-        id: 1,
-        text: "Blue",
-    }
-]
-
 const ProductCard = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const [selectBtnColor, setSelectBtnColor] = useState<number>(StorageData[0].id)
-    const [selectColor, setSelectColor] = useState<number>(ColorsData[0].id)
-    const { oneProduct, isLoading } = useRootStore().productStore
+    const { oneProduct, isLoading, selectColorAndStore, setColorWithStore } = useRootStore().productStore
     const { togleBasket } = useRootStore().basketStore
-    const [colors, setColors] = useState<[]>([])
-    const [storage, setStorage] = useState<[]>([])
 
+    const options = useMemo(() => {
+        const colors = oneProduct.props?.Color?.props || [];
+        const storages = oneProduct.props?.Storage?.props || [];
 
-    useEffect(() => {
-        if (oneProduct.id) {
-            setColors(oneProduct.props.filter(item => item.prop.name === 'Color'))
+        return {
+            colors,
+            storages
         }
-    }, [oneProduct])
-
-    useEffect(() => {
-        if (oneProduct.id) {
-            setStorage(oneProduct.props.filter(item => item.prop.name === 'Storage'))
-        }
-    }, [oneProduct])
-
+    }, [oneProduct?.props])
 
 
     if (isLoading) {
@@ -80,7 +46,7 @@ const ProductCard = () => {
                 <View style={styles.description}>
                     <View>
                         <FlatList
-                            data={oneProduct.media}
+                            data={(oneProduct.media ||= [])}
                             renderItem={({ item }) => <ProductsCardItem data={item} />}
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
@@ -89,7 +55,7 @@ const ProductCard = () => {
                                 gap: 6,
                                 paddingVertical: 10
                             }}
-                            keyExtractor={(item, index) => { return index.toString() }}
+                            keyExtractor={(_, index) => `${index}-1`}
                         />
                     </View>
                     <View style={styles.productName}>
@@ -134,35 +100,33 @@ const ProductCard = () => {
                     <View style={styles.storage}>
                         <Text style={styles.informationTitle}>Память</Text>
                         <FlatList
-                            data={storage}
-                            // @ts-ignore
-                            renderItem={({ item }: { value: string, id: string }) =>
+                            data={options.storages}
+                            renderItem={({ item }) =>
                                 <StorageBtn
                                     title={item.value}
-                                    selectColor={selectBtnColor === item.id}
-                                    onSelectColor={() => setSelectBtnColor(item.id)}
+                                    selectColor={selectColorAndStore.store === item.value}
+                                    onSelectColor={() => setColorWithStore(selectColorAndStore.color, item.value)}
                                 />}
                             horizontal
                             contentContainerStyle={{ gap: 5 }}
                             showsHorizontalScrollIndicator={false}
-                            keyExtractor={(item) => { return item.id }}
+                            keyExtractor={(_, index) => `${index}-1`}
                         />
                     </View>
                     <View style={styles.color}>
                         <Text style={styles.informationTitle}>Цвет</Text>
                         <FlatList
-                            data={colors}
-                            // @ts-ignore
-                            renderItem={({ item }: { value: string, id: string }) =>
+                            data={options.colors}
+                            renderItem={({ item }) =>
                                 <ColorBtn
                                     title={item.value}
-                                    selectColor={selectColor === item.id}
-                                    onSelectColor={() => setSelectColor(item.id)}
+                                    selectColor={selectColorAndStore.color === item.value}
+                                    onSelectColor={() => setColorWithStore(item.value, selectColorAndStore.store)}
                                 />}
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             contentContainerStyle={{ gap: 7 }}
-                            keyExtractor={(item) => { return item.id }}
+                            keyExtractor={(_, index) => `${index}-1`}
                         />
                     </View>
                 </View>
@@ -188,7 +152,7 @@ const ProductCard = () => {
                 <TouchableOpacity onPress={() => navigation.navigate('Writing')}>
                     <MassageIcon />
                 </TouchableOpacity>
-                <Button text='В корзину' BasketIcon={true} onPress={() => togleBasket(oneProduct)} />
+                <Button text='В корзину' BasketIcon={true} onPress={() => togleBasket(oneProduct, selectColorAndStore.color, selectColorAndStore.store)} />
             </View>
         </View>
     )

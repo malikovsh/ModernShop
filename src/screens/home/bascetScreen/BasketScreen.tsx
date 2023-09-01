@@ -22,7 +22,7 @@ const BasketScreen = () => {
                 <TitleNavbar title='Корзина' />
                 <FlatList
                     data={inBasket}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => <BasketItem
                         data={item}
                         description='128 GB'

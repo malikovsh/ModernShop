@@ -3,29 +3,36 @@ import React from 'react'
 import { COLORS } from '../../constants/Color'
 import { DateIcon } from '../../assets/icons/icons'
 
-const ChatComponentItem = () => {
+type ChatType = {
+    text: any,
+    date: any,
+    position?: boolean
+}
+
+const ChatComponentItem = ({ text, date, position = false }: ChatType) => {
     return (
         <View style={styles.container}>
+            <View style={[styles.chatItem, {
+                alignSelf: position ? 'flex-end' : 'flex-start',
+                borderBottomLeftRadius: position ? 20 : 0,
+                borderBottomRightRadius: position ? 0 : 20,
+                backgroundColor: position ? COLORS.btnColor : '#179AE4'
+            }]}>
+                <Text style={styles.title}>{text}</Text>
+            </View>
             <View style={{
-                width: '65%',
+                flexDirection: "row",
+                alignItems: "center",
+                alignSelf: position ? 'flex-end' : 'flex-start'
             }}>
-                <View style={styles.chatItem}>
-                    <Text style={styles.title}>Здравствуйте. Мне нужна ваша помощь.</Text>
-                </View>
-                <View style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    alignSelf: "flex-end"
+                <DateIcon />
+                <Text style={{
+                    color: COLORS.titlecolor,
+                    paddingHorizontal: 5,
+                    paddingVertical: 5
                 }}>
-                    <DateIcon />
-                    <Text style={{
-                        color: COLORS.titlecolor,
-                        paddingHorizontal: 5,
-                        paddingVertical: 5
-                    }}>
-                        2023-01-13, 15:00
-                    </Text>
-                </View>
+                    {date}
+                </Text>
             </View>
         </View>
     )
@@ -53,6 +60,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         textAlign: 'left',
-        paddingRight: 10
     }
 })

@@ -15,6 +15,10 @@ class ProductStore {
 
   allProducts: AllProductsResponseType = {} as AllProductsResponseType;
   oneProduct: ProductType = {} as ProductType;
+  selectColorAndStore: {
+    color?: string;
+    store?: string;
+  } = {};
   isLoading: boolean = false;
 
   getAllProducts = async () => {
@@ -55,9 +59,22 @@ class ProductStore {
           isFavourite: false,
           isBasket: false,
         };
+        this.setColorWithStore(
+          this.getProductsByIdOperation.data.props?.Color.props[0].value,
+          this.getProductsByIdOperation.data.props?.Storage.props[0].value
+        );
         this.isLoading = false;
       });
     }
+  };
+
+  setColorWithStore = (color?: string, store?: string) => {
+    runInAction(() => {
+      this.selectColorAndStore = {
+        color,
+        store,
+      };
+    });
   };
 }
 

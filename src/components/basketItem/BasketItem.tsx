@@ -6,9 +6,10 @@ import CounterBox from '../uikit/CounterBox'
 import { ProductType } from '../../api/requestType'
 import { mediaUrl } from '../../api/api'
 import useRootStore from '../../hooks/useRootStore'
+import { inBasketProductType } from '../../store/basketStore/basketStore'
 
 type BasketProps = {
-    data: ProductType;
+    data: inBasketProductType;
     productName?: string;
     description?: string;
     productPrice?: string;
@@ -26,22 +27,23 @@ const BasketItem = ({ description, onPress, data }: BasketProps) => {
                     width: '100%',
                     height: 100,
                     borderRadius: 10
-                }} source={{ uri: mediaUrl + data?.media[1]?.name }} />
+                }} source={{ uri: mediaUrl + data?.product.media[1]?.name }} />
             </View>
             <View style={{ width: "80%", }}>
-                <Text style={styles.productName}>{data?.name}</Text>
+                <Text style={styles.productName}>{data?.product.name}</Text>
                 <View style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }} >
-                    <View style={styles.color}></View>
-                    <Text style={styles.colorName}>Цвет</Text>
+                    <View style={styles.color}>
+                        <Text style={styles.colorTitle}>{data.color}</Text>
+                    </View>
                     <Text style={[styles.colorName, {}]}>|</Text>
-                    <Text style={styles.colorName}>{'Память:' + description}</Text>
+                    <Text style={styles.colorName}>{'Память: ' + data.store}</Text>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                    <Text style={styles.productPrice}>{data?.price[0]?.price + 'сум'}</Text>
+                    <Text style={styles.productPrice}>{data?.product.price[0]?.price + 'сум'}</Text>
                     <CounterBox />
                 </View>
             </View>
-            <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteBasket(data)}>
+            <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteBasket(data.product)}>
                 <DeleteIcon />
             </TouchableOpacity>
         </TouchableOpacity>
@@ -80,15 +82,20 @@ const styles = StyleSheet.create({
         padding: 7
     },
     color: {
-        width: 15,
-        height: 15,
-        backgroundColor: COLORS.ellipseColor,
-        borderRadius: 15,
+        width: 90,
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     colorName: {
         fontWeight: '500',
         fontSize: 14,
         color: COLORS.titlecolor,
         padding: 7
+    },
+    colorTitle: {
+        fontWeight: '500',
+        fontSize: 14,
+        color: COLORS.titlecolor,
     }
 })

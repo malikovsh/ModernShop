@@ -50,7 +50,37 @@ export type AllProductsResponseType = {
   products: ProductType[];
 };
 
-export type ProductType = {
+export interface Prop2 {
+  name: string;
+  label: string;
+  __v: number;
+  id?: string;
+}
+
+export interface ProductProps {
+  Color: {
+    id: string;
+    label: string;
+    props: {
+      value: string;
+      prop: Prop2;
+      __v: 0;
+      id: string;
+    }[];
+  };
+  Storage: {
+    id: string;
+    label: string;
+    props: {
+      value: string;
+      prop: Prop2;
+      __v: 0;
+      id: string;
+    }[];
+  };
+}
+[];
+export interface ProductType {
   vendorId: {
     name: string;
     id: string;
@@ -64,16 +94,7 @@ export type ProductType = {
     qtyMax: number;
   }[];
   reviews: string[];
-  props: [
-    {
-      value: string;
-      prop: {
-        name: string;
-        label: string;
-        __v: 0;
-      };
-    }
-  ];
+  props: ProductProps;
   viewCount: number;
   category: null;
   subcategory: {
@@ -94,7 +115,7 @@ export type ProductType = {
   id: string;
   isFavourite: boolean;
   isBasket: boolean;
-};
+}
 
 export type EdititngType = {};
 
