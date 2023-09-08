@@ -46,75 +46,97 @@ export type CreatePasswordResponseType = {
 export type AllProductsResponseType = {
   page: number;
   totalCount: number;
-  limit: number;
   products: ProductType[];
 };
 
-export interface Prop2 {
-  name: string;
-  label: string;
-  __v: number;
-  id?: string;
-}
-
-export interface ProductProps {
-  Color: {
-    id: string;
-    label: string;
-    props: {
-      value: string;
-      prop: Prop2;
-      __v: 0;
-      id: string;
-    }[];
-  };
-  Storage: {
-    id: string;
-    label: string;
-    props: {
-      value: string;
-      prop: Prop2;
-      __v: 0;
-      id: string;
-    }[];
-  };
-}
-[];
 export interface ProductType {
-  vendorId: {
+  name: string;
+  description: string;
+  price: Price[];
+  props: Prop[];
+  viewCount: number;
+  category: {
     name: string;
     id: string;
   };
-  name: string;
-  description: string;
-  price: {
-    price: number;
-    oldPrice: number;
-    qtyMin: number;
-    qtyMax: number;
-  }[];
-  reviews: string[];
-  props: ProductProps;
-  viewCount: number;
-  category: null;
   subcategory: {
     name: string;
     id: string;
   };
-  media: {
-    id: string;
-    name: string;
-    fileId: string;
-  }[];
-  video: {
-    name: string;
-    fileId: string;
-  };
+  reviews: any[];
+  media: Medum[];
   author: string;
-  __v: 1;
+  __v: number;
+  likes: any[];
   id: string;
   isFavourite: boolean;
   isBasket: boolean;
+}
+
+export interface Price {
+  price: number;
+  oldPrice: number;
+  qtyMin: number;
+  qtyMax: number;
+}
+
+export interface Prop {
+  value: string;
+  prop: {
+    name: string;
+    label: string;
+    __v: number;
+    id?: string;
+  };
+  __v: number;
+  id: string;
+}
+
+export interface Medum {
+  name: string;
+  fileId: string;
+}
+
+export interface OneProductByIdType {
+  id: string;
+  name: string;
+  description: string;
+  price: Price[];
+  props: OneProductByIdProp[];
+  viewCount: number;
+  category: {
+    _id: string;
+    name: string;
+  };
+  subcategory: {
+    _id: string;
+    name: string;
+  };
+  reviews: any[];
+  media: Madia[];
+  author: {
+    _id: string;
+    email: string;
+  };
+  __v: number;
+  likes: any[];
+  isFavourite: boolean;
+  isBasket: boolean;
+}
+
+export interface OneProductByIdProp {
+  id: string;
+  name: string;
+  label: string;
+  values: {
+    id: string;
+    value: string;
+  }[];
+}
+
+export interface Madia {
+  name: string;
+  fileId: string;
 }
 
 export type EdititngType = {};

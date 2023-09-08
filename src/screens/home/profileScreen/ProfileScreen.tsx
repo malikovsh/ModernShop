@@ -5,9 +5,9 @@ import { EditIcon } from '../../../assets/icons/icons'
 import { COLORS } from '../../../constants/Color'
 import ProfileBtn from '../../../components/uikit/ProfileBtn'
 import { useNavigation } from '@react-navigation/native'
-import { StackNavigationType } from '../../auth/AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
 import * as ImagePicker from 'expo-image-picker';
+import { StackNavigationType } from '../HomeStack'
 
 const ProfileScreen = () => {
 
@@ -44,7 +44,7 @@ const ProfileScreen = () => {
             </View>
             <View style={{ gap: 10 }}>
                 <ProfileBtn title='Личные данные' showIcon onPress={() => navigation.navigate('Personal')} />
-                <ProfileBtn title='Мои заказы' showIcon2 onPress={() => navigation.navigate} />
+                <ProfileBtn title='Мои заказы' showIcon2 onPress={() => navigation.navigate("Order")} />
             </View>
         </View>
     )

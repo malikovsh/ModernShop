@@ -24,7 +24,7 @@ const WritingScreen = () => {
     const [saveText, setSaveText] = useState([{
         id: 0,
         text: 'bla bla',
-        date: '26.02.2001  13:40'
+        date: ''
     }])
 
     const date = new Date()

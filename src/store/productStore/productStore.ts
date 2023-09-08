@@ -1,5 +1,11 @@
+import { OneProductByIdProp } from "./../../api/requestType";
 import { makeAutoObservable, runInAction, toJS } from "mobx";
-import { AllProductsResponseType, ProductType } from "../../api/requestType";
+import {
+  AllProductsResponseType,
+  OneProductByIdType,
+  ProductType,
+  Prop,
+} from "../../api/requestType";
 import { Operation } from "../operation";
 import requests from "../../api/api";
 
@@ -7,18 +13,28 @@ class ProductStore {
   allProductsOperation = new Operation<AllProductsResponseType>(
     {} as AllProductsResponseType
   );
-  getProductsByIdOperation = new Operation<ProductType>({} as ProductType);
+  getProductsByIdOperation = new Operation<OneProductByIdType>(
+    {} as OneProductByIdType
+  );
 
   constructor() {
     makeAutoObservable(this);
   }
 
   allProducts: AllProductsResponseType = {} as AllProductsResponseType;
-  oneProduct: ProductType = {} as ProductType;
+  oneProduct: OneProductByIdType = {} as OneProductByIdType;
+  oneProductColors: {
+    value: string;
+  }[] = [];
+  oneProductStorages: {
+    value: string;
+  }[] = [];
+
   selectColorAndStore: {
     color?: string;
     store?: string;
   } = {};
+
   isLoading: boolean = false;
 
   getAllProducts = async () => {
@@ -46,6 +62,7 @@ class ProductStore {
   };
 
   getProductById = async (id: string) => {
+    this.clear();
     runInAction(() => {
       this.isLoading = true;
     });
@@ -59,10 +76,7 @@ class ProductStore {
           isFavourite: false,
           isBasket: false,
         };
-        this.setColorWithStore(
-          this.getProductsByIdOperation.data.props?.Color.props[0].value,
-          this.getProductsByIdOperation.data.props?.Storage.props[0].value
-        );
+        this.setColorsAndStorages(this.getProductsByIdOperation.data.props);
         this.isLoading = false;
       });
     }
@@ -74,6 +88,38 @@ class ProductStore {
         color,
         store,
       };
+    });
+  };
+
+  setColorsAndStorages = (
+    props: OneProductByIdProp[]
+    // props: {
+    //   name: string;
+    //   values: {
+    //     value: string;
+    //   }[];
+    // }[]
+  ) => {
+    props.map((prop) => {
+      switch (prop.name) {
+        case "Storage":
+          this.oneProductStorages = prop.values;
+          this.selectColorAndStore.store = prop.values[0].value;
+          break;
+        case "Color":
+          this.oneProductColors = prop.values;
+          this.selectColorAndStore.color = prop.values[0].value;
+          break;
+        default:
+          break;
+      }
+    });
+  };
+
+  clear = () => {
+    runInAction(() => {
+      this.oneProduct = {} as OneProductByIdType;
+      (this.oneProductColors = []), (this.oneProductStorages = []);
     });
   };
 }

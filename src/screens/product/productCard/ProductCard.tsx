@@ -16,18 +16,18 @@ import { StackNavigationType } from '../../home/HomeStack'
 const ProductCard = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { oneProduct, isLoading, selectColorAndStore, setColorWithStore } = useRootStore().productStore
+    const { oneProduct, isLoading, selectColorAndStore, setColorWithStore, oneProductColors, oneProductStorages } = useRootStore().productStore
     const { togleBasket } = useRootStore().basketStore
 
-    const options = useMemo(() => {
-        const colors = oneProduct.props?.Color?.props || [];
-        const storages = oneProduct.props?.Storage?.props || [];
+    // const options = useMemo(() => {
+    //     const colors = oneProduct.props || [];
+    //     const storages = oneProduct.props || [];
 
-        return {
-            colors,
-            storages
-        }
-    }, [oneProduct?.props])
+    //     return {
+    //         colors,
+    //         storages
+    //     }
+    // }, [oneProduct?.props])
 
 
     if (isLoading) {
@@ -79,28 +79,10 @@ const ProductCard = () => {
                             <Text style={{ color: COLORS.btnColor, textDecorationLine: 'underline' }}>Подробнее...</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.characteristic}>
-                        <Text style={styles.informationTitle}>Характеристики</Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.titlecolor
-                        }}>Экран.................................. 6.8</Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.titlecolor
-                        }}>Модель процессора........... Snapdragon 8 Gen 2</Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.titlecolor
-                        }}>Встроенная память............. 256 Гб</Text>
-                        <TouchableOpacity style={{ alignSelf: "center", padding: 5 }}>
-                            <Text style={{ color: COLORS.btnColor, textDecorationLine: 'underline' }}>Подробнее...</Text>
-                        </TouchableOpacity>
-                    </View>
                     <View style={styles.storage}>
                         <Text style={styles.informationTitle}>Память</Text>
                         <FlatList
-                            data={options.storages}
+                            data={oneProductStorages}
                             renderItem={({ item }) =>
                                 <StorageBtn
                                     title={item.value}
@@ -116,7 +98,7 @@ const ProductCard = () => {
                     <View style={styles.color}>
                         <Text style={styles.informationTitle}>Цвет</Text>
                         <FlatList
-                            data={options.colors}
+                            data={oneProductColors}
                             renderItem={({ item }) =>
                                 <ColorBtn
                                     title={item.value}
@@ -192,7 +174,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: '700',
         color: COLORS.black,
-        paddingBottom: 7,
+        paddingBottom: 7
     },
     characteristic: {
         marginHorizontal: 20,

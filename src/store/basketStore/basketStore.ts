@@ -1,9 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { ProductType } from "../../api/requestType";
+import { OneProductByIdType, ProductType } from "../../api/requestType";
 import { AppStore } from "../AppStore";
 
 export type inBasketProductType = {
-  product: ProductType;
+  product: ProductType | OneProductByIdType;
   color?: string;
   store?: string;
 };
@@ -17,7 +17,11 @@ class BasketStore {
 
   inBasket: inBasketProductType[] = [];
 
-  togleBasket = (product: ProductType, color?: string, store?: string) => {
+  togleBasket = (
+    product: ProductType | OneProductByIdType,
+    color?: string,
+    store?: string
+  ) => {
     if (product.isBasket) {
       runInAction(() => {
         this.inBasket = this.inBasket.filter(
@@ -55,7 +59,7 @@ class BasketStore {
     }
   };
 
-  deleteBasket = (product: ProductType) => {
+  deleteBasket = (product: ProductType | OneProductByIdType) => {
     runInAction(() => {
       this.inBasket = this.inBasket.filter(
         (item) => item.product.id !== product.id

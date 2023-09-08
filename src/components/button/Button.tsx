@@ -21,7 +21,7 @@ const Button = ({ text, onPress, isLoading, BasketIcon }: Props) => {
                         fontWeight: "700",
                         fontSize: 16,
                         color: COLORS.white,
-                    }}>{text}</Text>
+                    }}> {text}</Text>
                 )
             }
             {

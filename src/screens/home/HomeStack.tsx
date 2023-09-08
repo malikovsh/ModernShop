@@ -24,6 +24,7 @@ import RestoreScreen from '../auth/restore/RestoreScreen';
 import ProductsScreen from './Product/ProductsScreen';
 import WritingScreen from './chatSreen/WritingScreen';
 import SubCatigoriesScreen from '../product/categoriesScreen/SubCatigoriesScreen';
+import OrderSceen from '../product/OrderScreen/OrderSceen';
 
 type ScreenNames = [
     'Lecince',
@@ -46,7 +47,8 @@ type ScreenNames = [
     'Writing',
     'CreatePassword',
     'Products',
-    'SubCatigory'
+    'SubCatigory',
+    "Order"
 ];
 type RootStackParamList = Record<ScreenNames[number], undefined>
 export type StackNavigationType = StackNavigationProp<RootStackParamList>
@@ -80,6 +82,7 @@ export default function HomeStack() {
                 <Stack.Screen name="CreatePassword" component={NewCreatePassword} />
                 <Stack.Screen name="Products" component={ProductsScreen} />
                 <Stack.Screen name="SubCatigory" component={SubCatigoriesScreen} />
+                <Stack.Screen name="Order" component={OrderSceen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

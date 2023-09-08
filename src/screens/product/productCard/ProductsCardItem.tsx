@@ -1,7 +1,6 @@
 import { Image, Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../../constants/Color'
-import { ProductType } from '../../../api/requestType';
 import { mediaUrl } from '../../../api/api';
 
 type Props = {

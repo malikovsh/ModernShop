@@ -15,7 +15,7 @@ import { TOKEN } from "../store/tokenStore/tokenStore";
 import { sub } from "react-native-reanimated";
 
 // export let url = "http://localhost:3000/api/";
-export let url = "https://modern-api.onrender.com/api/";
+export let url = "http://185.196.213.144:3000/api/";
 export let mediaUrl = "https://ik.imagekit.io/z6k3ktb71/";
 
 axios.interceptors.request.use(async (config) => {
