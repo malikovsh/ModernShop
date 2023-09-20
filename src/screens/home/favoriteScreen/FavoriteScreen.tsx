@@ -14,7 +14,7 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const FavoriteScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { inFavouriteProducts, togleFavourite } = useRootStore().favouriteStore
+    const { inFavouriteProducts } = useRootStore().favouriteStore
 
     return (
         <View style={styles.container}>

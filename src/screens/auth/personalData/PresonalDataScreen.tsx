@@ -58,7 +58,7 @@ const PresonalDataScreen = () => {
                 </TouchableOpacity>
                 <Button text='Редактировать' onPress={() => navigation.navigate('Edit')} />
             </View>
-            <ModalComponent visible={open} onClose={() => setOpen(false)} onPress={onPress} />
+            <ModalComponent onChange={() => navigation.navigate} visible={open} onClose={() => setOpen(false)} onPress={onPress} />
         </View>
     )
 }

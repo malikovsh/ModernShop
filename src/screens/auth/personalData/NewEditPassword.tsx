@@ -19,8 +19,8 @@ const NewEditPassword = () => {
                     <TitleNavbar title='Изменить пароль' showArrow onPress={() => navigation.goBack()} />
                 </View>
                 <View style={styles.inputBox}>
-                    <InputText title='Новый пароль' />
-                    <InputText title='Подтвердите пароль' />
+                    <InputText title='Новый пароль' onChange={() => navigation.navigate} />
+                    <InputText title='Подтвердите пароль' onChange={() => navigation.navigate} />
                 </View>
                 <View style={styles.btnBox}>
                     <Button text='Сохранить' onPress={() => navigation.goBack()} />
