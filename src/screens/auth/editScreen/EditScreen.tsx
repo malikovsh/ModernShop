@@ -8,25 +8,23 @@ import { COLORS } from '../../../constants/Color'
 import { StackNavigationType } from '../AuthStack'
 import useRootStore from '../../../hooks/useRootStore'
 import { PersonalData } from '../../../store/personalDataStore/personalDataStore.types'
+import { observer } from 'mobx-react-lite'
 
 
 const EditScreen = () => {
-    const { updateState, state: data } = useRootStore().personalData;
+    const { updateState, state, updateUser } = useRootStore().personalData;
     const navigation = useNavigation<StackNavigationType>()
-    const [state, setState] = useState<PersonalData>(data)
 
     const goBack = useCallback(() => {
         navigation.goBack()
     }, [navigation])
 
-    const changeInput = useCallback((key: keyof PersonalData, value: string) => {
-        setState(prev => ({ ...prev, [key]: value }))
-    }, [])
-
+    const changeInput = (key: keyof PersonalData, value: string) => {
+        updateState(key, value)
+    }
 
     const onSave = useCallback(() => {
-        updateState(state)
-        goBack()
+        updateUser(() => goBack())
     }, [updateState, state, goBack])
 
 
@@ -37,9 +35,8 @@ const EditScreen = () => {
                     <View style={{ paddingHorizontal: 20 }}>
                         <TitleNavbar title='Редактировать' showArrow onPress={() => navigation.goBack()} />
                     </View>
-                    <EditProfileText value={state.name} onChangetext={value => changeInput("name", value)} title='Имя' text='Рафаэль' />
-                    <EditProfileText value={state.surname} onChangetext={value => changeInput("surname", value)} title='Фамилия' text='Ройтман' />
-                    <EditProfileText value={state.phone} onChangetext={value => changeInput("phone", value)} title='Номер телефона' text='+998 99 999 99 99' />
+                    <EditProfileText value={state.fullName} onChangetext={value => changeInput("fullName", value)} title='Имя' text='Ваше имя' />
+                    <EditProfileText value={state.phoneNumber} onChangetext={value => changeInput("phoneNumber", value)} title='Номер телефона' text='+998 99 999 99 99' />
                     {/* <View style={styles.itemBox}>
                         <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Пароль</Text>
                         <View style={styles.name}>
@@ -53,7 +50,7 @@ const EditScreen = () => {
     )
 }
 
-export default EditScreen
+export default observer(EditScreen)
 
 const styles = StyleSheet.create({
     container: {

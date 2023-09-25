@@ -1,6 +1,5 @@
 export interface PersonalData {
-  password: string;
-  name: string;
-  surname: string;
-  phone: string;
+  fullName: string;
+  phoneNumber: string;
+  passowrd?: string;
 }

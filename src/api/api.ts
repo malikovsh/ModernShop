@@ -12,7 +12,7 @@ import {
   VereficationPayloadType,
 } from "./requestType";
 import { TOKEN } from "../store/tokenStore/tokenStore";
-import { sub } from "react-native-reanimated";
+import { PersonalData } from "../store/personalDataStore/personalDataStore.types";
 
 // export let url = "http://localhost:3000/api/";
 export let url = "http://185.196.213.144:3000/api/";
@@ -96,6 +96,11 @@ let requests = {
   carousel: {
     getAllCarousel: () =>
       axios.get<AxiosResponse<CarouselType>>(url + "slides"),
+  },
+
+  user: {
+    getUserData: () => axios.get(url + "users/current"),
+    updateUser: (data: PersonalData) => axios.put(url + "users/update", data),
   },
 };
 export default requests;

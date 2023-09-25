@@ -24,29 +24,29 @@ const PresonalDataScreen = () => {
             <View style={{ paddingHorizontal: 20 }}>
                 <TitleNavbar title='Личные данные' showArrow onPress={() => navigation.navigate('BottomTab')} />
                 <View style={styles.itemBox}>
-                    <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Имя</Text>
+                    <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>ФИО</Text>
                     <View style={styles.name}>
-                        <Text >{state.name}</Text>
+                        <Text >{state.fullName}</Text>
                     </View>
                 </View>
-                <View style={styles.itemBox}>
+                {/* <View style={styles.itemBox}>
                     <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Фамилия</Text>
                     <View style={styles.name}>
                         <Text >{state.surname}</Text>
                     </View>
-                </View>
+                </View> */}
                 <View style={styles.itemBox}>
                     <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Номер телефона</Text>
                     <View style={styles.name}>
-                        <Text >{state.phone}</Text>
+                        <Text >{state.phoneNumber}</Text>
                     </View>
                 </View>
-                <View style={styles.itemBox}>
+                {/* <View style={styles.itemBox}>
                     <Text style={{ fontSize: 16, color: COLORS.titlecolor }}>Пароль</Text>
                     <View style={styles.name}>
                         <Text >{state.password}</Text>
                     </View>
-                </View>
+                </View> */}
             </View>
             <View style={styles.btn}>
                 <TouchableOpacity style={styles.btnBox} onPress={() => setOpen(true)}>

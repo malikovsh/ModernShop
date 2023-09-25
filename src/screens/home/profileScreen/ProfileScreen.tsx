@@ -8,13 +8,14 @@ import { useNavigation } from '@react-navigation/native'
 import useRootStore from '../../../hooks/useRootStore'
 import * as ImagePicker from 'expo-image-picker';
 import { StackNavigationType } from '../HomeStack'
+import { observer } from 'mobx-react-lite'
 
 const ProfileScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
     const { logout } = useRootStore().loginStore
+    const { getUser } = useRootStore().personalData
     const [image, setImage] = useState<string | null>(null);
-
 
     const PickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -43,14 +44,14 @@ const ProfileScreen = () => {
                 </View>
             </View>
             <View style={{ gap: 10 }}>
-                <ProfileBtn title='Личные данные' showIcon onPress={() => navigation.navigate('Personal')} />
+                <ProfileBtn title='Личные данные' showIcon onPress={() => { getUser(); navigation.navigate('Personal') }} />
                 <ProfileBtn title='Мои заказы' showIcon2 onPress={() => navigation.navigate("Order")} />
             </View>
         </View>
     )
 }
 
-export default ProfileScreen
+export default observer(ProfileScreen)
 
 const styles = StyleSheet.create({
     container: {

@@ -21,8 +21,12 @@ const NewPaswordScreen = () => {
                     <TitleNavbar title='Изменить пароль' showArrow onPress={() => navigation.navigate("SignUp")} />
                 </View>
                 <View style={styles.inputBox}>
-                    <InputText title='Новый пароль' />
-                    <InputText title='Подтвердите пароль' />
+                    <InputText title='Новый пароль' onChange={function (e: string): void {
+                        throw new Error('Function not implemented.');
+                    }} />
+                    <InputText title='Подтвердите пароль' onChange={function (e: string): void {
+                        throw new Error('Function not implemented.');
+                    }} />
                 </View>
                 <View style={styles.btnBox}>
                     <Button text='Сохранить' onPress={() => navigation.navigate("Lecince")} />

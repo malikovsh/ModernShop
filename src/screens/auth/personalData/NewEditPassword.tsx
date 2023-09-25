@@ -5,6 +5,7 @@ import InputText from '../../../components/uikit/InputText'
 import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
 import { COLORS } from '../../../constants/Color'
+import { observer } from 'mobx-react-lite'
 
 const NewEditPassword = () => {
 
@@ -30,7 +31,7 @@ const NewEditPassword = () => {
     )
 }
 
-export default NewEditPassword
+export default observer(NewEditPassword)
 
 const styles = StyleSheet.create({
     container: {

@@ -72,6 +72,7 @@ export interface ProductType {
   isFavourite: boolean;
   isBasket: boolean;
 }
+[];
 
 export interface Price {
   price: number;
