@@ -3,13 +3,19 @@ import React from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import InputText from '../../../components/uikit/InputText'
 import Button from '../../../components/button/Button'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { COLORS } from '../../../constants/Color'
 import { observer } from 'mobx-react-lite'
+import useRootStore from '../../../hooks/useRootStore'
 
 const NewEditPassword = () => {
 
     const navigation = useNavigation()
+    const params = useRoute().params;
+
+
+    const { createPassword, setCreatePasswordPayload, isLoading, createPasswordPayload } = useRootStore().loginStore
+
 
     return (
         <TouchableWithoutFeedback
@@ -20,11 +26,21 @@ const NewEditPassword = () => {
                     <TitleNavbar title='Изменить пароль' showArrow onPress={() => navigation.goBack()} />
                 </View>
                 <View style={styles.inputBox}>
-                    <InputText title='Новый пароль' onChange={() => navigation.navigate} />
-                    <InputText title='Подтвердите пароль' onChange={() => navigation.navigate} />
+                    <InputText
+                        title='Новый пароль'
+                        onChange={(e) => setCreatePasswordPayload('password', e)}
+                        value={createPasswordPayload.password} />
+                    <InputText
+                        title='Подтвердите пароль'
+                        onChange={(e) => setCreatePasswordPayload('password', e)}
+                        value={createPasswordPayload.password} />
                 </View>
                 <View style={styles.btnBox}>
-                    <Button text='Сохранить' onPress={() => navigation.goBack()} />
+                    <Button
+                        isLoading={isLoading}
+                        text='Сохранить'
+                        onPress={() => createPassword({ ...params, navigation })}
+                    />
                 </View>
             </View>
         </TouchableWithoutFeedback>

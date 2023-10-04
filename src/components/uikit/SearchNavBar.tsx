@@ -5,7 +5,7 @@ import { COLORS } from '../../constants/Color'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 type SearchPops = {
-    onPress: () => void;
+    onPress?: () => void;
 }
 
 const SearchNavBar = ({ onPress }: SearchPops) => {
@@ -17,9 +17,9 @@ const SearchNavBar = ({ onPress }: SearchPops) => {
                     <SearchIcon />
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.filterBox} onPress={onPress}>
+            {/* <TouchableOpacity style={styles.filterBox} onPress={onPress}>
                 <FilterIcon />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     )
 }
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white,
         paddingHorizontal: 18,
         borderRadius: 20,
-        width: "80%",
+        width: "100%",
         alignItems: "center",
     },
     textInput: {

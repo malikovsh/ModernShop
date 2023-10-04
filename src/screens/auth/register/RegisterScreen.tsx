@@ -61,7 +61,6 @@ const RegisterScreen = () => {
                 visible={open}
                 onClose={() => setOpen(false)}
                 onPress={() => verefication({ setOpen, navigation })} />
-
             {/* <ModalComponent
                 time={time}
                 onChange={(e) => setVereficationPayload('code', e)}

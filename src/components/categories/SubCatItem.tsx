@@ -13,8 +13,6 @@ type Props = {
     image?: any
 }
 
-export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
-export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 125 : 115
 
 const SubCatigory = ({ onPress, data }: Props) => {
 
@@ -27,11 +25,6 @@ const SubCatigory = ({ onPress, data }: Props) => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={handlePress}>
-            <View style={{
-                width: "100%", height: CATALOG_IMAGE_HEIGHT
-            }}>
-                <Image style={styles.img} source={require('./../../assets/Images/imgBg.png')} />
-            </View>
             <View style={{
                 width: "100%",
                 height: 40,
@@ -48,14 +41,12 @@ export default observer(SubCatigory)
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: "center",
         backgroundColor: COLORS.white,
         borderRadius: 20,
         gap: 10,
-        width: CATALOG_CARD_WIDTH,
+        width: "100%",
         marginTop: 13,
-        height: 180
+
     },
     text: {
         fontSize: 16,
@@ -63,11 +54,4 @@ const styles = StyleSheet.create({
         color: COLORS.titlecolor,
         paddingVertical: 10
     },
-    img: {
-        width: "100%",
-        height: CATALOG_IMAGE_HEIGHT,
-        borderRadius: 10,
-        resizeMode: 'cover',
-        alignSelf: 'center'
-    }
 })

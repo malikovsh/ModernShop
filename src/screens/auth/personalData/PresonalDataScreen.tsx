@@ -14,6 +14,7 @@ const PresonalDataScreen = () => {
     const navigation = useNavigation<StackNavigationType>()
     const [open, setOpen] = useState(false)
     const { state } = useRootStore().personalData;
+    const { time } = useRootStore().loginStore
 
     const onPress = () => {
         navigation.navigate('NewEdit')
@@ -58,7 +59,14 @@ const PresonalDataScreen = () => {
                 </TouchableOpacity>
                 <Button text='Редактировать' onPress={() => navigation.navigate('Edit')} />
             </View>
-            <ModalComponent onChange={() => navigation.navigate} visible={open} onClose={() => setOpen(false)} onPress={onPress} />
+            <ModalComponent
+                onChange={() => navigation.navigate}
+                visible={open}
+                onClose={() => setOpen(false)}
+                onPress={onPress}
+                time={time}
+            />
+
         </View>
     )
 }

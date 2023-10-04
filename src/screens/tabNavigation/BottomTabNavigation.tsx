@@ -59,7 +59,7 @@ function MyTabBar({ state, descriptors, navigation }: any) {
             borderTopRightRadius: 30,
             borderTopLeftRadius: 30,
             paddingBottom: Platform.OS === 'ios' ? 20 : 10,
-            paddingTop: 10
+            paddingTop: 10,
         }}>
             {state.routes.map((route: { key: string | number; name: any; }, index: any) => {
                 const { options } = descriptors[route.key];
@@ -102,10 +102,13 @@ function MyTabBar({ state, descriptors, navigation }: any) {
                         onPress={onPress}
                         onLongPress={onLongPress}
                         style={{
-                            padding: 15
+                            padding: 15,
+                            alignItems: 'center',
+                            gap: 6
                         }}
                     >
                         <NavigationIcon label={label} isFocused={isFocused} />
+                        <View style={{ backgroundColor: isFocused ? COLORS.btnColor : '#fff', width: '50%', height: 3, borderRadius: 20 }} />
                     </TouchableOpacity>
                 );
             })}

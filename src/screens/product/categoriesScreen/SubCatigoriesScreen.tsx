@@ -11,8 +11,6 @@ import SubCatigory from '../../../components/categories/SubCatItem'
 import { useRoute } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window')
-const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 3) - 40) / 2
-
 
 const SubCatigoriesScreen = () => {
 
@@ -36,10 +34,6 @@ const SubCatigoriesScreen = () => {
                             } as any)
                         }} />}
                 showsVerticalScrollIndicator={false}
-                numColumns={3}
-                columnWrapperStyle={{
-                    columnGap: COLUMN_GAP,
-                }}
             />
         </View>
     )

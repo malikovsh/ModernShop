@@ -16,7 +16,15 @@ import { StackNavigationType } from '../../home/HomeStack'
 const ProductCard = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { oneProduct, isLoading, selectColorAndStore, setColorWithStore, oneProductColors, oneProductStorages } = useRootStore().productStore
+    const {
+        oneProduct,
+        isLoading,
+        selectColorAndStore,
+        setColorWithStore,
+        oneProductColors,
+        oneProductStorages
+    } = useRootStore().productStore
+    const { token } = useRootStore().tokenStore
     const { togleBasket } = useRootStore().basketStore
 
     // const options = useMemo(() => {
@@ -114,7 +122,9 @@ const ProductCard = () => {
                 </View>
             </ScrollView>
             <View style={styles.bottomPart}>
-                <View>
+                <View style={{
+
+                }}>
                     <Text style={{
                         fontSize: 14,
                         fontWeight: '400',
@@ -134,7 +144,15 @@ const ProductCard = () => {
                 <TouchableOpacity onPress={() => navigation.navigate('Writing')}>
                     <MassageIcon />
                 </TouchableOpacity>
-                <Button text='В корзину' BasketIcon={true} onPress={() => togleBasket(oneProduct, selectColorAndStore.color, selectColorAndStore.store)} />
+
+                <Button
+                    text='В корзину'
+                    BasketIcon={true}
+                    onPress={() => {
+                        token ? togleBasket(oneProduct, selectColorAndStore.color, selectColorAndStore.store) :
+                            navigation.navigate("Create")
+                    }
+                    } />
             </View>
         </View>
     )

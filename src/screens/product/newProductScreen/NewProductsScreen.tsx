@@ -5,7 +5,6 @@ import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../auth/AuthStack'
 import NewProductsItem, { CATALOG_CARD_WIDTH } from '../../../components/newProdut/NewProductsItem'
-import ButtonNavBar from '../../../components/uikit/BottonNavBar'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 
@@ -26,7 +25,7 @@ const NewProductsScreen = () => {
     return (
         <View style={styles.container}>
             <TitleNavbar title='Новые продукты' showArrow onPress={() => navigation.goBack()} />
-            <View>
+            {/* <View>
                 <FlatList
                     data={allCatigories}
                     renderItem={({ item }) =>
@@ -40,9 +39,9 @@ const NewProductsScreen = () => {
                         gap: 5,
                         paddingVertical: 10
                     }} />
-            </View>
+            </View> */}
             <FlatList
-                data={allProducts.products}
+                data={allProducts.products.slice(-20).reverse()}
                 renderItem={({ item }) => <NewProductsItem
                     onPress={() => navigation.navigate('ProductCard')}
                     data={item}

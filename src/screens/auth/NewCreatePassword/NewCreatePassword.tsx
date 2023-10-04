@@ -26,7 +26,7 @@ const NewCreatePassword = () => {
         >
             <View style={styles.container}>
                 <View style={{ paddingHorizontal: 20 }}>
-                    <TitleNavbar title='Создать новый пароль' showArrow onPress={() => navigation.navigate("SignUp")} />
+                    <TitleNavbar title='Создать новый пароль' showArrow onPress={() => navigation.goBack()} />
                 </View>
                 <View style={styles.inputBox}>
                     <InputText
