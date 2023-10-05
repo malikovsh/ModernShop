@@ -10,11 +10,12 @@ import CarouselStore from "./carouselStore/CarouselStore";
 import PersonalDataStore from "./personalDataStore/personalDataStore";
 import SocketStore from "./Socket/Socket";
 import ChatStore from "./chatStore/chatStore";
+import AsyncStorage from "./AsyncStorage/AsyncStorage";
 
 export class AppStore {
   loginStore: LoginStore;
   tokenStore = new TokenStore();
-  productStore = new ProductStore();
+  productStore: ProductStore;
   catigoryStore = new CatigoryStore();
   favouriteStore: FavouriteStore;
   basketStore: BasketStore;
@@ -22,23 +23,28 @@ export class AppStore {
   personalData = new PersonalDataStore();
   socketStore: SocketStore;
   chatStore: ChatStore;
+  asyncStorage: AsyncStorage;
 
   constructor() {
     makeAutoObservable(this);
     this.loginStore = new LoginStore(this);
     this.favouriteStore = new FavouriteStore(this);
+    this.productStore = new ProductStore(this);
     this.basketStore = new BasketStore(this);
     this.socketStore = new SocketStore(this);
     this.chatStore = new ChatStore(this);
+    this.asyncStorage = new AsyncStorage(this);
     this.run();
   }
 
   private run = () => {
     runInAction(() => {
-      const list: any[] = [];
+      const list: any[] = [this.favouriteStore.getInFavouriteProducts()];
 
       Promise.all(list)
-        .then(() => {})
+        .then(() => {
+          this.productStore.getAllProducts();
+        })
         .catch(() => {});
     });
   };

@@ -1,5 +1,5 @@
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { Image, Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { EditIcon } from '../../../assets/icons/icons'
 import { COLORS } from '../../../constants/Color'
@@ -9,6 +9,7 @@ import useRootStore from '../../../hooks/useRootStore'
 import * as ImagePicker from 'expo-image-picker';
 import { StackNavigationType } from '../HomeStack'
 import { observer } from 'mobx-react-lite'
+import Constants from 'expo-constants'
 
 const ProfileScreen = () => {
 
@@ -16,6 +17,15 @@ const ProfileScreen = () => {
     const { logout } = useRootStore().loginStore
     const { getUser } = useRootStore().personalData
     const [image, setImage] = useState<string | null>(null);
+
+    // useEffect(async () => {
+    //     if (Platform.OS !== 'web') {
+    //         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    //         if (status !== 'granted') {
+    //             alert('Permission denied')
+    //         }
+    //     }
+    // }, [])
 
     const PickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -25,7 +35,7 @@ const ProfileScreen = () => {
             quality: 1
         })
         console.log(result)
-        if (!result.canceled && !result.canceled) {
+        if (!result.canceled) {
             setImage(result.assets[0].uri)
         }
     }

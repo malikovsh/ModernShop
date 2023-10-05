@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useMemo } from 'react'
+import React, { useMemo, useRef } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
@@ -25,7 +25,8 @@ const ProductCard = () => {
         oneProductStorages
     } = useRootStore().productStore
     const { token } = useRootStore().tokenStore
-    const { togleBasket } = useRootStore().basketStore
+    const { togleBasket, inBasketProductIds } = useRootStore().basketStore
+    const { inFavouriteProductIds, togleFavourite } = useRootStore().favouriteStore
 
     // const options = useMemo(() => {
     //     const colors = oneProduct.props || [];
@@ -39,7 +40,7 @@ const ProductCard = () => {
 
 
     if (isLoading) {
-        return <Text>Loading...</Text>
+        return <Text></Text>
     }
 
     return (
@@ -71,8 +72,8 @@ const ProductCard = () => {
                             fontSize: 20,
                             fontWeight: '700'
                         }}>{oneProduct.name}</Text>
-                        <TouchableOpacity>
-                            <FavoriteIcon isFocus={false} />
+                        <TouchableOpacity onPress={() => togleFavourite(oneProduct as any)}>
+                            <FavoriteIcon isFocus={inFavouriteProductIds.includes(oneProduct.id)} />
                         </TouchableOpacity>
                     </View>
                     <View style={styles.information}>
@@ -144,9 +145,8 @@ const ProductCard = () => {
                 <TouchableOpacity onPress={() => navigation.navigate('Writing')}>
                     <MassageIcon />
                 </TouchableOpacity>
-
                 <Button
-                    text='В корзину'
+                    text={inBasketProductIds.includes(oneProduct.id) ? "Olindi" : "В корзину"}
                     BasketIcon={true}
                     onPress={() => {
                         token ? togleBasket(oneProduct, selectColorAndStore.color, selectColorAndStore.store) :

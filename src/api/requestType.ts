@@ -69,8 +69,6 @@ export interface ProductType {
   __v: number;
   likes: any[];
   id: string;
-  isFavourite: boolean;
-  isBasket: boolean;
 }
 [];
 
@@ -121,8 +119,6 @@ export interface OneProductByIdType {
   };
   __v: number;
   likes: any[];
-  isFavourite: boolean;
-  isBasket: boolean;
 }
 
 export interface OneProductByIdProp {

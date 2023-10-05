@@ -51,11 +51,7 @@ const App = () => {
   );
 }
 
-const Inner = () => (
-  <App />
-)
-
-export default Inner;
+export default App;
 
 const styles = StyleSheet.create({
   container: {

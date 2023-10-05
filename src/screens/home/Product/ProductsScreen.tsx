@@ -34,13 +34,8 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const ProductsScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
+    const { allProducts } = useRootStore().productStore
     const [selectBtnColor, setSelectBtnColor] = useState<number>(BorderColorData[0].id)
-
-
-    useEffect(() => {
-        getAllProducts()
-    }, [])
 
     return (
         <View style={styles.container}>

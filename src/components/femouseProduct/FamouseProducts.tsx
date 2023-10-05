@@ -10,11 +10,7 @@ import { observer } from 'mobx-react-lite'
 const FamouseProducts = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
-
-    useEffect(() => {
-        getAllProducts()
-    }, [])
+    const { allProducts, isLoading } = useRootStore().productStore
 
     return (
         <View style={styles.container}>

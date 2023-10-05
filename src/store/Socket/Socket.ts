@@ -3,7 +3,7 @@ import io, { Socket } from "socket.io-client";
 import { AppStore } from "../AppStore";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
-const URL = "http://192.168.0.112:3000";
+const URL = "http://api.modernshop.uz";
 
 export interface IUser {
   id: string;
@@ -22,6 +22,7 @@ class SocketStore {
   constructor(root: AppStore) {
     makeAutoObservable(this);
     this.root = root;
+    this.connect();
   }
 
   _socket: Socket<DefaultEventsMap, DefaultEventsMap> | undefined;

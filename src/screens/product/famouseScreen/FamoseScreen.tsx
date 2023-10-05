@@ -15,11 +15,7 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const FamoseScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
-
-    useEffect(() => {
-        getAllProducts()
-    }, [])
+    const { allProducts } = useRootStore().productStore
 
     return (
         <View style={styles.container}>

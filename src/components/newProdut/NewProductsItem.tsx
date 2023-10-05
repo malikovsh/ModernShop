@@ -6,6 +6,7 @@ import { ProductType } from '../../api/requestType'
 import { mediaUrl } from '../../api/api'
 import { observer } from 'mobx-react-lite'
 import useRootStore from '../../hooks/useRootStore'
+import { FastImageWithLoader } from '../FastImageWithLoader/FastImageWithLoader'
 
 type NewProductsProps = {
     data: ProductType,
@@ -17,7 +18,7 @@ export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 174 : 164
 
 const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
 
-    const { togleFavourite } = useRootStore().favouriteStore
+    const { togleFavourite, inFavouriteProductIds } = useRootStore().favouriteStore
     const { getProductById } = useRootStore().productStore
 
     const handlePress = () => {
@@ -28,10 +29,10 @@ const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
     return (
         <TouchableOpacity style={styles.container} onPress={handlePress}>
             <TouchableOpacity style={styles.favriteBtn} onPress={() => togleFavourite(data)}>
-                <FavoriteIcon isFocus={data.isFavourite} />
+                <FavoriteIcon isFocus={inFavouriteProductIds.includes(data.id)} />
             </TouchableOpacity>
             <View style={{ width: "100%", height: 150 }}>
-                <Image style={{
+                <FastImageWithLoader style={{
                     width: '100%',
                     height: "100%",
                     borderRadius: 20

@@ -10,12 +10,7 @@ import { observer } from 'mobx-react-lite'
 const NewProducts = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allProducts, getAllProducts, isLoading } = useRootStore().productStore
-
-
-    useEffect(() => {
-        getAllProducts()
-    }, [])
+    const { allProducts, isLoading } = useRootStore().productStore
 
     return (
         <View>
@@ -25,7 +20,7 @@ const NewProducts = () => {
                 onPress={() => navigation.navigate('NewProducts')} />
             {isLoading && <Text>Loading...</Text>}
             <FlatList
-                data={allProducts.products}
+                data={allProducts.products.slice(-20).reverse()}
                 renderItem={({ item }) => <NewProductsItem
                     data={item}
                     onPress={() => navigation.navigate("ProductCard")}

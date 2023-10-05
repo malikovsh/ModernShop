@@ -14,13 +14,9 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const NewProductsScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allProducts, getAllProducts } = useRootStore().productStore
+    const { allProducts } = useRootStore().productStore
     const { allCatigories } = useRootStore().catigoryStore
     const [selectBtnItem, setSelectBtnItem] = useState<any>(allCatigories[0])
-
-    useEffect(() => {
-        getAllProducts()
-    }, [])
 
     return (
         <View style={styles.container}>

@@ -16,46 +16,29 @@ class BasketStore {
   }
 
   inBasket: inBasketProductType[] = [];
+  inBasketProductIds: string[] = [];
 
   togleBasket = (
     product: ProductType | OneProductByIdType,
     color?: string,
     store?: string
   ) => {
-    if (product.isBasket) {
+    if (this.inBasketProductIds.includes(product.id)) {
       runInAction(() => {
+        this.inBasketProductIds = this.inBasketProductIds.filter(
+          (item) => item !== product.id
+        );
         this.inBasket = this.inBasket.filter(
           (item) => item.product.id !== product.id
         );
       });
-      this.appStore.productStore.allProducts.products =
-        this.appStore.productStore.allProducts.products.map((item) => {
-          if (item.id === product.id) {
-            return { ...item, isBasket: false };
-          }
-          return item;
-        });
     } else {
-      runInAction(() => {
-        this.inBasket = [
-          ...this.inBasket,
-          {
-            product: {
-              ...product,
-              isBasket: true,
-            },
-            color,
-            store,
-          },
-        ];
+      this.inBasket.push({
+        product,
+        color,
+        store,
       });
-      this.appStore.productStore.allProducts.products =
-        this.appStore.productStore.allProducts.products.map((item) => {
-          if (item.id === product.id) {
-            return { ...item, isBasket: true };
-          }
-          return item;
-        });
+      this.inBasketProductIds.push(product.id);
     }
   };
 
@@ -64,14 +47,10 @@ class BasketStore {
       this.inBasket = this.inBasket.filter(
         (item) => item.product.id !== product.id
       );
+      this.inBasketProductIds = this.inBasketProductIds.filter(
+        (item) => item !== product.id
+      );
     });
-    this.appStore.productStore.allProducts.products =
-      this.appStore.productStore.allProducts.products.map((item) => {
-        if (item.id === product.id) {
-          return { ...item, isBasket: false };
-        }
-        return item;
-      });
   };
 }
 

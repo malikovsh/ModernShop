@@ -4,6 +4,7 @@ import { COLORS } from '../../constants/Color';
 import { Image } from 'react-native';
 import { mediaUrl } from '../../api/api';
 import { observer } from 'mobx-react-lite';
+import { FastImageWithLoader } from '../FastImageWithLoader/FastImageWithLoader';
 
 const { width } = Dimensions.get('window');
 
@@ -27,6 +28,9 @@ const ProductsCardCarousel: FC<ProductsCardCarouselProps> = ({ data }) => {
     const currentIndex = useRef<number>(0);
     const flatListRef = useRef<FlatList<any>>(null);
     const [currentI, setCurrentI] = useState(0)
+
+
+
 
     useEffect(() => {
         setDataWithPlaceholders([{ id: -1 }, ...data, { id: data.length }]);
@@ -81,7 +85,18 @@ const ProductsCardCarousel: FC<ProductsCardCarouselProps> = ({ data }) => {
         <View style={styles.container}>
             <FlatList
                 ref={flatListRef}
-                data={dataWithPlaceholders}
+                data={data.length > 0 ? dataWithPlaceholders : []}
+                ListEmptyComponent={(
+                    <View style={{
+                        flex: 1,
+                    }}>
+                        <Image style={{
+                            width: width - 50,
+                            height: 350,
+                            resizeMode: "contain"
+                        }} source={require("../../assets/No-Image.png")} />
+                    </View>
+                )}
                 renderItem={({ item, index }) => {
                     if (!item.name || !item.fileId) {
                         return <View style={{ width: EMPTY_ITEM_LENGTH }} />;
@@ -112,7 +127,7 @@ const ProductsCardCarousel: FC<ProductsCardCarouselProps> = ({ data }) => {
                                     },
                                     styles.itemContent,
                                 ]}>
-                                <Image source={{ uri: mediaUrl + item.name }} style={styles.itemImage} />
+                                <FastImageWithLoader source={{ uri: mediaUrl + item.name }} style={styles.itemImage} />
                             </Animated.View>
                         </View>
                     );
@@ -152,7 +167,7 @@ const styles = StyleSheet.create({
     flatListContent: {
         height: 267,
         alignItems: 'center',
-        marginBottom: CURRENT_ITEM_TRANSLATE_Y,
+        marginBottom: CURRENT_ITEM_TRANSLATE_Y
     },
     itemContent: {
         // marginHorizontal: SPACING * 3,

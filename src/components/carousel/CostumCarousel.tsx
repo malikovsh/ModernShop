@@ -11,6 +11,7 @@ import {
 import { COLORS } from '../../constants/Color';
 import { mediaUrl } from '../../api/api';
 import { observer } from 'mobx-react-lite';
+import { FastImageWithLoader } from '../FastImageWithLoader/FastImageWithLoader';
 
 const { width } = Dimensions.get('window');
 
@@ -139,7 +140,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
                                     },
                                     styles.itemContent,
                                 ]}>
-                                <Image source={{ uri: mediaUrl + item.image.name }} style={styles.itemImage} />
+                                <FastImageWithLoader source={{ uri: mediaUrl + item.image.name }} style={styles.itemImage} />
                             </Animated.View>
                         </View>
                     );

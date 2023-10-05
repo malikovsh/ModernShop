@@ -8,19 +8,21 @@ import {
 } from "../../api/requestType";
 import { Operation } from "../operation";
 import requests from "../../api/api";
+import { AppStore } from "../AppStore";
 
 class ProductStore {
+  appStore: AppStore;
+  constructor(app: AppStore) {
+    makeAutoObservable(this);
+    this.appStore = app;
+  }
+
   allProductsOperation = new Operation<AllProductsResponseType>(
     {} as AllProductsResponseType
   );
   getProductsByIdOperation = new Operation<OneProductByIdType>(
     {} as OneProductByIdType
   );
-
-  constructor() {
-    makeAutoObservable(this);
-  }
-
   allProducts: AllProductsResponseType = {} as AllProductsResponseType;
   oneProduct: OneProductByIdType = {} as OneProductByIdType;
   oneProductColors: {
@@ -49,6 +51,7 @@ class ProductStore {
         this.allProducts = {
           ...this.allProductsOperation.data,
           products: this.allProductsOperation.data.products.map((item) => {
+            this.appStore.favouriteStore.inFavouriteProducts;
             return {
               ...item,
               isFavourite: false,
@@ -71,12 +74,8 @@ class ProductStore {
     );
     if (this.getProductsByIdOperation.isSuccess) {
       runInAction(() => {
-        this.oneProduct = {
-          ...this.getProductsByIdOperation.data,
-          isFavourite: false,
-          isBasket: false,
-        };
-        this.setColorsAndStorages(this.getProductsByIdOperation.data.props);
+        (this.oneProduct = this.getProductsByIdOperation.data),
+          this.setColorsAndStorages(this.getProductsByIdOperation.data.props);
         this.isLoading = false;
       });
     }

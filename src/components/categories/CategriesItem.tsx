@@ -4,6 +4,7 @@ import { COLORS } from '../../constants/Color'
 import { AllCatigoryRespnseType, CatigoriesType } from '../../api/requestType'
 import { mediaUrl } from '../../api/api'
 import useRootStore from '../../hooks/useRootStore'
+import { FastImageWithLoader } from '../FastImageWithLoader/FastImageWithLoader'
 
 type Props = {
     data: AllCatigoryRespnseType,
@@ -26,7 +27,7 @@ const CategriesItem = ({ onPress, data }: Props) => {
             <View style={{
                 width: "100%", height: CATALOG_IMAGE_HEIGHT
             }}>
-                <Image style={styles.img} source={{
+                <FastImageWithLoader style={styles.img} source={{
                     uri: mediaUrl + data.icon?.name
                 }} />
             </View>

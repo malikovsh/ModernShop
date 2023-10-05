@@ -13,9 +13,7 @@ const NewEditPassword = () => {
     const navigation = useNavigation()
     const params = useRoute().params;
 
-
     const { createPassword, setCreatePasswordPayload, isLoading, createPasswordPayload } = useRootStore().loginStore
-
 
     return (
         <TouchableWithoutFeedback
