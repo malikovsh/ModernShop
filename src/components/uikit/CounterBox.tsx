@@ -1,26 +1,30 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { COLORS } from '../../constants/Color'
+import useRootStore from '../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
+const CounterBox = ({ productId }: { productId: string }) => {
 
+    const { togleProductCount } = useRootStore().basketStore
 
-const CounterBox = () => {
     const [state, SetState] = useState<number>(1)
+
     const counterHandler = (value: string) => {
         if (value === 'add') {
             SetState((a) => a + 1)
+            togleProductCount(productId, state + 1)
         }
         else {
             if (state > 1) {
                 SetState((a) => a - 1)
+                togleProductCount(productId, state - 1)
             }
         }
     }
 
-
     return (
         <View style={styles.container}>
-
             <TouchableOpacity style={styles.btn} onPress={() => counterHandler('remov')}>
                 <Text>-</Text>
             </TouchableOpacity>
@@ -32,7 +36,7 @@ const CounterBox = () => {
     )
 }
 
-export default CounterBox
+export default observer(CounterBox)
 
 const styles = StyleSheet.create({
     container: {

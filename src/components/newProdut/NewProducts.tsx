@@ -20,7 +20,7 @@ const NewProducts = () => {
                 onPress={() => navigation.navigate('NewProducts')} />
             {isLoading && <Text>Loading...</Text>}
             <FlatList
-                data={allProducts.products.slice(-20).reverse()}
+                data={allProducts.products?.slice(-20).reverse()}
                 renderItem={({ item }) => <NewProductsItem
                     data={item}
                     onPress={() => navigation.navigate("ProductCard")}

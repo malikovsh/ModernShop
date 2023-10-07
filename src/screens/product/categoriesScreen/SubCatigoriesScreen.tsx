@@ -17,7 +17,7 @@ const SubCatigoriesScreen = () => {
     const route = useRoute<any>();
 
     const navigation = useNavigation<StackNavigationType>()
-    const { subCatigories, isLoading, setSubCatigories } = useRootStore().catigoryStore
+    const { subCatigories, setSubCatigories } = useRootStore().catigoryStore
 
     return (
         <View style={styles.container}>

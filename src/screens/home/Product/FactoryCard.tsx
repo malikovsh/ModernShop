@@ -4,8 +4,14 @@ import { COLORS } from '../../../constants/Color'
 import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../HomeStack'
+import { Vendor } from '../../../store/VendorSrorage/VendorScreenType'
+import { observer } from 'mobx-react-lite'
 
-const FactoryCard = () => {
+type FactoryProp = {
+    data: Vendor
+}
+
+const FactoryCard = ({ data }: FactoryProp) => {
 
     const navigation = useNavigation<StackNavigationType>()
 
@@ -22,14 +28,14 @@ const FactoryCard = () => {
                     fontSize: 17,
                     width: '70%',
                     lineHeight: 28,
-                }}>Shenzhen Qingmai Bicycle Co., Ltd.</Text>
+                }}>{data.name}</Text>
             </View>
             <View >
                 <Text style={styles.title}>Описание</Text>
-                <Text style={styles.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </Text>
+                <Text style={styles.description}>{data.admin.email}</Text>
                 <TouchableOpacity style={{
                     paddingVertical: 5,
-                    width: '28%',
+                    width: '35%',
                     borderBottomWidth: 1,
                     borderColor: COLORS.btnColor
                 }}>
@@ -38,16 +44,16 @@ const FactoryCard = () => {
                         fontWeight: "400",
                         lineHeight: 23,
                         color: COLORS.btnColor,
-                    }}>Подробнее...</Text>
+                    }}>{data.contacts.phoneNumber}</Text>
                 </TouchableOpacity>
             </View>
             <Button text='Посмотреть товары' onPress={() => navigation.navigate('Products')} />
-            <Button text='Связаться' onPress={() => navigation.navigate} />
+            <Button text='Связаться' onPress={() => navigation.navigate('Writing')} />
         </View>
     )
 }
 
-export default FactoryCard
+export default observer(FactoryCard)
 
 const styles = StyleSheet.create({
     container: {

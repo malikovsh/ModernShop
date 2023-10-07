@@ -11,6 +11,9 @@ const data = [
     },
     {
         id: 2
+    },
+    {
+        id: 3
     }
 ]
 
@@ -28,7 +31,7 @@ const OrdersItem = () => {
                 }}>
                     <Text style={styles.number}>№ 13</Text>
                 </View>
-                <Text style={styles.title}>Статус: На рассмотрении</Text>
+                <Text style={styles.title}> Статус: На рассмотрении </Text>
             </View>
             <View style={styles.orderView}>
                 <FlatList

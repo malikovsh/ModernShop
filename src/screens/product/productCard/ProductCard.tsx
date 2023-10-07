@@ -40,7 +40,7 @@ const ProductCard = () => {
 
 
     if (isLoading) {
-        return <Text></Text>
+        return <Text>Loading...</Text>
     }
 
     return (

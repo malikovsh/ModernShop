@@ -13,6 +13,7 @@ import {
 } from "./requestType";
 import { TOKEN } from "../store/tokenStore/tokenStore";
 import { PersonalData } from "../store/personalDataStore/personalDataStore.types";
+import { VendorType } from "../store/VendorSrorage/VendorScreenType";
 
 // export let url = "http://localhost:3000/api/";
 export let url = "http://api.modernshop.uz/api/";
@@ -98,9 +99,17 @@ let requests = {
       axios.get<AxiosResponse<CarouselType>>(url + "slides"),
   },
 
+  vendor: {
+    getAllVendor: () => axios.get<AxiosResponse<VendorType>>(url + "vendors"),
+  },
+
   user: {
     getUserData: () => axios.get(url + "users/current"),
     updateUser: (data: PersonalData) => axios.put(url + "users/update", data),
+  },
+  orders: {
+    postAllOrders: (data: any) =>
+      axios.post<AxiosResponse<any>>(url + "orders/new", data),
   },
 };
 export default requests;

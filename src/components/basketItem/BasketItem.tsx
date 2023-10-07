@@ -6,6 +6,7 @@ import CounterBox from '../uikit/CounterBox'
 import { mediaUrl } from '../../api/api'
 import useRootStore from '../../hooks/useRootStore'
 import { inBasketProductType } from '../../store/basketStore/basketStore'
+import { observer } from 'mobx-react-lite'
 
 type BasketProps = {
     data: inBasketProductType;
@@ -39,7 +40,7 @@ const BasketItem = ({ description, onPress, data }: BasketProps) => {
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                     <Text style={styles.productPrice}>{data?.product.price[0]?.price + 'сум'}</Text>
-                    <CounterBox />
+                    <CounterBox productId={data?.product.id} />
                 </View>
             </View>
             <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteBasket(data.product)}>
@@ -49,7 +50,7 @@ const BasketItem = ({ description, onPress, data }: BasketProps) => {
     )
 }
 
-export default BasketItem
+export default observer(BasketItem)
 
 const styles = StyleSheet.create({
     container: {

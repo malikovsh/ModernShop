@@ -14,8 +14,6 @@ type OrderProps = {
 
 const OrderModal = ({ visible, onClose }: OrderProps) => {
 
-    const navigation = useNavigation<StackNavigationType>()
-
     return (
         <Modal
             visible={visible}
@@ -37,7 +35,7 @@ const OrderModal = ({ visible, onClose }: OrderProps) => {
                             <Text style={styles.text}>В ближайшее время мы с вами
                                 свяжемся</Text>
                         </View>
-                        <Button text='Принять' onPress={() => { navigation.navigate, onClose() }} />
+                        <Button text='Принять' onPress={() => { onClose() }} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>

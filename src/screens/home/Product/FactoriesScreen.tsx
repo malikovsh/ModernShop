@@ -3,36 +3,19 @@ import React, { useState } from 'react'
 import ButtonNavBar from '../../../components/uikit/BottonNavBar'
 import { useNavigation } from '@react-navigation/native'
 import FactoryCard from './FactoryCard'
+import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
-const BorderColorData = [
-    {
-        id: 0,
-        title: 'Все',
-    },
-    {
-        id: 1,
-        title: 'Одежда',
-    },
-    {
-        id: 2,
-        title: 'Телефоны',
-    },
-    {
-        id: 3,
-        title: 'Телефоны',
-    }
-]
-const CardDATA = [
-    1, 2, 3
-]
+
 
 const FactoriesScreen = () => {
 
-    const [selectBtnColor, setSelectBtnColor] = useState<number>(BorderColorData[0].id)
+    const { allVendors } = useRootStore().vendoreStoage
+    // const [selectBtnColor, setSelectBtnColor] = useState<number>(BorderColorData[0].id)
 
     return (
         <View style={styles.container}>
-            <View>
+            {/* <View>
                 <FlatList
                     data={BorderColorData}
                     renderItem={({ item }) =>
@@ -47,11 +30,10 @@ const FactoriesScreen = () => {
                         paddingVertical: 22
                     }}
                 />
-            </View>
-
+            </View> */}
             <FlatList
-                data={CardDATA}
-                renderItem={({ item }) => <FactoryCard />}
+                data={allVendors}
+                renderItem={({ item }) => <FactoryCard data={item} />}
                 contentContainerStyle={{
                     gap: 10,
                     paddingBottom: 20
@@ -62,7 +44,7 @@ const FactoriesScreen = () => {
     )
 }
 
-export default FactoriesScreen
+export default observer(FactoriesScreen)
 
 const styles = StyleSheet.create({
     container: {

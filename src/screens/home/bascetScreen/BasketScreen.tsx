@@ -15,7 +15,7 @@ const BasketScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>();
     const [open, setOpen] = useState(false)
-    const { inBasket } = useRootStore().basketStore
+    const { inBasket, order, clear } = useRootStore().basketStore
 
     const EmptyListMessage = () => {
 
@@ -67,7 +67,7 @@ const BasketScreen = () => {
                             alignSelf: "center",
                             width: '110%'
                         }}>
-                            <Button text='Заказать' onPress={() => setOpen(true)} />
+                            <Button text='Заказать' onPress={() => order(() => setOpen(true))} />
                         </View>
                     </View>
             }
@@ -85,7 +85,7 @@ const BasketScreen = () => {
                     padding: 5
                 }}>13.000.000 сум</Text>
             </View> */}
-            <OrderModal visible={open} onClose={() => setOpen(false)} />
+            <OrderModal visible={open} onClose={() => { setOpen(false); clear() }} />
         </View>
     )
 }

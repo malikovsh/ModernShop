@@ -11,6 +11,7 @@ import PersonalDataStore from "./personalDataStore/personalDataStore";
 import SocketStore from "./Socket/Socket";
 import ChatStore from "./chatStore/chatStore";
 import AsyncStorage from "./AsyncStorage/AsyncStorage";
+import VendorStorage from "./VendorSrorage/VendorStorage";
 
 export class AppStore {
   loginStore: LoginStore;
@@ -24,6 +25,7 @@ export class AppStore {
   socketStore: SocketStore;
   chatStore: ChatStore;
   asyncStorage: AsyncStorage;
+  vendoreStoage = new VendorStorage();
 
   constructor() {
     makeAutoObservable(this);
@@ -39,7 +41,10 @@ export class AppStore {
 
   private run = () => {
     runInAction(() => {
-      const list: any[] = [this.favouriteStore.getInFavouriteProducts()];
+      const list: any[] = [
+        this.favouriteStore.getInFavouriteProducts(),
+        this.basketStore.getInBasketProducts(),
+      ];
 
       Promise.all(list)
         .then(() => {
