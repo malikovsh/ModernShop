@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   AllCatigoryRespnseType,
+  AllOrdersType,
   AllProductsResponseType,
   CarouselType,
   CreatePasswordPayloadType,
@@ -16,7 +17,7 @@ import { PersonalData } from "../store/personalDataStore/personalDataStore.types
 import { VendorType } from "../store/VendorSrorage/VendorScreenType";
 
 // export let url = "http://localhost:3000/api/";
-export let url = "http://api.modernshop.uz/api/";
+export let url = "https://api.modernshop.uz/api/";
 export let mediaUrl = "https://ik.imagekit.io/z6k3ktb71/";
 
 axios.interceptors.request.use(async (config) => {
@@ -110,6 +111,8 @@ let requests = {
   orders: {
     postAllOrders: (data: any) =>
       axios.post<AxiosResponse<any>>(url + "orders/new", data),
+    getAllOrders: () =>
+      axios.get<AxiosResponse<AllOrdersType>>(url + "orders/user"),
   },
 };
 export default requests;

@@ -4,20 +4,13 @@ import { COLORS } from '../../../constants/Color'
 import OrdersItemBox from './OrdersItemBox'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../home/HomeStack'
+import { OrdersType } from '../../../api/requestType'
 
-const data = [
-    {
-        id: 1
-    },
-    {
-        id: 2
-    },
-    {
-        id: 3
-    }
-]
+type OrdersTypeProp = {
+    orderData: OrdersType
+}
 
-const OrdersItem = () => {
+const OrdersItem = ({ orderData }: OrdersTypeProp) => {
 
     const navigation = useNavigation<StackNavigationType>()
 
@@ -31,20 +24,20 @@ const OrdersItem = () => {
                 }}>
                     <Text style={styles.number}>№ 13</Text>
                 </View>
-                <Text style={styles.title}> Статус: На рассмотрении </Text>
+                <Text style={styles.title}> Статус: {orderData.orderStatus} </Text>
             </View>
             <View style={styles.orderView}>
                 <FlatList
-                    data={data}
+                    data={orderData.products}
                     renderItem={({ item }) => <OrdersItemBox
                         image={require('./../../../assets/Images/phone.png')}
-                        productName='Iphone 14 PRO'
-                        count='2'
-                        price='900000' />}
-                    showsVerticalScrollIndicator={false}
+                        productName={item.productId.name}
+                        count={item.qty}
+                        price={item.price} />}
+                    scrollEnabled
                 />
                 <Text style={styles.allPrice}>
-                    Итого: <Text style={{ color: COLORS.btnColor }}>18.000.000 сум</Text>
+                    Итого: <Text style={{ color: COLORS.btnColor }}>{orderData.total} сум</Text>
                 </Text>
                 <TouchableOpacity style={styles.chat} onPress={() => navigation.navigate('Writing')}>
                     <Text style={{

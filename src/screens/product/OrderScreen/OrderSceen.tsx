@@ -4,26 +4,19 @@ import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
 import { COLORS } from '../../../constants/Color'
 import OrdersItem from './OrdersItem'
-
-const Data = [
-    {
-        id: 1
-    },
-    {
-        id: 2
-    }
-]
+import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
 
 const OrderSceen = () => {
-
+    const { allOrder } = useRootStore().basketStore
     const navigation = useNavigation()
 
     return (
         <View style={styles.container}>
             <TitleNavbar title='Мои заказы' showArrow onPress={() => navigation.goBack()} />
             <FlatList
-                data={Data}
-                renderItem={({ item }) => <OrdersItem />}
+                data={allOrder}
+                renderItem={({ item }) => <OrdersItem orderData={item} />}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
                     gap: 12
@@ -33,7 +26,7 @@ const OrderSceen = () => {
     )
 }
 
-export default OrderSceen
+export default observer(OrderSceen)
 
 const styles = StyleSheet.create({
     container: {

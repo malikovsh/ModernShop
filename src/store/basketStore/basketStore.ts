@@ -1,5 +1,9 @@
 import { makeAutoObservable, runInAction, toJS } from "mobx";
-import { OneProductByIdType, ProductType } from "../../api/requestType";
+import {
+  OneProductByIdType,
+  OrdersType,
+  ProductType,
+} from "../../api/requestType";
 import { AppStore } from "../AppStore";
 import { Operation } from "../operation";
 import requests from "../../api/api";
@@ -26,8 +30,10 @@ class BasketStore {
   constructor(appStore: AppStore) {
     makeAutoObservable(this);
     this.appStore = appStore;
+    this.getAllOrders();
   }
 
+  allOrdersOperation = new Operation<OrdersType[]>([] as OrdersType[]);
   orderOperation = new Operation<any>({});
 
   inBasket: inBasketProductType[] = [];
@@ -36,6 +42,8 @@ class BasketStore {
     products: [],
     deliveryAddress: "",
   };
+
+  allOrder: OrdersType[] = [];
 
   togleBasket = async (
     product: ProductType | OneProductByIdType,
@@ -145,6 +153,14 @@ class BasketStore {
     );
     if (this.orderOperation.isSuccess) {
       callback();
+      this.getAllOrders();
+    }
+  };
+
+  getAllOrders = async () => {
+    await this.allOrdersOperation.run(() => requests.orders.getAllOrders());
+    if (this.allOrdersOperation.isSuccess) {
+      this.allOrder = this.allOrdersOperation.data;
     }
   };
 

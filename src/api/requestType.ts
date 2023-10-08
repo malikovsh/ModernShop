@@ -173,3 +173,22 @@ export type CarouselType = {
   __v: number;
   id: string;
 };
+
+export type AllOrdersType = OrdersType[];
+
+export interface OrdersType {
+  userId: string;
+  products: {
+    productId: ProductType;
+    vendor: string;
+    qty: number;
+    price: number;
+  }[];
+  deliveryAddress: string;
+  total: number;
+  orderStatus: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  id: string;
+}

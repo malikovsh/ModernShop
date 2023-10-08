@@ -5,8 +5,8 @@ import { COLORS } from '../../../constants/Color'
 type Props = {
     image: any,
     productName: string,
-    price: string,
-    count: string
+    price: number,
+    count: number
 }
 
 const OrdersItemBox = ({ image, price, productName, count }: Props) => {
