@@ -40,7 +40,7 @@ const ProductsScreen = () => {
     return (
         <View style={styles.container}>
             <TitleNavbar title='Товары' showArrow onPress={() => navigation.goBack()} />
-            <View>
+            {/* <View>
                 <FlatList
                     data={BorderColorData}
                     renderItem={({ item }) =>
@@ -56,7 +56,7 @@ const ProductsScreen = () => {
                         paddingVertical: 10
                     }}
                 />
-            </View>
+            </View> */}
             <FlatList
                 data={allProducts.products}
                 renderItem={({ item }) => <NewProductsItem

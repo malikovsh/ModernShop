@@ -31,7 +31,7 @@ const OrdersItem = ({ orderData }: OrdersTypeProp) => {
                     data={orderData.products}
                     renderItem={({ item }) => <OrdersItemBox
                         image={require('./../../../assets/Images/phone.png')}
-                        productName={item.productId.name}
+                        productName={item.productId?.name}
                         count={item.qty}
                         price={item.price} />}
                     scrollEnabled
