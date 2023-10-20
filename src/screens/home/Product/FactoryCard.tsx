@@ -32,7 +32,7 @@ const FactoryCard = ({ data }: FactoryProp) => {
             </View>
             <View >
                 <Text style={styles.title}>Описание</Text>
-                <Text style={styles.description}>{data.admin.email}</Text>
+                <Text style={styles.description}>{data.admin?.email}</Text>
                 <TouchableOpacity style={{
                     paddingVertical: 5,
                     width: '35%',
@@ -44,7 +44,7 @@ const FactoryCard = ({ data }: FactoryProp) => {
                         fontWeight: "400",
                         lineHeight: 23,
                         color: COLORS.btnColor,
-                    }}>{data.contacts.phoneNumber}</Text>
+                    }}>{data.contacts?.phoneNumber}</Text>
                 </TouchableOpacity>
             </View>
             <Button text='Посмотреть товары' onPress={() => navigation.navigate('Products')} />

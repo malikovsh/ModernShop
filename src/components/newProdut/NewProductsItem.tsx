@@ -36,7 +36,7 @@ const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
                     width: '100%',
                     height: "100%",
                     borderRadius: 20
-                }} source={{ uri: mediaUrl + data?.media[1]?.name }} />
+                }} source={{ uri: mediaUrl + data?.media[0]?.name }} />
             </View>
             <View style={{
                 flex: 1,

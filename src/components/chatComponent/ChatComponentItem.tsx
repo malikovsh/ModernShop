@@ -9,7 +9,7 @@ type ChatType = {
     position?: boolean
 }
 
-const ChatComponentItem = ({ text, date, position = false }: ChatType) => {
+const ChatComponentItem = ({ text, date, position = true }: ChatType) => {
     return (
         <View style={styles.container}>
             <View style={[styles.chatItem, {

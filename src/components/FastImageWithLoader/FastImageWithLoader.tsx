@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     loadingIndicator: {
         justifyContent: 'center',
         alignItems: 'center',
-
         backgroundColor: "transparent",
         ...StyleSheet.absoluteFillObject,
     },

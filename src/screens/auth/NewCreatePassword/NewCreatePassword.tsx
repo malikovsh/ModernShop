@@ -14,10 +14,15 @@ const NewCreatePassword = () => {
     const navigation = useNavigation<StackNavigationType>()
     const params = useRoute().params;
 
-
-
-
     const { createPassword, setCreatePasswordPayload, isLoading, createPasswordPayload } = useRootStore().loginStore
+
+    const onPress = () => {
+        if (createPasswordPayload.password === createPasswordPayload.conFigurePassword) {
+            createPassword({ ...params, navigation })
+        } else {
+            alert('Неправильный пароль')
+        }
+    }
 
     return (
         <KeyboardAvoidingView
@@ -30,19 +35,28 @@ const NewCreatePassword = () => {
                 </View>
                 <View style={styles.inputBox}>
                     <InputText
+                        title='ФИО'
+                        onChange={(e) => setCreatePasswordPayload('fullName', e)}
+                        value={createPasswordPayload.fullName}
+                    />
+                    <InputText
                         title='Новый пароль'
                         onChange={(e) => setCreatePasswordPayload('password', e)}
-                        value={createPasswordPayload.password} />
+                        value={createPasswordPayload.password}
+                        showEye
+                    />
                     <InputText
                         title='Подтвердите парольu'
-                        onChange={(e) => setCreatePasswordPayload('password', e)}
-                        value={createPasswordPayload.password} />
+                        onChange={(e) => setCreatePasswordPayload('conFigurePassword', e)}
+                        value={createPasswordPayload.conFigurePassword}
+                        showEye
+                    />
                 </View>
                 <View style={styles.btnBox}>
                     <Button
                         isLoading={isLoading}
                         text='Сохранить'
-                        onPress={() => createPassword({ ...params, navigation })}
+                        onPress={() => onPress()}
                     />
                 </View>
             </View>

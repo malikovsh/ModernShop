@@ -46,6 +46,8 @@ const initialStateVerificationResponse: VereficationResponseType = {
 const initialStateCreatePasswordPayload: CreatePasswordPayloadType = {
   password: "",
   phoneNumber: "",
+  conFigurePassword: "",
+  fullName: "",
 };
 
 const initialStateCreatePasswordResponse: CreatePasswordResponseType = {
@@ -255,6 +257,8 @@ export class LoginStore {
         {
           password: this.createPasswordPayload.password,
           phoneNumber: phone,
+          conFigurePassword: this.createPasswordPayload.conFigurePassword,
+          fullName: this.createPasswordPayload.fullName,
         },
         token as string
       )

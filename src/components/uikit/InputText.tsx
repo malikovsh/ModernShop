@@ -1,6 +1,7 @@
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View, ReturnKeyType, KeyboardType } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { COLORS } from '../../constants/Color';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type InputProps = {
     title: string;
@@ -9,10 +10,17 @@ type InputProps = {
     value?: string
     onChange: (e: string) => void
     onChangetext?: Function,
-    keyboardType?: KeyboardType
+    keyboardType?: KeyboardType,
+    showEye?: boolean
 };
 
-export default function InputText({ title, text, icon, onChange, value, keyboardType = 'default' }: InputProps) {
+export default function InputText({ title, text, icon, onChange, value, keyboardType = 'default', showEye = false }: InputProps) {
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <View style={styles.container}>
@@ -20,11 +28,21 @@ export default function InputText({ title, text, icon, onChange, value, keyboard
             <View style={styles.inputBtn}>
                 {icon || null}
                 <TextInput
+                    secureTextEntry={showEye && !showPassword}
                     keyboardType={keyboardType}
                     placeholder={text}
                     style={styles.inputText}
                     value={value}
-                    onChangeText={(e) => onChange(e)} />
+                    onChangeText={(e) => onChange(e)
+                    } />
+                {
+                    showEye && <MaterialCommunityIcons
+                        name={showPassword ? 'eye-off' : 'eye'}
+                        size={24}
+                        color="#aaa"
+                        onPress={toggleShowPassword}
+                    />
+                }
             </View>
         </View>
     )
@@ -49,7 +67,7 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: "#fff",
         borderRadius: 50,
-        paddingLeft: 20,
+        paddingHorizontal: 20,
         alignItems: "center",
         alignSelf: "center",
     },
@@ -61,5 +79,5 @@ const styles = StyleSheet.create({
         color: COLORS.titlecolor,
         paddingRight: 10,
         backgroundColor: 'transparent',
-    }
+    },
 })

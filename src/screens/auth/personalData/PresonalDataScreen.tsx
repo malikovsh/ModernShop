@@ -50,7 +50,7 @@ const PresonalDataScreen = () => {
                 </View> */}
             </View>
             <View style={styles.btn}>
-                <TouchableOpacity style={styles.btnBox} onPress={() => setOpen(true)}>
+                <TouchableOpacity style={styles.btnBox} >
                     <Text
                         style={{ fontWeight: '700', fontSize: 16, color: COLORS.btnColor }}
                     >

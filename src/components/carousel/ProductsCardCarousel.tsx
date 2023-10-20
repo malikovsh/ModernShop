@@ -7,6 +7,8 @@ import { observer } from 'mobx-react-lite';
 import { FastImageWithLoader } from '../FastImageWithLoader/FastImageWithLoader';
 
 const { width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
+
 
 const SPACING = 5;
 const ITEM_LENGTH = width - 40; // Item is a square. Therefore, its height and width are of the same length.

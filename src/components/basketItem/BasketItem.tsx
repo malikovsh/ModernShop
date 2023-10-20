@@ -19,15 +19,22 @@ type BasketProps = {
 const BasketItem = ({ description, onPress, data }: BasketProps) => {
 
     const { deleteBasket } = useRootStore().basketStore
+    const { getProductById } = useRootStore().productStore
+
+    const handlePress = () => {
+        getProductById(data.product.id)
+        onPress && onPress()
+    }
+
 
     return (
-        <TouchableOpacity style={styles.container} >
+        <TouchableOpacity style={styles.container} onPress={handlePress}>
             <View style={{ width: '25%' }}>
                 <Image style={{
                     width: '100%',
                     height: 100,
                     borderRadius: 10
-                }} source={{ uri: mediaUrl + data?.product.media[1]?.name }} />
+                }} source={{ uri: mediaUrl + data?.product.media[0]?.name }} />
             </View>
             <View style={{ width: "80%", }}>
                 <Text style={styles.productName}>{data?.product.name}</Text>

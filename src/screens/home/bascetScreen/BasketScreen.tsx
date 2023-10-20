@@ -17,6 +17,7 @@ const BasketScreen = () => {
     const [open, setOpen] = useState(false)
     const { inBasket, order, clear } = useRootStore().basketStore
 
+
     const EmptyListMessage = () => {
 
         const animation = useRef(null);
@@ -53,7 +54,7 @@ const BasketScreen = () => {
                             renderItem={({ item }) => <BasketItem
                                 data={item}
                                 description='128 GB'
-                                onPress={() => navigation.navigate}
+                                onPress={() => navigation.navigate("ProductCard")}
                             />}
                             showsVerticalScrollIndicator={false}
                             contentContainerStyle={{

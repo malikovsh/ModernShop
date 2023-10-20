@@ -134,8 +134,8 @@ const ProductCard = () => {
                         Стоимость
                     </Text>
                     <Text style={{
-                        fontSize: 23,
-                        fontWeight: '700',
+                        fontSize: 18,
+                        fontWeight: '600',
                         color: COLORS.black,
                         paddingVertical: 5
                     }}>
@@ -146,7 +146,7 @@ const ProductCard = () => {
                     <MassageIcon />
                 </TouchableOpacity>
                 <Button
-                    text={inBasketProductIds.includes(oneProduct.id) ? "Olindi" : "В корзину"}
+                    text={inBasketProductIds.includes(oneProduct.id) ? "В корзине" : "В корзину"}
                     BasketIcon={true}
                     onPress={() => {
                         token ? togleBasket(oneProduct, selectColorAndStore.color, selectColorAndStore.store) :
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 20,
-        justifyContent: 'space-between',
+        justifyContent: "space-between",
         paddingTop: 20,
         gap: 10
     }

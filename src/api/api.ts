@@ -85,6 +85,7 @@ let requests = {
       axios.get<AxiosResponse<AllProductsResponseType>>(url + "products"),
     getProductsById: (id: string) => axios.get(url + "products/" + id),
   },
+
   catigories: {
     getAllCatigories: () =>
       axios.get<AxiosResponse<AllCatigoryRespnseType>>(url + "categories"),
@@ -95,6 +96,7 @@ let requests = {
       return axios.get(url + "products?subcategory=" + id);
     },
   },
+
   carousel: {
     getAllCarousel: () =>
       axios.get<AxiosResponse<CarouselType>>(url + "slides"),
@@ -108,6 +110,7 @@ let requests = {
     getUserData: () => axios.get(url + "users/current"),
     updateUser: (data: PersonalData) => axios.put(url + "users/update", data),
   },
+
   orders: {
     postAllOrders: (data: any) =>
       axios.post<AxiosResponse<any>>(url + "orders/new", data),

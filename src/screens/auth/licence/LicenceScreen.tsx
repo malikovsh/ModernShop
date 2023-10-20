@@ -30,9 +30,10 @@ const LicenceScreen = () => {
                         icon={<LockIcon />}
                         title='Пароль' text='Пароль'
                         onChange={(e) => setLoginPayload('password', e)}
+                        showEye
                         value={loginPayload.password} />
                 </View>
-                <TouchableOpacity style={styles.forgottenBtn} onPress={() => navigation.navigate("Restore")}>
+                <TouchableOpacity style={styles.forgottenBtn} onPress={() => navigation.navigate}>
                     <Text style={styles.btnText}>Забыли пароль?</Text>
                 </TouchableOpacity>
             </View>
