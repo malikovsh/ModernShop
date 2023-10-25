@@ -21,8 +21,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }, 
-      "softwareKeyboardLayoutMode": "pan"
+      },
+      "softwareKeyboardLayoutMode": "pan",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.malikov.ModernShop"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
@@ -34,6 +38,11 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d4c4cdc2-cc31-4fb8-b126-20c0cf710cda"
+      }
+    }
   }
 }
