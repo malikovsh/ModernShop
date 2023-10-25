@@ -5,6 +5,7 @@ import { CatigoriesType, ProductType } from '../../api/requestType'
 import { mediaUrl } from '../../api/api'
 import { observer } from 'mobx-react-lite'
 import useRootStore from '../../hooks/useRootStore'
+import { MaterialIcons } from '@expo/vector-icons';
 
 type Props = {
     data: CatigoriesType,
@@ -29,9 +30,12 @@ const SubCatigory = ({ onPress, data }: Props) => {
                 width: "100%",
                 height: 40,
                 alignItems: 'center',
-                justifyContent: 'center'
+                flexDirection: "row",
+                paddingHorizontal: 20,
+                justifyContent: "space-between"
             }}>
                 <Text style={styles.text}>{data?.name}</Text>
+                <MaterialIcons name="arrow-forward-ios" size={20} color={COLORS.titlecolor} />
             </View>
         </TouchableOpacity>
     )

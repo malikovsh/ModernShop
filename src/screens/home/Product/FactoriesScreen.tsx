@@ -10,27 +10,14 @@ import { observer } from 'mobx-react-lite'
 
 const FactoriesScreen = () => {
 
-    const { allVendors } = useRootStore().vendoreStoage
-    // const [selectBtnColor, setSelectBtnColor] = useState<number>(BorderColorData[0].id)
+    const { allVendors, isLoading } = useRootStore().vendoreStoage
+
+    if (isLoading) {
+        return <Text>Loading...</Text>
+    }
 
     return (
         <View style={styles.container}>
-            {/* <View>
-                <FlatList
-                    data={BorderColorData}
-                    renderItem={({ item }) =>
-                        <ButtonNavBar
-                            selectColor={selectBtnColor === item.id}
-                            onSelectColor={() => setSelectBtnColor(item.id)}
-                            title={item.title} />}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={{
-                        gap: 5,
-                        paddingVertical: 22
-                    }}
-                />
-            </View> */}
             <FlatList
                 data={allVendors}
                 renderItem={({ item }) => <FactoryCard data={item} />}

@@ -12,6 +12,7 @@ import Button from '../../../components/button/Button'
 import useRootStore from '../../../hooks/useRootStore'
 import { observer } from 'mobx-react-lite'
 import { StackNavigationType } from '../../home/HomeStack'
+import LottieView from 'lottie-react-native';
 
 const ProductCard = () => {
 

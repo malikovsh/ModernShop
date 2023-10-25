@@ -2,7 +2,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { Operation } from "../operation";
 import { Vendor, VendorProductType, VendorType } from "./VendorScreenType";
 import requests from "../../api/api";
-import { ProductType } from "../../api/requestType";
 
 class VendorStorage {
   allVendorOperation = new Operation<Vendor[]>([] as Vendor[]);

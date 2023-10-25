@@ -38,7 +38,7 @@ const FactoryCard = ({ data }: FactoryProp) => {
                     width: 50,
                     height: 50,
                     borderRadius: 50
-                }} source={{ uri: mediaUrl + allVendorProduct?.baner?.name }} />
+                }} source={{ uri: mediaUrl + allVendorProduct.baner?.name }} />
                 <Text style={{
                     fontWeight: '700',
                     fontSize: 17,
@@ -48,7 +48,7 @@ const FactoryCard = ({ data }: FactoryProp) => {
             </View>
             <View >
                 <Text style={styles.title}>Описание</Text>
-                <Text style={styles.description}>{allVendorProduct?.description}</Text>
+                <Text style={styles.description}>{allVendorProduct.description}</Text>
                 <TouchableOpacity style={{
                     paddingVertical: 5,
                     width: '35%',
