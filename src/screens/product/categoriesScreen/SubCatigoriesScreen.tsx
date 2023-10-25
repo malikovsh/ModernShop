@@ -34,6 +34,9 @@ const SubCatigoriesScreen = () => {
                             } as any)
                         }} />}
                 showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                    gap: 10
+                }}
             />
         </View>
     )
