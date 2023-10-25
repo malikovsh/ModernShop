@@ -34,8 +34,7 @@ const COLUMN_GAP = (SCREEN_WIDTH - (CATALOG_CARD_WIDTH * 2) - 20) / 2
 const ProductsScreen = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const { allProducts } = useRootStore().productStore
-    const [selectBtnColor, setSelectBtnColor] = useState<number>(BorderColorData[0].id)
+    const { allVendorProduct } = useRootStore().vendoreStoage
 
     return (
         <View style={styles.container}>
@@ -58,7 +57,7 @@ const ProductsScreen = () => {
                 />
             </View> */}
             <FlatList
-                data={allProducts.products}
+                data={allVendorProduct.products}
                 renderItem={({ item }) => <NewProductsItem
                     data={item}
                     onPress={() => navigation.navigate('ProductCard')}

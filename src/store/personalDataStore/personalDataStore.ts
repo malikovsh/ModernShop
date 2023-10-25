@@ -17,6 +17,11 @@ export default class PersonalDataStore {
     phoneNumber: "",
   };
 
+  userInfo: PersonalData = {
+    fullName: "",
+    phoneNumber: "",
+  };
+
   getUser = async () => {
     runInAction(() => {
       this.loading = true;
@@ -26,6 +31,9 @@ export default class PersonalDataStore {
 
     if (this.getUserDataOperation.isSuccess) {
       this.changeUserDataToState(this.getUserDataOperation.data);
+      runInAction(() => {
+        this.userInfo = this.getUserDataOperation.data;
+      });
     }
 
     runInAction(() => {

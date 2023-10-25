@@ -4,12 +4,11 @@ import { COLORS } from '../../constants/Color'
 
 type ChatProps = {
     user: string,
-    message: string,
     onPress: () => void,
     isFocused?: boolean
 }
 
-const ChatBox = ({ user, message, onPress, isFocused }: ChatProps) => {
+const ChatBox = ({ user, onPress, isFocused }: ChatProps) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.imgProfile}>
@@ -17,7 +16,6 @@ const ChatBox = ({ user, message, onPress, isFocused }: ChatProps) => {
             </View>
             <View>
                 <Text style={styles.user}>{user}</Text>
-                <Text style={styles.massage}>{message}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -33,7 +31,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         paddingVertical: 12,
         paddingHorizontal: 23,
-        gap: 15
+        gap: 15,
+        alignItems: 'center'
     },
     imgProfile: {
         width: 50,
@@ -45,10 +44,4 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         paddingVertical: 5
     },
-    massage: {
-        fontSize: 14,
-        fontWeight: '400',
-        color: COLORS.titlecolor,
-        paddingVertical: 5
-    }
 })

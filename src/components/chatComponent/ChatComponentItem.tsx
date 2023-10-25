@@ -9,7 +9,7 @@ type ChatType = {
     position?: boolean
 }
 
-const ChatComponentItem = ({ text, date, position = true }: ChatType) => {
+const ChatComponentItem = ({ text, date, position }: ChatType) => {
     return (
         <View style={styles.container}>
             <View style={[styles.chatItem, {
@@ -31,7 +31,7 @@ const ChatComponentItem = ({ text, date, position = true }: ChatType) => {
                     paddingHorizontal: 5,
                     paddingVertical: 5
                 }}>
-                    {date}
+                    {new Date(date).toDateString()}
                 </Text>
             </View>
         </View>

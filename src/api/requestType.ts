@@ -116,7 +116,7 @@ export interface OneProductByIdType {
   reviews: any[];
   media: Madia[];
   author: {
-    _id: string;
+    id: string;
     email: string;
   };
   __v: number;

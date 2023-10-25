@@ -4,16 +4,32 @@ import { COLORS } from '../../../constants/Color'
 import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../HomeStack'
-import { Vendor } from '../../../store/VendorSrorage/VendorScreenType'
+import { Vendor, VendorProductType } from '../../../store/VendorSrorage/VendorScreenType'
 import { observer } from 'mobx-react-lite'
+import useRootStore from '../../../hooks/useRootStore'
+import { mediaUrl } from '../../../api/api'
 
 type FactoryProp = {
-    data: Vendor
+    data: Vendor,
 }
 
 const FactoryCard = ({ data }: FactoryProp) => {
 
     const navigation = useNavigation<StackNavigationType>()
+    const { createNewChat } = useRootStore().chatStore
+    const { setGetAllVendors, getAllVendorProduct, allVendorProduct } = useRootStore().vendoreStoage
+
+    const onHandleChat = async () => {
+        await createNewChat(data.admin.id)
+        navigation.navigate('Writing')
+    }
+
+    const handlePress = () => {
+        getAllVendorProduct(data.id)
+        setGetAllVendors(allVendorProduct)
+        navigation.navigate('Products')
+    }
+
 
     return (
         <View style={styles.container}>
@@ -22,7 +38,7 @@ const FactoryCard = ({ data }: FactoryProp) => {
                     width: 50,
                     height: 50,
                     borderRadius: 50
-                }} source={require('./../../../assets/Images/profileImage.png')} />
+                }} source={{ uri: mediaUrl + allVendorProduct?.baner?.name }} />
                 <Text style={{
                     fontWeight: '700',
                     fontSize: 17,
@@ -32,7 +48,7 @@ const FactoryCard = ({ data }: FactoryProp) => {
             </View>
             <View >
                 <Text style={styles.title}>Описание</Text>
-                <Text style={styles.description}>{data.admin?.email}</Text>
+                <Text style={styles.description}>{allVendorProduct?.description}</Text>
                 <TouchableOpacity style={{
                     paddingVertical: 5,
                     width: '35%',
@@ -47,8 +63,8 @@ const FactoryCard = ({ data }: FactoryProp) => {
                     }}>{data.contacts?.phoneNumber}</Text>
                 </TouchableOpacity>
             </View>
-            <Button text='Посмотреть товары' onPress={() => navigation.navigate('Products')} />
-            <Button text='Связаться' onPress={() => navigation.navigate('Writing')} />
+            <Button text='Посмотреть товары' onPress={handlePress} />
+            <Button text='Связаться' onPress={onHandleChat} />
         </View>
     )
 }

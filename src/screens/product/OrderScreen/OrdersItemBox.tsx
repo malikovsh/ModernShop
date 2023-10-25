@@ -15,7 +15,7 @@ const OrdersItemBox = ({ image, price, productName, count }: Props) => {
             <View style={styles.image}>
                 <Image style={{
                     width: '100%',
-                    height: "100%"
+                    height: "100%",
                 }} source={image} />
             </View>
             <View style={styles.titleBox}>

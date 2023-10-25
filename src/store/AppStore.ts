@@ -48,7 +48,9 @@ export class AppStore {
 
       Promise.all(list)
         .then(() => {
+          this.personalData.getUser();
           this.productStore.getAllProducts();
+          this.chatStore.getChatUsers();
         })
         .catch(() => {});
     });

@@ -47,39 +47,29 @@ class SocketStore {
   }
 
   connect = () => {
-    console.log("connecting...");
-
     this._socket = io(URL, {
       autoConnect: true,
     });
 
     this._socket.on("connect", () => {
       this._connected = true;
-      console.log("connected", this._socket);
 
       if (this._initialized) {
         return;
       }
 
-      this._socket?.on("ping", () => {
-        console.log("ping");
-      });
+      this._socket?.on("ping", () => {});
 
       this._socket?.on("disconnect", () => {
         this._connected = false;
-        console.log("disconnected", this._socket);
       });
 
-      this._socket?.on("error", (error: any) => {
-        console.log("error", error);
-      });
+      this._socket?.on("error", (error: any) => {});
 
       // this.root.chatStore.init();
     });
 
-    this._socket?.on("connect_error", (error: any) => {
-      console.log("connect_error", error);
-    });
+    this._socket?.on("connect_error", (error: any) => {});
   };
 
   disconnect = () => {

@@ -13,48 +13,26 @@ import TitleNavbar from '../../../components/uikit/TitleNavbar'
 import { useNavigation } from '@react-navigation/native'
 import { MediaIcon, SendIcon } from '../../../assets/icons/icons'
 import ChatComponentItem from '../../../components/chatComponent/ChatComponentItem'
+import useRootStore from '../../../hooks/useRootStore'
+import { observer } from 'mobx-react-lite'
+import { toJS } from 'mobx'
 
 
 const WritingScreen = () => {
 
     const navigation = useNavigation()
+    const flatList = React.useRef<FlatList>();
+    const { setMessageText, messageText, onSendMessage, messages, chatId, exitChat } = useRootStore().chatStore
+    const { userInfo } = useRootStore().personalData
     const keyboardVerticalOffset = Platform.OS === 'ios' ? 40 : -200
 
-    const [changeText, setChangeText] = useState('')
-    const [saveText, setSaveText] = useState([{
-        id: 0,
-        text: 'bla bla',
-        date: ''
-    }])
 
-    const date = new Date()
-
-    const dateFormat = (date: Date) => {
-        const day = date.getDate()
-        const month = date.getMonth() + 1
-        const year = date.getFullYear()
-        const hours = date.getHours()
-        const minutes = date.getMinutes()
-
-        return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year} ${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`
-    }
-
-    const handleSetText = (text: any) => {
-        setChangeText(text)
-    }
-    const handleSaveText = () => {
-        if (changeText !== '   ') {
-            setSaveText([
-                ...saveText,
-                {
-                    id: 1,
-                    text: changeText,
-                    date: dateFormat(date)
-                }
-            ])
-            setChangeText('')
+    function handleScrollToEnd(width: any, height: any) {
+        if (flatList.current) {
+            flatList.current.scrollToOffset({ offset: height });
         }
     }
+
 
     return (
         <KeyboardAvoidingView
@@ -62,10 +40,12 @@ const WritingScreen = () => {
             keyboardVerticalOffset={keyboardVerticalOffset}
             style={{ flex: 1, paddingHorizontal: 20, backgroundColor: COLORS.bgColor }}>
             <View style={styles.container}>
-                <TitleNavbar title='Чат' showArrow onPress={() => navigation.goBack()} />
+                <TitleNavbar title='Чат' showArrow onPress={() => { navigation.goBack(); exitChat() }} />
                 <FlatList
-                    data={saveText}
-                    renderItem={({ item }) => <ChatComponentItem text={item.text} date={item.date} />}
+                    ref={flatList as any}
+                    onContentSizeChange={handleScrollToEnd}
+                    data={messages[chatId]}
+                    renderItem={({ item }) => <ChatComponentItem text={item.message} date={item.createdAt} position={item.sender === userInfo.id} />}
                     keyExtractor={(item, index) => index.toString()}
                     showsVerticalScrollIndicator={false}
                 />
@@ -80,9 +60,9 @@ const WritingScreen = () => {
                         <TouchableOpacity style={styles.media}>
                             <MediaIcon />
                         </TouchableOpacity>
-                        <TextInput style={styles.inputText} value={changeText} onChangeText={handleSetText} placeholder='Написать сообщение...' />
+                        <TextInput style={styles.inputText} value={messageText} onChangeText={(e) => setMessageText(e)} placeholder='Написать сообщение...' />
                     </View>
-                    <TouchableOpacity style={styles.send} onPress={handleSaveText} >
+                    <TouchableOpacity style={styles.send} onPress={onSendMessage} >
                         <SendIcon />
                     </TouchableOpacity>
                 </View>
@@ -91,7 +71,7 @@ const WritingScreen = () => {
     )
 }
 
-export default WritingScreen
+export default observer(WritingScreen)
 
 const styles = StyleSheet.create({
     container: {

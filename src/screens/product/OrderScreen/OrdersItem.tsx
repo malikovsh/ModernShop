@@ -5,6 +5,8 @@ import OrdersItemBox from './OrdersItemBox'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationType } from '../../home/HomeStack'
 import { OrdersType } from '../../../api/requestType'
+import { mediaUrl } from '../../../api/api'
+import { observer } from 'mobx-react-lite'
 
 type OrdersTypeProp = {
     orderData: OrdersType
@@ -30,7 +32,7 @@ const OrdersItem = ({ orderData }: OrdersTypeProp) => {
                 <FlatList
                     data={orderData.products}
                     renderItem={({ item }) => <OrdersItemBox
-                        image={require('./../../../assets/Images/phone.png')}
+                        image={{ uri: mediaUrl + item.productId?.media[0]?.name }}
                         productName={item.productId?.name}
                         count={item.qty}
                         price={item.price} />}
@@ -51,7 +53,7 @@ const OrdersItem = ({ orderData }: OrdersTypeProp) => {
     )
 }
 
-export default OrdersItem
+export default observer(OrdersItem)
 
 const styles = StyleSheet.create({
     container: {

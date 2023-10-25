@@ -27,6 +27,13 @@ const ProductCard = () => {
     const { token } = useRootStore().tokenStore
     const { togleBasket, inBasketProductIds } = useRootStore().basketStore
     const { inFavouriteProductIds, togleFavourite } = useRootStore().favouriteStore
+    const { createNewChat } = useRootStore().chatStore
+
+    const onHandleChat = async () => {
+        await createNewChat(oneProduct.author.id)
+        navigation.navigate('Writing')
+    }
+
 
     // const options = useMemo(() => {
     //     const colors = oneProduct.props || [];
@@ -142,7 +149,7 @@ const ProductCard = () => {
                         {oneProduct?.price[0].price} сум
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('Writing')}>
+                <TouchableOpacity onPress={onHandleChat}>
                     <MassageIcon />
                 </TouchableOpacity>
                 <Button
