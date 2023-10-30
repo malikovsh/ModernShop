@@ -32,7 +32,7 @@ const ProductCard = () => {
 
     const onHandleChat = async () => {
         await createNewChat(oneProduct.author.id)
-        navigation.navigate('Writing')
+        token ? navigation.navigate('Writing') : navigation.navigate("Create")
     }
 
 

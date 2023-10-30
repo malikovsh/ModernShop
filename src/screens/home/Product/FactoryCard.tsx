@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { COLORS } from '../../../constants/Color'
 import Button from '../../../components/button/Button'
 import { useNavigation } from '@react-navigation/native'
@@ -7,7 +7,8 @@ import { StackNavigationType } from '../HomeStack'
 import { Vendor, VendorProductType } from '../../../store/VendorSrorage/VendorScreenType'
 import { observer } from 'mobx-react-lite'
 import useRootStore from '../../../hooks/useRootStore'
-import { mediaUrl } from '../../../api/api'
+import requests, { mediaUrl } from '../../../api/api'
+import { toJS } from 'mobx'
 
 type FactoryProp = {
     data: Vendor,
@@ -17,11 +18,13 @@ const FactoryCard = ({ data }: FactoryProp) => {
 
     const navigation = useNavigation<StackNavigationType>()
     const { createNewChat } = useRootStore().chatStore
-    const { setGetAllVendors, getAllVendorProduct, allVendorProduct } = useRootStore().vendoreStoage
+    const { token } = useRootStore().tokenStore
+    const { setGetAllVendors, getAllVendorProduct, allVendorProduct, getOneVendor } = useRootStore().vendoreStoage
+    const [vendor, setVendor] = useState<VendorProductType>()
 
     const onHandleChat = async () => {
         await createNewChat(data.admin.id)
-        navigation.navigate('Writing')
+        token ? navigation.navigate('Writing') : navigation.navigate("Create")
     }
 
     const handlePress = () => {
@@ -30,6 +33,16 @@ const FactoryCard = ({ data }: FactoryProp) => {
         navigation.navigate('Products')
     }
 
+    const vendorFetch = async () => {
+        if (data) {
+            const respons = await requests.vendor.getAllVendorProduct(data.id)
+            setVendor(respons.data as unknown as VendorProductType)
+        }
+    }
+
+    useEffect(() => {
+        vendorFetch()
+    }, [data])
 
     return (
         <View style={styles.container}>
@@ -38,17 +51,17 @@ const FactoryCard = ({ data }: FactoryProp) => {
                     width: 50,
                     height: 50,
                     borderRadius: 50
-                }} source={{ uri: mediaUrl + allVendorProduct.baner?.name }} />
+                }} source={{ uri: mediaUrl + vendor?.baner.name }} />
                 <Text style={{
                     fontWeight: '700',
                     fontSize: 17,
                     width: '70%',
                     lineHeight: 28,
-                }}>{data.name}</Text>
+                }}>{vendor?.name}</Text>
             </View>
             <View >
                 <Text style={styles.title}>Описание</Text>
-                <Text style={styles.description}>{allVendorProduct.description}</Text>
+                <Text style={styles.description}>{vendor?.description}</Text>
                 <TouchableOpacity style={{
                     paddingVertical: 5,
                     width: '35%',
@@ -60,7 +73,7 @@ const FactoryCard = ({ data }: FactoryProp) => {
                         fontWeight: "400",
                         lineHeight: 23,
                         color: COLORS.btnColor,
-                    }}>{data.contacts?.phoneNumber}</Text>
+                    }}>{vendor?.contacts?.phoneNumber}</Text>
                 </TouchableOpacity>
             </View>
             <Button text='Посмотреть товары' onPress={handlePress} />

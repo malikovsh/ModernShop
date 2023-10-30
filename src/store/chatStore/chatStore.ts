@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction, toJS } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { AppStore } from "../AppStore";
 import { Operation } from "../operation";
 import requests from "../../api/api";

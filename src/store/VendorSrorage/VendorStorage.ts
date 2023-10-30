@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable, runInAction, toJS } from "mobx";
 import { Operation } from "../operation";
 import { Vendor, VendorProductType, VendorType } from "./VendorScreenType";
 import requests from "../../api/api";
@@ -8,11 +8,13 @@ class VendorStorage {
   allVendorProductOperation = new Operation<VendorProductType>(
     {} as VendorProductType
   );
+  getOneVendorOperation = new Operation<VendorProductType>(
+    {} as VendorProductType
+  );
 
   constructor() {
     makeAutoObservable(this);
     this.getAllVendor();
-    this.getAllVendorProduct;
   }
 
   allVendors: Vendor[] = [];
@@ -32,8 +34,21 @@ class VendorStorage {
     }
   };
 
+  getOneVendor = async (id: string) => {
+    console.log("id", id);
+
+    await this.getOneVendorOperation.run(() =>
+      requests.vendor.getAllVendorProduct(id)
+    );
+
+    if (this.getOneVendorOperation.isSuccess) {
+      return this.getOneVendorOperation.data;
+    }
+  };
+
   setGetAllVendors = (allVendorProduct: VendorProductType) => {
     runInAction(() => {
+      this.isLoading = true;
       this.allVendorProduct = allVendorProduct;
     });
   };
@@ -43,7 +58,6 @@ class VendorStorage {
       requests.vendor.getAllVendorProduct(id)
     );
     runInAction(() => {
-      this.isLoading = true;
       if (this.allVendorProductOperation.isSuccess) {
         this.allVendorProduct.products =
           this.allVendorProductOperation.data.products;

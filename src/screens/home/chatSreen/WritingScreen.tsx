@@ -33,6 +33,9 @@ const WritingScreen = () => {
         }
     }
 
+    console.log("===", messageText);
+
+
 
     return (
         <KeyboardAvoidingView

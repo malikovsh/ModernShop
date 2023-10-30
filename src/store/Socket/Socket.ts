@@ -3,7 +3,7 @@ import io, { Socket } from "socket.io-client";
 import { AppStore } from "../AppStore";
 import { DefaultEventsMap } from "@socket.io/component-emitter";
 
-const URL = "https://api.modernshop.uz";
+const URL = "https://api.modernshop.uz/";
 
 export interface IUser {
   id: string;
