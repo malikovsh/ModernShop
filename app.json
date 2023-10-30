@@ -4,11 +4,11 @@
     "slug": "ModernShop",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/Modern.png",
+    "icon": "./src/assets/appIcon1.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/Modern.png",
-      "resizeMode": "contain",
+      "image": "./src/assets/appIcon1.png",
+      "resizeMode": "center",
       "backgroundColor": "#010101"
     },
     "assetBundlePatterns": [
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon 1.png",
         "backgroundColor": "#ffffff"
       },
       "softwareKeyboardLayoutMode": "pan",
