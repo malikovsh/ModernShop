@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./src/assets/appIcon1.png",
-      "resizeMode": "center",
+      "resizeMode": "contain",
       "backgroundColor": "#010101"
     },
     "assetBundlePatterns": [
@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon 1.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "softwareKeyboardLayoutMode": "pan",
       "permissions": [

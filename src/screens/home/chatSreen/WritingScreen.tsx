@@ -33,10 +33,6 @@ const WritingScreen = () => {
         }
     }
 
-    console.log("===", messageText);
-
-
-
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
