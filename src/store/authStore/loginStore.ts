@@ -195,14 +195,10 @@ export class LoginStore {
     );
     if (data.status === 200) {
       this.vereficationResponse = this.vereficationOperation.data;
-      await this.root.tokenStore.setToken(
-        this.vereficationOperation.data.token
-      );
 
       setOpen(false);
       navigation.navigate("CreatePassword", {
         phone: this.registarPayload.phoneNumber,
-        token: this.vereficationOperation.data.token,
       });
 
       runInAction(() => {

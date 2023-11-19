@@ -14,7 +14,7 @@ type NewProductsProps = {
     onPress?: () => void;
 }
 
-export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 174 : 164
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 170 : 160
 
 const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
 
@@ -35,19 +35,22 @@ const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
                 <FastImageWithLoader style={{
                     width: '100%',
                     height: "100%",
-                    borderRadius: 20
+                    borderTopLeftRadius: 20,
+                    borderTopRightRadius: 20
                 }} source={{ uri: mediaUrl + data?.media[0]?.name }} />
             </View>
             <View style={{
                 flex: 1,
                 flexDirection: 'column',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                paddingHorizontal: 10,
+                paddingBottom: 15
             }}>
                 <View>
                     <Text style={styles.productName}>{data?.name}</Text>
                     <Text style={styles.category}>{data?.subcategory?.name}</Text>
                 </View>
-                <Text style={styles.productPrice}>{data?.price[0]?.price + ' сум'}</Text>
+                <Text style={styles.productPrice}>{data.price[0]?.price + ' сум'}</Text>
             </View>
             {
                 showFamouse ?
@@ -68,7 +71,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: COLORS.white,
         marginTop: 20,
-        padding: 10,
     },
     productName: {
         fontWeight: '700',

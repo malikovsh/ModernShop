@@ -14,7 +14,7 @@ type Props = {
 }
 
 export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
-export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 115 : 115
+export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 115 : 110
 
 const CategriesItem = ({ onPress, data }: Props) => {
 
@@ -24,21 +24,17 @@ const CategriesItem = ({ onPress, data }: Props) => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={handlePress}>
-            <View style={{
-                width: "100%", height: CATALOG_IMAGE_HEIGHT
+            <FastImageWithLoader style={styles.img} source={{
+                uri: mediaUrl + data.icon?.name
             }}>
-                <FastImageWithLoader style={styles.img} source={{
-                    uri: mediaUrl + data.icon?.name
-                }} />
-            </View>
-            <View style={{
-                width: "100%",
-                height: 40,
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}>
-                <Text style={styles.text}>{data?.name}</Text>
-            </View>
+                <View style={{
+                    width: "100%",
+                    alignItems: 'center',
+                    justifyContent: "center"
+                }}>
+                    <Text style={styles.text}>{data?.name}</Text>
+                </View>
+            </FastImageWithLoader>
         </TouchableOpacity>
     )
 }
@@ -50,22 +46,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: "center",
         backgroundColor: COLORS.white,
-        borderRadius: 20,
+        borderRadius: 10,
         gap: 10,
         width: CATALOG_CARD_WIDTH,
         marginTop: 13,
-        height: 180,
     },
     text: {
         fontSize: 16,
         fontWeight: '500',
-        color: COLORS.titlecolor,
+        color: COLORS.white,
+        alignSelf: "center",
+        paddingBottom: 5,
+        shadowColor: COLORS.black,
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 1.5,
+        shadowRadius: 3
     },
     img: {
         width: "100%",
         height: CATALOG_IMAGE_HEIGHT,
         borderRadius: 10,
         resizeMode: 'cover',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        justifyContent: "flex-end"
     }
 })

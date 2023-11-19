@@ -12,10 +12,6 @@ const FactoriesScreen = () => {
 
     const { allVendors, isLoading } = useRootStore().vendoreStoage
 
-    if (isLoading) {
-        return <Text>Loading...</Text>
-    }
-
     return (
         <View style={styles.container}>
             <FlatList

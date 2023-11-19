@@ -1,25 +1,38 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
-import { FilterIcon, SearchIcon } from '../../assets/icons/icons'
+import { Keyboard, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useState } from 'react'
 import { COLORS } from '../../constants/Color'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 type SearchPops = {
     onPress?: () => void;
 }
 
-const SearchNavBar = ({ onPress }: SearchPops) => {
+const SearchNavBar = () => {
+
+    const [focus, setFocus] = useState(false)
+
     return (
-        <View style={styles.container}>
-            <View style={styles.inputBox}>
-                <TextInput style={styles.textInput} placeholder='Поиск' />
-                <TouchableOpacity style={{ padding: 10 }}>
-                    <SearchIcon />
-                </TouchableOpacity>
+        <View style={styles.box}>
+            <View style={styles.container}>
+                <MaterialIcons name="search" size={24} color={COLORS.titlecolor} />
+                <TextInput
+                    onFocus={() => setFocus(true)}
+                    style={styles.input}
+                    placeholder="Поиск..."
+                    placeholderTextColor='#B4B8B9' />
+                <Pressable style={styles.xButton}>
+                    <Feather name="x" size={16} color={COLORS.titlecolor} />
+                </Pressable>
             </View>
-            {/* <TouchableOpacity style={styles.filterBox} onPress={onPress}>
-                <FilterIcon />
-            </TouchableOpacity> */}
+            {
+                focus ? <Pressable style={styles.cancel} onPress={() => {
+                    setFocus(false)
+                    Keyboard.dismiss()
+                }}>
+                    <Text style={styles.cancelText}>Yopish</Text>
+                </Pressable> : null
+            }
         </View>
     )
 }
@@ -27,34 +40,46 @@ const SearchNavBar = ({ onPress }: SearchPops) => {
 export default SearchNavBar
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
+    box: {
         flexDirection: 'row',
-        gap: 6,
         alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingTop: 17
-    },
-    inputBox: {
-        flexDirection: 'row',
-        justifyContent: "space-between",
-        backgroundColor: COLORS.white,
-        paddingHorizontal: 18,
-        borderRadius: 20,
+        height: 43,
         width: "100%",
-        alignItems: "center",
+        marginTop: 20
     },
-    textInput: {
-        width: "90%",
-        fontWeight: '400',
-        fontSize: 17,
-        height: "100%",
-        paddingVertical: 17,
-        color: COLORS.titlecolor
-    },
-    filterBox: {
-        padding: 17,
+    container: {
+        flex: 1,
+        height: '100%',
         backgroundColor: COLORS.white,
-        borderRadius: 20
+        borderRadius: 15,
+        paddingHorizontal: 10,
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+    input: {
+        flex: 1,
+        fontSize: 14,
+        paddingLeft: 3,
+        color: COLORS.titlecolor,
+        backgroundColor: 'transparent',
+        height: '100%',
+    },
+    xButton: {
+        width: 20,
+        height: 20,
+        marginLeft: 5,
+        borderRadius: 12,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cancel: {
+        paddingLeft: 10,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    cancelText: {
+        fontSize: 14,
+        color: COLORS.btnColor,
     }
 })

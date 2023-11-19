@@ -132,16 +132,16 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
                     });
 
                     return (
-                        <View style={{ width: ITEM_LENGTH }}>
-                            <Animated.View
+                        <View style={{ width: ITEM_LENGTH, paddingHorizontal: 5 }}>
+                            <FastImageWithLoader source={{ uri: mediaUrl + item.image.name }} style={styles.itemImage} />
+                            {/* <Animated.View
                                 style={[
                                     {
                                         transform: [{ translateY }],
                                     },
                                     styles.itemContent,
                                 ]}>
-                                <FastImageWithLoader source={{ uri: mediaUrl + item.image.name }} style={styles.itemImage} />
-                            </Animated.View>
+                            </Animated.View> */}
                         </View>
                     );
                 }}

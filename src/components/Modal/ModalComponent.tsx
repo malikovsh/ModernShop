@@ -40,16 +40,10 @@ const ModalComponent = ({ visible, onClose, onPress, onChangetext, onChange, val
                         </View>
                         <Text style={styles.title}>Введите код отправленный на ваш телефон</Text>
                         <View style={styles.inputBox}>
-                            <Text style={{
-                                fontWeight: '400',
-                                fontSize: 16,
-                                color: COLORS.titlecolor
-                            }}>
-                                Код
-                            </Text>
                             <TextInput
                                 style={styles.input}
                                 value={value}
+                                placeholder="Код"
                                 onChangeText={(e) => onChange(e)}
                             />
                         </View>

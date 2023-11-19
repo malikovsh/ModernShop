@@ -20,7 +20,6 @@ const CategoriesComponent = () => {
     return (
         <View style={styles.container}>
             <TitleComponent title='Категории для вас' textBtn='Все' onPress={() => navigation.navigate('Categories')} />
-            {isLoading && <Text>Loading...</Text>}
             <FlatList
                 data={allCatigories}
                 renderItem={({ item }) => <CategriesItem

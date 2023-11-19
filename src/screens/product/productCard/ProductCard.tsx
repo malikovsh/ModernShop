@@ -35,7 +35,6 @@ const ProductCard = () => {
         token ? navigation.navigate('Writing') : navigation.navigate("Create")
     }
 
-
     // const options = useMemo(() => {
     //     const colors = oneProduct.props || [];
     //     const storages = oneProduct.props || [];
@@ -47,10 +46,6 @@ const ProductCard = () => {
     // }, [oneProduct?.props])
 
 
-    if (isLoading) {
-        return <Text>Loading...</Text>
-    }
-
     return (
         <View style={styles.container}>
             <View style={{ paddingHorizontal: 20 }}>
@@ -58,23 +53,9 @@ const ProductCard = () => {
             </View>
             <ScrollView style={{ flex: 1, backgroundColor: COLORS.bgColor }} showsVerticalScrollIndicator={false}>
                 <View style={{ paddingHorizontal: 20 }}>
-                    <ProductsCardCarousel data={oneProduct.media} />
+                    <ProductsCardCarousel data={oneProduct.media || []} />
                 </View>
                 <View style={styles.description}>
-                    <View>
-                        <FlatList
-                            data={(oneProduct.media ||= [])}
-                            renderItem={({ item }) => <ProductsCardItem data={item} />}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            contentContainerStyle={{
-                                paddingHorizontal: 20,
-                                gap: 6,
-                                paddingVertical: 10
-                            }}
-                            keyExtractor={(_, index) => `${index}-1`}
-                        />
-                    </View>
                     <View style={styles.productName}>
                         <Text style={{
                             fontSize: 20,
@@ -147,7 +128,7 @@ const ProductCard = () => {
                         color: COLORS.black,
                         paddingVertical: 5
                     }}>
-                        {oneProduct?.price[0].price} сум
+                        {oneProduct?.price && oneProduct?.price[0]?.price} сум
                     </Text>
                 </View>
                 <TouchableOpacity onPress={onHandleChat}>
