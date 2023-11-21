@@ -14,7 +14,7 @@ const ImagePill = (props: { src: string, width?: number, height?: number }) => {
         resizeMode="stretch"
         style={{
             width: props.width ? props.width : width - 40,
-            height: props.height ? props.height : height * 0.3,
+            height: props.height ? props.height : height * 0.4,
             borderRadius: 8,
         }} />
 }
@@ -43,12 +43,13 @@ const ProductsCardCarousel = ({ data }: { data: Madia[] }) => {
                 renderItem={({ item, index }) => (
                     <View style={{ marginRight: 12 }}>
                         <TouchableOpacity onPress={() => setIndex(index)}>
-                            <ImagePill width={100} height={97} src={item?.name} />
+                            <ImagePill width={101} height={97} src={item?.name} />
                         </TouchableOpacity>
                     </View>
                 )}
                 keyExtractor={(item, index) => index.toString()}
                 pagingEnabled
+                showsHorizontalScrollIndicator={false}
             />
         </View>
     )

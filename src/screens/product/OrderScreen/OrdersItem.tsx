@@ -24,7 +24,7 @@ const OrdersItem = ({ orderData }: OrdersTypeProp) => {
                     borderRadius: 20,
                     padding: 12
                 }}>
-                    <Text style={styles.number}>№ 13</Text>
+                    <Text style={styles.number}>№</Text>
                 </View>
                 <Text style={styles.title}> Статус: {orderData.orderStatus} </Text>
             </View>

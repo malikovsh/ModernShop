@@ -31,7 +31,7 @@ export type VereficationResponseType = {
 export type CreatePasswordPayloadType = {
   password: string;
   phoneNumber?: string;
-  conFigurePassword: string;
+  conFigurePassword?: string;
   fullName: string;
 };
 

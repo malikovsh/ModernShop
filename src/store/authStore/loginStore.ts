@@ -14,7 +14,7 @@ import requests from "../../api/api";
 import { AppStore } from "../AppStore";
 
 const initialStateLoginPayload: LoginPayloadType = {
-  phoneNumber: "",
+  phoneNumber: "+998",
   password: "",
 };
 
@@ -26,7 +26,7 @@ const initialStateLoginResponse: LoginResponseType = {
 };
 
 const initialStateRegistarPayload: RegistarPayloadType = {
-  phoneNumber: "",
+  phoneNumber: "+998",
 };
 
 const initialStateRegistarResponse: RegistarResponseType = {
@@ -195,21 +195,26 @@ export class LoginStore {
     );
     if (data.status === 200) {
       this.vereficationResponse = this.vereficationOperation.data;
+      console.log(
+        "this.vereficationOperation.data:",
+        this.vereficationOperation.data
+      );
 
       setOpen(false);
       navigation.navigate("CreatePassword", {
         phone: this.registarPayload.phoneNumber,
-      });
-
-      runInAction(() => {
-        this.isLoading = false;
+        token: this.vereficationOperation.data.token,
       });
     } else {
+      console.log(
+        "this.vereficationOperation.data:",
+        this.vereficationOperation.data
+      );
       alert("Kod noto'g'ri kiritilgan");
-      runInAction(() => {
-        this.isLoading = false;
-      });
     }
+    runInAction(() => {
+      this.isLoading = false;
+    });
   };
 
   // time check for verefication code 1 min 0:59 0:58 0:57
@@ -238,7 +243,7 @@ export class LoginStore {
     navigation,
   }: {
     phone?: string;
-    token?: string;
+    token: string;
     navigation: any;
   }) => {
     if (this.createPasswordPayload.password.length < 8) {
@@ -251,20 +256,24 @@ export class LoginStore {
     const data = await this.createPasswordOperation.run(() =>
       requests.auth.createPassword(
         {
+          fullName: this.createPasswordPayload.fullName,
           password: this.createPasswordPayload.password,
           phoneNumber: phone,
-          conFigurePassword: this.createPasswordPayload.conFigurePassword,
-          fullName: this.createPasswordPayload.fullName,
         },
-        token as string
+        token
       )
     );
 
     if (data.status === 200) {
+      await this.root.tokenStore.setToken(
+        this.createPasswordOperation.data.token
+      );
       navigation.navigate("BottomTab");
-      runInAction(() => {
-        this.isLoading = false;
-      });
+    } else {
+      console.log("Error createPassword:", this.createPasswordOperation.error);
     }
+    runInAction(() => {
+      this.isLoading = false;
+    });
   };
 }

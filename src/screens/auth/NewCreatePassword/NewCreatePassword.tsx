@@ -12,7 +12,7 @@ import { observer } from 'mobx-react-lite'
 const NewCreatePassword = () => {
 
     const navigation = useNavigation<StackNavigationType>()
-    const params = useRoute().params;
+    const params: any = useRoute().params;
 
     const { createPassword, setCreatePasswordPayload, isLoading, createPasswordPayload } = useRootStore().loginStore
 

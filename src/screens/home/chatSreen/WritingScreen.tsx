@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         borderRadius: 20,
-        width: "100%"
+        width: "100%",
+        paddingRight: 15
     },
     media: {
 

@@ -48,9 +48,9 @@ const ProfileScreen = () => {
                     <Image
                         style={{ width: 180, height: 180, borderRadius: 100 }}
                         source={{ uri: image || 'https://img.freepik.com/premium-vector/male-profile-flat-blue-simple-icon-with-long-shadowxa_159242-10092.jpg' }} />
-                    <TouchableOpacity style={styles.editBtn} onPress={PickImage}>
+                    {/* <TouchableOpacity style={styles.editBtn} onPress={PickImage}>
                         <EditIcon />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
             </View>
             <View style={{ gap: 10 }}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 20,
-        gap: 41
+        gap: 30
     },
     profileBox: {
         alignItems: 'center',
