@@ -26,8 +26,6 @@ export let mediaUrl = "https://ik.imagekit.io/z6k3ktb71/";
 axios.interceptors.request.use(async (config) => {
   let token = await AsyncStorage.getItem(TOKEN).then((res) => res);
 
-  console.log(token);
-
   if (!!token) {
     config.headers["Authorization"] = `${token}`;
   }

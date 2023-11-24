@@ -42,7 +42,7 @@ const ProductsCardCarousel = ({ data }: { data: Madia[] }) => {
                 ]}
                 renderItem={({ item, index }) => (
                     <View style={{ marginRight: 12 }}>
-                        <TouchableOpacity onPress={() => setIndex(index)}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => setIndex(index)}>
                             <ImagePill width={101} height={97} src={item?.name} />
                         </TouchableOpacity>
                     </View>

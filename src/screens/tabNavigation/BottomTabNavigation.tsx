@@ -58,7 +58,7 @@ function MyTabBar({ state, descriptors, navigation }: any) {
             paddingHorizontal: 40,
             borderTopRightRadius: 30,
             borderTopLeftRadius: 30,
-            paddingBottom: Platform.OS === 'ios' ? 20 : 10,
+            paddingBottom: Platform.OS === 'ios' ? 10 : 0,
             paddingTop: 10,
         }}>
             {state.routes.map((route: { key: string | number; name: any; }, index: any) => {

@@ -13,8 +13,8 @@ type Props = {
     image?: any
 }
 
-export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
-export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 115 : 110
+// export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
+// export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 115 : 110
 
 const CategriesItem = ({ onPress, data }: Props) => {
 
@@ -23,7 +23,7 @@ const CategriesItem = ({ onPress, data }: Props) => {
     }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={handlePress}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.container} onPress={handlePress}>
             <FastImageWithLoader style={styles.img} source={{
                 uri: mediaUrl + data.icon?.name
             }}>
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white,
         borderRadius: 10,
         gap: 10,
-        width: CATALOG_CARD_WIDTH,
+        width: 115,
+        height: 125,
         marginTop: 13,
     },
     text: {
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     },
     img: {
         width: "100%",
-        height: CATALOG_IMAGE_HEIGHT,
+        height: '100%',
         borderRadius: 10,
         resizeMode: 'cover',
         alignSelf: 'center',

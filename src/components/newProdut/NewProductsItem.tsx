@@ -27,7 +27,7 @@ const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
     }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={handlePress}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.container} onPress={handlePress}>
             <TouchableOpacity style={styles.favriteBtn} onPress={() => togleFavourite(data)}>
                 <FavoriteIcon isFocus={inFavouriteProductIds.includes(data.id)} />
             </TouchableOpacity>
