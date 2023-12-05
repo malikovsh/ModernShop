@@ -71,9 +71,9 @@ const FactoryCard = ({ data }: FactoryProp) => {
                     <Text style={{
                         fontSize: 15,
                         fontWeight: "400",
-                        lineHeight: 23,
+                        lineHeight: 20,
                         color: COLORS.btnColor,
-                    }}>{vendor?.contacts?.phoneNumber}</Text>
+                    }}>Подробнее...</Text>
                 </TouchableOpacity>
             </View>
             <Button text='Посмотреть товары' onPress={handlePress} />
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     description: {
         fontSize: 15,
         fontWeight: "400",
-        lineHeight: 23
+        lineHeight: 23,
+        height: 40
     }
 })

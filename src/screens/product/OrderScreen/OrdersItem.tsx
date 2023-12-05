@@ -35,7 +35,7 @@ const OrdersItem = ({ orderData }: OrdersTypeProp) => {
                         image={{ uri: mediaUrl + item.productId?.media[0]?.name }}
                         productName={item.productId?.name}
                         count={item.qty}
-                        price={item.price} />}
+                        price={item.productId?.price[0]?.price} />}
                     scrollEnabled
                 />
                 <Text style={styles.allPrice}>

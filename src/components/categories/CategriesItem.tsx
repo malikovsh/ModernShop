@@ -1,10 +1,10 @@
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { COLORS } from '../../constants/Color'
 import { AllCatigoryRespnseType, CatigoriesType } from '../../api/requestType'
 import { mediaUrl } from '../../api/api'
-import useRootStore from '../../hooks/useRootStore'
 import { FastImageWithLoader } from '../FastImageWithLoader/FastImageWithLoader'
+import { observer } from 'mobx-react-lite'
 
 type Props = {
     data: AllCatigoryRespnseType,
@@ -13,8 +13,8 @@ type Props = {
     image?: any
 }
 
-// export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 110
-// export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 115 : 110
+export const CATALOG_CARD_WIDTH = Platform.OS === 'ios' ? 115 : 100
+export const CATALOG_IMAGE_HEIGHT = Platform.OS === 'ios' ? 120 : 110
 
 const CategriesItem = ({ onPress, data }: Props) => {
 
@@ -24,7 +24,7 @@ const CategriesItem = ({ onPress, data }: Props) => {
 
     return (
         <TouchableOpacity activeOpacity={0.8} style={styles.container} onPress={handlePress}>
-            <FastImageWithLoader style={styles.img} source={{
+            <ImageBackground style={styles.img} imageStyle={{ borderRadius: 10 }} source={{
                 uri: mediaUrl + data.icon?.name
             }}>
                 <View style={{
@@ -34,23 +34,29 @@ const CategriesItem = ({ onPress, data }: Props) => {
                 }}>
                     <Text style={styles.text}>{data?.name}</Text>
                 </View>
-            </FastImageWithLoader>
+            </ImageBackground>
         </TouchableOpacity>
     )
 }
 
-export default CategriesItem
+export default observer(CategriesItem)
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: "center",
         backgroundColor: COLORS.white,
         borderRadius: 10,
         gap: 10,
-        width: 115,
-        height: 125,
+        width: CATALOG_CARD_WIDTH,
+        height: CATALOG_IMAGE_HEIGHT,
         marginTop: 13,
+    },
+    img: {
+        width: "100%",
+        height: '100%',
+        resizeMode: 'cover',
+        justifyContent: "flex-end",
+        scaleAspectFit: CATALOG_CARD_WIDTH,
+        borderRadius: 10
     },
     text: {
         fontSize: 16,
@@ -58,20 +64,11 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         alignSelf: "center",
         paddingBottom: 5,
-        shadowColor: COLORS.black,
-        shadowOffset: {
+        textShadowColor: COLORS.black,
+        textShadowOffset: {
             width: 0,
             height: 0,
         },
-        shadowOpacity: 1.5,
-        shadowRadius: 3
+        textShadowRadius: 5,
     },
-    img: {
-        width: "100%",
-        height: '100%',
-        borderRadius: 10,
-        resizeMode: 'cover',
-        alignSelf: 'center',
-        justifyContent: "flex-end"
-    }
 })

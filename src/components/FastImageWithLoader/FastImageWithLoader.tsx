@@ -28,7 +28,6 @@ export const FastImageWithLoader: React.FC<any> = props => {
                 transition={1000}
                 placeholder={blurhash}
             />
-
             {isLoading && (
                 <View style={styles.loadingIndicator}>
                     <ActivityIndicator />
@@ -46,6 +45,6 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
     },
     loadingImage: {
-        opacity: 0,
+        opacity: 0
     },
 });
