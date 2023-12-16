@@ -77,7 +77,7 @@ const ProductCard = () => {
                             <Text style={{ color: COLORS.btnColor, textDecorationLine: 'underline' }}>Подробнее...</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.storage}>
+                    {/* <View style={styles.storage}>
                         <Text style={styles.informationTitle}>Память</Text>
                         <FlatList
                             data={oneProductStorages}
@@ -108,7 +108,7 @@ const ProductCard = () => {
                             contentContainerStyle={{ gap: 7 }}
                             keyExtractor={(_, index) => `${index}-1`}
                         />
-                    </View>
+                    </View> */}
                 </View>
             </ScrollView>
             <View style={styles.bottomPart}>

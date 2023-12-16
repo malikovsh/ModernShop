@@ -107,6 +107,5 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "400",
         lineHeight: 23,
-        height: 40
     }
 })
