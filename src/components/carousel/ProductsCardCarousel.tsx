@@ -1,4 +1,4 @@
-import { Dimensions, Image, SectionList, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, FlatList, Image, Platform, SectionList, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { mediaUrl } from '../../api/api'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -34,7 +34,22 @@ const ProductsCardCarousel = ({ data }: { data: Madia[] }) => {
             <View style={{ paddingBottom: 20 }}>
                 <ImagePill src={data[index]?.name} />
             </View>
-            <SectionList
+            <FlatList
+                data={data}
+                renderItem={({ item, index }) => (
+                    <View style={{ marginRight: 12 }}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => setIndex(index)}>
+                            <ImagePill width={101} height={97} src={item?.name} />
+                        </TouchableOpacity>
+                    </View>
+                )}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                    paddingBottom: 10
+                }}
+            />
+            {/* <SectionList
                 horizontal={true}
                 ItemSeparatorComponent={FlatListItemSeparator}
                 sections={[
@@ -50,8 +65,8 @@ const ProductsCardCarousel = ({ data }: { data: Madia[] }) => {
                 keyExtractor={(item, index) => index.toString()}
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
-                stickySectionHeadersEnabled={true}
-            />
+                stickySectionHeadersEnabled={Platform.OS === 'ios' ? false : true}
+            /> */}
         </View>
     )
 }
