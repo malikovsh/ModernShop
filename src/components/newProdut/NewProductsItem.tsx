@@ -20,15 +20,21 @@ const NewProductsItem = ({ data, showFamouse, onPress }: NewProductsProps) => {
 
     const { togleFavourite, inFavouriteProductIds } = useRootStore().favouriteStore
     const { getProductById } = useRootStore().productStore
+    const { token } = useRootStore().tokenStore
 
     const handlePress = () => {
         getProductById(data.id)
         onPress && onPress()
     }
 
+    const handleToggleFavourite = () => {
+        token ? togleFavourite(data) : alert("Пожалуйста, зарегистрируйтесь")
+        onPress && onPress()
+    }
+
     return (
         <TouchableOpacity activeOpacity={0.8} style={styles.container} onPress={handlePress}>
-            <TouchableOpacity style={styles.favriteBtn} onPress={() => togleFavourite(data)}>
+            <TouchableOpacity style={styles.favriteBtn} onPress={handleToggleFavourite}>
                 <FavoriteIcon isFocus={inFavouriteProductIds.includes(data.id)} />
             </TouchableOpacity>
             <View style={{ width: "100%", height: 150 }}>

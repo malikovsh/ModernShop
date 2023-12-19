@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useMemo, useRef } from 'react'
 import { COLORS } from '../../../constants/Color'
 import TitleNavbar from '../../../components/uikit/TitleNavbar'
@@ -14,7 +14,11 @@ import { observer } from 'mobx-react-lite'
 import { StackNavigationType } from '../../home/HomeStack'
 import LottieView from 'lottie-react-native';
 
-const ProductCard = () => {
+type Props = {
+    onPress?: () => void
+}
+
+const ProductCard = ({ onPress }: Props) => {
 
     const navigation = useNavigation<StackNavigationType>()
     const {
@@ -35,6 +39,10 @@ const ProductCard = () => {
         token ? navigation.navigate('Writing') : navigation.navigate("Create")
     }
 
+    const handleToggleFavourite = () => {
+        token ? togleFavourite(oneProduct as any) : alert("Пожалуйста, зарегистрируйтесь")
+        onPress && onPress()
+    }
     // const options = useMemo(() => {
     //     const colors = oneProduct.props || [];
     //     const storages = oneProduct.props || [];
@@ -61,7 +69,7 @@ const ProductCard = () => {
                             fontSize: 20,
                             fontWeight: '700'
                         }}>{oneProduct.name}</Text>
-                        <TouchableOpacity onPress={() => togleFavourite(oneProduct as any)}>
+                        <TouchableOpacity onPress={handleToggleFavourite}>
                             <FavoriteIcon isFocus={inFavouriteProductIds.includes(oneProduct.id)} />
                         </TouchableOpacity>
                     </View>
@@ -153,7 +161,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.bgColor,
-        paddingBottom: 30
+        paddingBottom: Platform.OS === 'ios' ? 10 : 0
     },
     description: {
         width: '100%',

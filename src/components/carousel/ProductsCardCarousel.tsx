@@ -50,6 +50,7 @@ const ProductsCardCarousel = ({ data }: { data: Madia[] }) => {
                 keyExtractor={(item, index) => index.toString()}
                 pagingEnabled
                 showsHorizontalScrollIndicator={false}
+                stickySectionHeadersEnabled={true}
             />
         </View>
     )
